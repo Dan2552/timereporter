@@ -7,6 +7,7 @@ gem 'rails', '3.1.4'
 
 gem 'sqlite3'
 gem 'simple_form'
+gem 'devise'
 
 group :development do
   gem 'quiet_assets'
