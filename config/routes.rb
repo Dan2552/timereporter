@@ -1,5 +1,8 @@
 Timereporter::Application.routes.draw do
+
+  root to: 'time_entries#index'
   devise_for :users
+  resources :time_entries
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
