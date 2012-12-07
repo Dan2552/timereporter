@@ -8,6 +8,8 @@ Timereporter::Application.routes.draw do
     post 'login' => 'devise/sessions#create', :as => :user_session
     delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
     match '/register', :controller=>"devise/registrations", :action=>"new", :as => :new_user_registration
+
+    get '/forgotten-password', :controller=>"devise/passwords", :action=>"new", :as => :new_user_password
   end
 
   resources :time_entries
