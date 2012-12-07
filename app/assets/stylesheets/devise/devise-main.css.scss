@@ -21,20 +21,21 @@ h1.heading {
   margin: 100px 150px 0 0;
   width: 300px;
   a {
-    color: $white;
-    margin: 0 5px 0 0;
+    color: #888;
+    font-size: 13px;
+    margin: 10px 0 0;
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+    text-shadow: 0 1px 0 #fff;
     &:hover {
-      opacity: 0.6;
+      opacity: 0.8;
     }
   }
   form {
     background: $white;
     padding: 10px;
-    margin: 0 0 5px 0;
+    overflow: auto;
     @include border-radius(4px);
     @include gradient-vertical(#fefefe, #eee);
-    @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+    @include box-shadow(0 8px 14px rgba(0, 0, 0, 0.8));
   }
 }
