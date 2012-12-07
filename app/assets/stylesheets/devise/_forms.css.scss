@@ -1,0 +1,146 @@
+//
+// Forms
+// --------------------------------------------------
+
+
+// GENERAL STYLES
+// --------------
+
+// Make all forms have space below them
+form {
+  margin: 0;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
+}
+
+// Identify controls by their labels
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+// Form controls
+// -------------------------
+
+// Shared size and type resets
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+.uneditable-input {
+  display: inline-block;
+  height: $inputHeight;
+  padding: 4px 6px;
+  margin-bottom: $baseLineHeight / 2;;
+  font-size: $baseFontSize + 2;
+  font-weight: 200;
+  line-height: $baseLineHeight;
+  color: $gray;
+  @include border-radius($inputBorderRadius);
+  vertical-align: middle;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// Reset appearance properties for textual inputs and textarea
+// Declare width for legacy (can't be on input[type=*] selectors or it's too specific)
+input,
+textarea,
+.uneditable-input {
+  width: 100%; // plus 12px padding and 2px border
+}
+// Reset height since textareas have rows
+textarea {
+  height: auto;
+}
+// Everything else
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+.uneditable-input {
+  background-color: $inputBackground;
+  border: 1px solid $inputBorder;
+  @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  @include transition(border linear .2s, box-shadow linear .2s);
+
+  // Focus state
+  &:focus {
+    border-color: #E64D1F;
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+    @include box-shadow(inset 0 1px 2px rgba(0,0,0,.075));
+  }
+}
+
+// Focus for select, file, radio, and checkbox
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  @include tab-focus();
+}
+
+
+// Placeholder
+// -------------------------
+
+// Placeholder text gets special styles because when browsers invalidate entire lines if it doesn't understand a selector
+input,
+textarea {
+  @include placeholder();
+}
+
+
+// DISABLED STATE - DONT THINK IS NEEDED AT THE MOMENT
+// --------------
+
+// // Disabled and read-only inputs
+// input[disabled],
+// select[disabled],
+// textarea[disabled],
+// input[readonly],
+// select[readonly],
+// textarea[readonly] {
+//   cursor: not-allowed;
+//   background-color: $inputDisabledBackground;
+// }
+// // Explicitly reset the colors here
+// input[type="radio"][disabled],
+// input[type="checkbox"][disabled],
+// input[type="radio"][readonly],
+// input[type="checkbox"][readonly] {
+//   background-color: transparent;
+// }
+
+
+
+
+// FORM FIELD FEEDBACK STATES
+// --------------------------
+
+// HTML5 invalid states
+// Shares styles with the .control-group.error above
+// input:focus:required:invalid,
+// textarea:focus:required:invalid,
+// select:focus:required:invalid {
+//   color: #b94a48;
+//   border-color: #ee5f5b;
+//   &:focus {
+//     border-color: darken(#ee5f5b, 10%);
+//     @include box-shadow(0 0 6px lighten(#ee5f5b, 20%));
+//   }
+// }

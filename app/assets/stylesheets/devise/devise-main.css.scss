@@ -1,0 +1,40 @@
+
+html {
+  background: image_url("bg_mini.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1.heading {
+  color: #fff;
+  font-size: 80px;
+  letter-spacing: 2px;
+  line-height: 78px;
+  margin: 100px 0 0 40px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.form-box {
+  float: right;
+  margin: 100px 150px 0 0;
+  width: 300px;
+  a {
+    color: $white;
+    margin: 0 5px 0 0;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  form {
+    background: $white;
+    padding: 10px;
+    margin: 0 0 5px 0;
+    @include border-radius(4px);
+    @include gradient-vertical(#fefefe, #eee);
+    @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.8));
+  }
+}
