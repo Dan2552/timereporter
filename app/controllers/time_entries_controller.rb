@@ -10,6 +10,7 @@ class TimeEntriesController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json { render json: @time_entries }
     end
   end
 
