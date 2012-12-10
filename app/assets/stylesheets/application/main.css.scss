@@ -1,0 +1,139 @@
+.nav-bar {
+  background: #212121;
+  padding: 0 10px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 30px;
+  @include gradient-vertical(#DD4B39, #C53727);
+  @include box-shadow(0 0px 4px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, .4) inset);
+  z-index: $zindexFixedNavbar;
+  ul {
+    overflow: auto;
+    li {
+      line-height: 30px;
+    }
+  }
+  a {
+    color: #6C1900;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #F45F4F;
+    &:hover {
+      color: #fff;
+      text-shadow: 0 -1px 0 #481506;
+    }
+  }
+}
+
+
+
+.container {
+  margin-top: 20px;
+  position: relative;
+}
+
+.timetable-header {
+  margin-left: 50px;
+}
+
+.times {
+  left: 0;
+  position: absolute;
+  top: 31px;
+  width: 50px;
+  p {
+    color: $grayLight;
+    margin: 0;
+    line-height: 21px;
+  }
+}
+
+.headers {
+  margin-left: 50px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+
+  @include clearfix();
+  .title {
+    float: left;
+    width: 20%;
+  }
+  h4 {
+    border-right: 1px solid #ccc;
+    color: $gray;
+    padding: 5px 10px 15px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .title:last-child h4 {
+    border-right: none;
+  }
+}
+
+.timetable {
+  border: 1px solid #ccc;
+  margin-left: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.day {
+  float: left;
+  width: 20%;
+  .hour {
+    .entry {
+      background: rgba(58, 82, 188, 0.6);
+      position: absolute;
+      top: 0px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      width: 100%!important;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      z-index: 20;
+      @include border-radius(4px);
+      .inner {
+        border: 1px solid rgb(58, 82, 188);
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        @include border-radius(4px);
+      }
+    }
+  }
+
+  .hour:last-child {
+    .half_hour {
+      border-bottom: none;
+    }
+    .half_hour:last-child {
+      display: none;
+    }
+  }
+}
+
+.day:last-child {
+  .half_hour {
+    border-right: none;
+  }
+}
+
+.half_hour {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px dotted #ccc;
+  height: 20px!important;
+  position: relative;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.half_hour:first-child {
+  border-bottom: 1px solid #ccc;
+}
