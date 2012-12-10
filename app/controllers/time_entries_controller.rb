@@ -2,7 +2,7 @@ class TimeEntriesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @time_entries = User.find(current_user).time_entries
+    @time_entries = TimeEntry.accessible_by(current_user)
 
     @date = Date.today
     @start_of_week = @date.beginning_of_week

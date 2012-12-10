@@ -4,4 +4,8 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  def self.accessible_by user
+    TimeEntry.where(user_id: user.id)
+  end
+
 end
