@@ -1,0 +1,10 @@
+(function(){
+  var $time_slot = $('*[data-entry_datetime="<%= @time_entry.entry_datetime %>"]'),
+      $entry = $("<%=j render @time_entry %>");
+
+
+  $time_slot.html($entry)
+  time_entries.set_resizeable($entry);
+
+
+})();
