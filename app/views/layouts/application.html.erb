@@ -18,9 +18,15 @@
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
-    <% if user_signed_in? %>
-      <%= link_to "sign out", destroy_user_session_path, :method => :delete %>
-    <% end %>
+    <nav class="nav-bar">
+      <ul>
+        <% if user_signed_in? %>
+          <li class="pull-right">
+            <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
 
     <%= yield %>
 
