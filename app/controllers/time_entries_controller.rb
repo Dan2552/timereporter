@@ -50,9 +50,6 @@ class TimeEntriesController < ApplicationController
     @time_entry = TimeEntry.find(params[:id])
     @time_entry.destroy
 
-    respond_to do |format|
-      format.html { redirect_to time_entries_url }
-    end
   end
 
 
