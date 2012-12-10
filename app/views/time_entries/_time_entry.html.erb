@@ -1,0 +1,5 @@
+<%= content_tag_for :div, time_entry, data: {id: time_entry.id, entry_datetime: time_entry.entry_datetime, duration: time_entry.duration}, class: "entry", style: "height: #{time_entry.duration * 20}px;" do %>
+  <div class="inner">
+
+  </div>
+<% end %>
