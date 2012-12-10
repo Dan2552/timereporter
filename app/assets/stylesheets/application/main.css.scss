@@ -106,6 +106,18 @@
         bottom: 0;
         @include border-radius(4px);
       }
+      .remove {
+        color: rgb(58, 82, 188);
+        font-size: 18px;
+        line-height: 14px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 4px;
+        text-decoration: none;
+        top: 2px;
+        z-index: $zindexFixedNavbar;
+      }
     }
   }
 
