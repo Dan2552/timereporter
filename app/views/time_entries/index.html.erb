@@ -37,12 +37,12 @@
         <% (1..10).each do |hour| %>
           <div class="hour">
             <% hour_datetime = (day.beginning_of_day + 7.5.hours) + hour.hours %>
-            <div class="half_hour" data-entry_datetime="<%= hour_datetime %>" data-duration="1">
+            <div class="half_hour" data-datetime="<%= hour_datetime %>" data-duration="1">
               <% TimeEntry.where(entry_datetime: hour_datetime).each do |time_entry| %>
                 <%= render time_entry %>
               <% end %>
             </div>
-            <div class="half_hour" data-entry_datetime="<%= hour_datetime + 0.5.hours %>" data-duration="1">
+            <div class="half_hour" data-datetime="<%= hour_datetime + 0.5.hours %>" data-duration="1">
               <% TimeEntry.where(entry_datetime: (hour_datetime + 0.5.hours)).each do |time_entry| %>
                 <%= render time_entry %>
               <% end %>
