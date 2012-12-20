@@ -1,6 +1,7 @@
 (function(){
   var $entry = $('#time_entry_<%= @time_entry.id %>');
 
+  $entry.parent().removeClass('chosen');
   $entry.remove();
 
 })();
