@@ -93,8 +93,8 @@
   z-index: 20;
   @include border-radius(4px);
   .inner {
-    background: rgba(58, 82, 188, 0.6);
-    border: 1px solid rgb(58, 82, 188);
+    background: rgba(173, 39, 30, 0.6);
+    border: 1px solid rgb(173, 39, 30);
     position: absolute;
     top: 0;
     right: 0;
@@ -103,7 +103,7 @@
     @include border-radius(4px);
   }
   .remove {
-    color: rgb(58, 82, 188);
+    color: rgb(173, 39, 30);
     font-size: 18px;
     line-height: 14px;
     margin: 0;
@@ -111,6 +111,7 @@
     position: absolute;
     right: 4px;
     text-decoration: none;
+    text-shadow: 0 1px 0 #DCA78C;
     top: 2px;
     z-index: $zindexFixedNavbar;
   }
