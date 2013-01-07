@@ -29,8 +29,10 @@ GEM
       activesupport (= 3.1.4)
     activesupport (3.1.4)
       multi_json (~> 1.0)
+    addressable (2.3.2)
     ansi (1.4.3)
     arel (2.2.3)
+    awesome_print (1.1.0)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.2.1.1)
       sass (~> 3.2)
@@ -58,6 +60,10 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
     hike (1.2.1)
     i18n (0.6.1)
     jquery-rails (2.1.4)
@@ -70,8 +76,14 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.4.0)
+    multipart-post (1.1.5)
     mysql2 (0.3.11)
     orm_adapter (0.4.0)
+    podio (0.8.0)
+      activemodel (~> 3.0)
+      activesupport (~> 3.0)
+      faraday (~> 0.7.0)
+      multi_json
     polyglot (0.3.3)
     quiet_assets (1.0.1)
       railties (~> 3.1)
@@ -134,12 +146,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bootstrap-sass (~> 2.2.1.1)
   coffee-rails (~> 3.1.1)
   debugger
   devise
   jquery-rails
   mysql2
+  podio
   quiet_assets
   rails (= 3.1.4)
   sass-rails (~> 3.1.5)

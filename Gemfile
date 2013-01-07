@@ -10,8 +10,11 @@ gem 'mysql2'
 gem 'simple_form'
 gem 'devise'
 
+gem 'podio'
+
 group :development do
   gem 'quiet_assets'
+  gem 'awesome_print'
 end
 
 # Gems used only for assets and not required
