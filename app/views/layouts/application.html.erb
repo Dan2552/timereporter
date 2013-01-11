@@ -21,6 +21,9 @@
     <nav class="nav-bar">
       <ul>
         <% if user_signed_in? %>
+
+        <%= link_to "import projects and clients from podio", new_podio_session_path %>
+
           <li class="pull-right">
             <%= link_to "logout", destroy_user_session_path, :method => :delete %>
           </li>
