@@ -15,6 +15,7 @@ Timereporter::Application.routes.draw do
 
   resources :time_entries
   resources :podio_sessions, only: [:index, :new]
+  resources :projects, only: :index
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
