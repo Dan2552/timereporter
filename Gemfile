@@ -11,6 +11,7 @@ gem 'simple_form'
 gem 'devise'
 
 gem 'podio'
+gem 'omniauth-podio'
 
 group :development do
   gem 'quiet_assets'
