@@ -45,4 +45,6 @@ module Timereporter
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
+
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 end

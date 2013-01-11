@@ -1,16 +1,19 @@
 class ProjectNameFetcher
 
-  def self.fetch
-    #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+  def self.fetch auth_code, path
     Podio.setup api_key: 'timereporter2', api_secret: 'FO5dAQAKqZEEKh04HDEguoIzoLfAuc6bUB6UC0nlTBfSqT3DM4QcTK9CgtALLmIO'
-    Podio.client.authenticate_with_credentials 'daniel.green@alliants.co.uk', p
+    Podio.client.authenticate_with_auth_code(auth_code, path)
+    #Podio.client.authenticate_with_credentials 'daniel.green@alliants.co.uk', p
 
+    count = 0
     Podio::Item.find_all(2226608, :limit => 500)[0].each do |project|
       title = project.title
       client = project.fields.map { |i| i["values"][0]["value"]["title"] }.compact.first
-      #puts title.to_s + ", " + client.to_s
+      puts title.to_s + ", " + client.to_s
       add_project title, client
+      count += 1
     end
+    count
   end
 
   def self.add_project project, client
