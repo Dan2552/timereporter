@@ -83,14 +83,12 @@ h2 small { font-size: $baseFontSize * 1.25; } // ~18px
 h3 small { font-size: $baseFontSize; }
 h4 small { font-size: $baseFontSize; }
 
-
-// Page header
-// -------------------------
-
-.page-header {
-  padding-bottom: ($baseLineHeight / 2) - 1;
-  margin: $baseLineHeight 0 ($baseLineHeight * 1.5);
-  border-bottom: 1px solid $grayLighter;
+.no-results {
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 30px;
+  margin: 40px 0;
+  text-align: center;
 }
 
 

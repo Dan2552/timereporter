@@ -1,39 +1,3 @@
-.nav-bar {
-  background: #212121;
-  padding: 0 10px;
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  height: 30px;
-  @include gradient-vertical(#DD4B39, #C53727);
-  @include box-shadow(0 0px 4px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, .4) inset);
-  z-index: $zindexFixedNavbar;
-  ul {
-    overflow: auto;
-    li {
-      line-height: 30px;
-    }
-  }
-  a {
-    color: #6C1900;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #F45F4F;
-    &:hover {
-      color: #fff;
-      text-shadow: 0 -1px 0 #481506;
-    }
-  }
-}
-
-
-
-.container {
-  margin-top: 20px;
-  position: relative;
-}
-
 .timetable-header {
   margin-left: 50px;
 }
