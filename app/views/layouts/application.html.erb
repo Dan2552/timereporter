@@ -21,12 +21,9 @@
     <nav class="nav-bar">
       <ul>
         <% if user_signed_in? %>
-          <li class="pull-right">
-            <%= link_to "home", root_path %> |
-            <%= link_to "import projects and clients from podio", new_podio_session_path %> |
-            <%= link_to "project list", projects_path %> |
-            <%= link_to "logout", destroy_user_session_path, :method => :delete %>
-          </li>
+          <li class="pull-left"><%= link_to "timesheet", root_path %></li>
+          <li class="pull-left"><%= link_to "projects", projects_path %></li>
+          <li class="pull-right"><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
         <% end %>
       </ul>
     </nav>
