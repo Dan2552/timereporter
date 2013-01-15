@@ -8,9 +8,8 @@ class PodioSessionsController < ApplicationController
   end
 
   def index
-    auth_code = params[:code]
-    count = ProjectNameFetcher.fetch auth_code, root_url
-    redirect_to root_url, notice: "#{count} projects from Podio found"
+    results = Project.fetch_remote_projects(auth_code: params[:code], path: root_url)
+    redirect_to root_path, notice: "#{results.count} projects from Podio found"
   end
 
 end
