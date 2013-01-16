@@ -1,7 +1,11 @@
-(function(){
-  var $time_slot = $('*[data-datetime="<%= @time_entry.entry_datetime %>"]').addClass('chosen'),
-      $entry = $time_slot.find('.entry').attr('data-id', "<%= @time_entry.id %>").toggleClass('chosen new_entry');
+(function() {
+  var $entry = time_entries.$entry,
+      $remove = $('<%= link_to "x", time_entry_path(@time_entry), remote: true, method: :delete, class: "remove" %>'),
+      $form = $('<%=j render "form" %>').hide();
 
-  time_entries.set_resizeable( $entry );
+  $entry.data("id", <%= @time_entry.id %>).attr('id', "time_entry_<%= @time_entry.id %>");
+  $entry.find('.inner').append( $remove );
+
+  time_entries.entry_created($form)
 
 })();

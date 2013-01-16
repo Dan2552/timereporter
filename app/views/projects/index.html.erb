@@ -1,5 +1,43 @@
-<% @projects.each do |project| %>
-  <li>
-  <strong><%= project.name %></strong>,<%= client_name_for_project project %>
-  </li>
-<% end %>
+<header class="page-header-with-link">
+  <h1>Projects</h1>
+  <% if @projects.any? %>
+    <%= link_to "update projects", new_podio_session_path %>
+  <% end %>
+</header>
+
+<div class="container">
+  <% if @projects.any? %>
+
+    <div id="letter-list">
+      <ul>
+        <% @projects.keys.sort.each do |letter| %>
+          <li>
+            <a href="#letter_<%= letter.downcase %>" class="scroll-letter letter_<%= letter.downcase %>"><%= letter %></a>
+          </li>
+        <% end %>
+        <li class="top-link"><a href="#">top</a></li>
+      </ul>
+    </div>
+
+    <% @projects.keys.sort.each do |letter| %>
+      <div id="letter_<%= letter.downcase %>" class="projects-container">
+        <ul class="projects-list">
+          <li class="letter"><%= letter %></li>
+          <% @projects[letter].each do |project| %>
+            <%= content_tag_for :li, project do %>
+              <%= project.name %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+  <% else %>
+
+    <p class="no-results">
+      You curently have no projects, <%= link_to "click here", new_podio_session_path %> to import them from Podio.
+    </p>
+
+  <% end %>
+</div>

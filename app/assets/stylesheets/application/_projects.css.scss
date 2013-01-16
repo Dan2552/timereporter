@@ -1,0 +1,62 @@
+#letter-list {
+  overflow: hidden;
+  li {
+    float: left;
+    font-size: 18px;
+    font-weight: 200;
+    width: 25px;
+    text-align: center;
+  }
+  li.top-link {
+    display: none;
+    float: right;
+    margin-right: 0;
+  }
+  .active {
+    color: #712626;
+    font-weight: 400;
+  }
+
+  a {
+    display: block;
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+#letter-list.sticky {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #eee;
+  left: 0;
+  padding: 10px 50px;
+  position: fixed;
+  right: 0;
+  top: 30px;
+  li.top-link {
+    display: block;
+  }
+}
+
+.projects-container {
+  padding: 75px 0 0;
+}
+
+.projects-container:last-child {
+  margin: 0 0 510px;
+}
+
+ul.projects-list {
+  li.letter {
+    border-bottom: 1px dashed #eee;
+    font-size: 20px;
+    font-weight: 200;
+    margin: 0 0 10px;
+    padding: 6px 0;
+  }
+
+  li.project_name {
+    font-size: 17px;
+    font-weight: 200;
+    line-height: 22px;
+  }
+}

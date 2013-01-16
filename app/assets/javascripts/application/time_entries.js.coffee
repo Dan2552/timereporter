@@ -1,108 +1,148 @@
 window.time_entries = ( ($) ->
 
   init: () ->
-    @$timetable = $('.timetable')
-    @$time_slot = $('.half_hour')
-    @$chosen_timeslot = $('.chosen')
-    @$entry = $('.entry')
-    @$scrolling = false
-    @$resize_element
-    @$original_height
-    @$resize_top = false
-    @add_event_handlers()
+    @$time_slot
+    @$entry
+    @$resizing_top
+    @$entries = $('.entry')
+    @$reset_parent = false
+    @original_height
+    @$resize_via_ui
     @add_chosen_classes()
-    @set_resizeable(@$entry)
+    @set_resizeable(@$entries)
+    @add_event_handlers()
 
 
   add_event_handlers: () ->
-    @$time_slot.on("mousedown", $.proxy(@append_time_entry, @));
-    @$time_slot.not('.entry').on("mouseup", $.proxy(@save_time_entry, @));
+    $('.half_hour').on("mousedown", $.proxy(@append_time_entry, @))
+    $('.day').on("mouseup", $.proxy(@save_time_entry, @))
+    $('.form-popout').on("mouseup", $.proxy(@save_time_entry, @))
+
 
   add_chosen_classes: () ->
-    @$entry.parent().addClass('chosen')
+    $('.entry').parent().addClass('chosen')
+
+  append_time_entry: (evt) ->
+    evt.preventDefault()
+    unless $(evt.target).hasClass('remove')
+      self = this
+      @$time_slot = $(evt.currentTarget)
+      mousedownY = evt.pageY
+      unless @$time_slot.hasClass('chosen')
+        @$entry = @$time_slot.clone().toggleClass('half_hour entry').append( $('<div/>', {class: 'inner'}))
+
+        @$time_slot
+          .addClass('chosen')
+          .html(@$entry)
+          .parents('.day').mousemove (e) ->
+            if e.pageY < mousedownY
+              $('body').css "cursor", "n-resize"
+              self.$entry.css
+                top: "auto"
+                bottom: -1
+              self.$entry.height(Math.ceil((mousedownY - e.pageY) / 20) * 20)
+              self.$reset_parent = true
+            else
+              $('body').css "cursor", "s-resize"
+              self.$entry.css
+                top: 0
+                bottom: "auto"
+              self.$entry.height(Math.ceil((e.pageY - mousedownY) / 20) * 20)
+              self.$reset_parent = false
+
+  set_new_parent: () ->
+    self = this
+    @$entry.parent().removeClass('chosen')
+    if @$resize_via_ui
+      entry_pos = @$entry.position().top
+      parent_pos = @$entry.parent().position().top
+
+      if entry_pos <= 0
+        $new_parent = @$time_slot.siblings().filter ->
+          return this.offsetTop == entry_pos + parent_pos
+      else
+        $new_parent = @$time_slot.siblings().filter ->
+          return this.offsetTop == parent_pos + entry_pos
+
+    else
+      $new_parent = @$time_slot.siblings().filter ->
+        return this.offsetTop == self.$entry.position().top + self.$time_slot.position().top
+
+    $new_parent.html(@$entry.css 'top', 0).addClass('chosen')
+    @$entry.data().datetime = $new_parent.data("datetime")
+
+
+
+  save_time_entry: (evt) ->
+    evt.preventDefault()
+    unless $(evt.target).hasClass('remove')
+      $day = $(evt.currentTarget).unbind('mousemove')
+      $('body').css "cursor", "default"
+
+      if @$entry && !@$resize_via_ui
+        if @$reset_parent
+          @set_new_parent()
+
+        @$entry.data().duration = @$entry.height() / 20
+        @submit_entry(@$entry.data())
 
   set_resizeable: ($elem) ->
+    self = this
     $elem.resizable
       grid: 20
       handles: "s, n"
-      resize: (ui, evt) ->
-        # log ui
-      start: () ->
-        $this = $(@)
-        time_entries.$resize_element = $this
-        time_entries.$scrolling = true
-        time_entries.$original_height = $this.height()
-
-
-  set_duration: (evt) ->
-    $elem = $(evt.target)
-    duration = $elem.height() / 20
-    $elem.attr("data-duration", duration)
-    @update_entry($elem.data())
-
-
-  append_time_entry: (evt) ->
-    $elem = $(evt.currentTarget)
-    unless $elem.hasClass('chosen')
-      $elem.addClass('chosen')
-      $entry = $elem.removeClass('chosen').clone().toggleClass('half_hour entry').append( $('<div/>', {class: 'inner'}))
-      @$resize_element = $entry
-      mousedownY = evt.pageY
-      position = $elem.position()
-      top = position.top
-      bottom = top + $elem.outerHeight()
-
-      $elem.html( $entry )
-
-      $elem.parents('.day').mousemove (e) ->
-        time_entries.$scrolling = true
-        if e.pageY < mousedownY
-          $entry.css
-            top: "auto"
-            bottom: -1
-          $entry.height(Math.ceil((mousedownY - e.pageY) / 20) * 20)
-          time_entries.$resize_top = true
+      start: (evt, ui) ->
+        self.$entry = $(@)
+        self.$resize_via_ui = true
+        self.original_height = self.$entry.height()
+        if $(evt.originalEvent.target).hasClass('ui-resizable-n')
+          self.$resizing_top = true
         else
-          $entry.css
-            top: 0
-            bottom: "auto"
-          time_entries.$resize_top = false
-          $entry.height(Math.ceil((e.pageY - mousedownY) / 20) * 20)
+          self.$resizing_top = false
+      stop: (evt, ui) ->
+        self.$entry = $(@)
+        if self.$resizing_top
+          self.set_new_parent()
 
-      @submit_entry( $entry.data() )
-
-  reset_origin: ($elem) ->
-    $day_container = @$resize_element.parents('.day')
-    parent_position = @$resize_element.parent().position()
-
-    $new_parent = $day_container.find('.half_hour').filter ->
-      return this.offsetTop == parent_position.top - time_entries.$resize_element.height() + 20
-
-    @$resize_element.attr('data-datetime', $new_parent.data("datetime"))
-
-  save_time_entry: (evt) ->
-    $(".day").unbind('mousemove')
-    if @$resize_top
-      @reset_origin()
-
-
-    if @$original_height != @$resize_element.height() && @$scrolling
-      data = { duration: @$resize_element.height() / 20 , entry_datetime: @$resize_element.attr('data-datetime'), id: @$resize_element.data('id') }
-      @update_entry( data )
+        self.$entry.data().duration = self.$entry.height() / 20
+        self.update_entry(self.$entry.data())
 
   submit_entry: (data) ->
+    self = this
     $.ajax
       type: "POST"
       url: "/time_entries"
       data: { duration: data.duration, entry_datetime: data.datetime }
-      success: (data) ->
+      complete: () ->
+        self.set_resizeable(self.$entry)
+        self.$entry = false
 
   update_entry: (data) ->
     $.ajax
       type: "PUT"
       url: "/time_entries/#{data.id}"
-      data: data
+      data: { duration: data.duration, entry_datetime: data.datetime }
 
+
+  entry_created: ($form) ->
+    day_left_pos = Math.round(@$entry.parents('.day').position().left)
+    entry_offset = @$entry.offset()
+    width = @$entry.outerWidth()
+    left = Math.round(entry_offset.left)
+    top = entry_offset.top
+
+
+    if day_left_pos > 800
+      $form.addClass('left').css
+        top: top - 10
+        left: (left - width) - 20
+    else
+      $form.addClass('right').css
+        top: top - 10
+        left: (left + width) - 20
+
+    $('body').append($form.show())
+    $form.find('select.chosen').chosen()
 
 )(jQuery)
 

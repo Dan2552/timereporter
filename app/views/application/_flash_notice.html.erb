@@ -1,3 +1,7 @@
-<div id='flash-notice'>
-  <%= flash[:notice] %>
-</div>
+<% alert_classes = { 'notice' => 'alert-success', 'alert' => 'alert-error' } %>
+
+<%- flash.each do |key, value| %>
+  <div id="flash-notice" class="flash-alert <%= alert_classes["#{key}"] %>">
+   <%= value %>
+  </div>
+<% end %>

@@ -9,7 +9,7 @@ class PodioSessionsController < ApplicationController
 
   def index
     results = Project.fetch_remote_projects(auth_code: params[:code], path: root_url)
-    redirect_to root_path, notice: "#{results.count} projects from Podio found"
+    redirect_to projects_url, notice: "#{results.count} projects from Podio found"
   end
 
 end

@@ -2,28 +2,7 @@
   <h1><%= @start_of_week.day %>-<%= @end_of_week.day %> <%= @date.strftime("%B %Y")%></h1>
 </header>
 
-<div class="container">
-  <div class="times">
-    <p>08:30</p>
-    <p>09:00</p>
-    <p>09:30</p>
-    <p>10:00</p>
-    <p>10:30</p>
-    <p>11:00</p>
-    <p>11:30</p>
-    <p>12:00</p>
-    <p>12:30</p>
-    <p>13:00</p>
-    <p>13:30</p>
-    <p>14:00</p>
-    <p>14:30</p>
-    <p>15:00</p>
-    <p>15:30</p>
-    <p>16:00</p>
-    <p>16:30</p>
-    <p>17:00</p>
-    <p>17:30</p>
-  </div>
+<div class="container timetable-container">
   <div class="headers">
     <% @start_of_week.upto(@end_of_week) do |day| %>
       <div class="title">
@@ -31,11 +10,33 @@
       </div>
     <% end %>
   </div>
-  <div class="timetable">
-    <% @start_of_week.upto(@end_of_week) do |day| %>
-      <div class="day">
-        <% (1..10).each do |hour| %>
-          <div class="hour">
+  <div class="timetable-holder">
+
+    <div class="timetable">
+      <div class="times">
+        <p>08:30</p>
+        <p>09:00</p>
+        <p>09:30</p>
+        <p>10:00</p>
+        <p>10:30</p>
+        <p>11:00</p>
+        <p>11:30</p>
+        <p>12:00</p>
+        <p>12:30</p>
+        <p>13:00</p>
+        <p>13:30</p>
+        <p>14:00</p>
+        <p>14:30</p>
+        <p>15:00</p>
+        <p>15:30</p>
+        <p>16:00</p>
+        <p>16:30</p>
+        <p>17:00</p>
+        <p>17:30</p>
+      </div>
+      <% @start_of_week.upto(@end_of_week) do |day| %>
+        <div class="day">
+          <% (1..10).each do |hour| %>
             <% hour_datetime = (day.beginning_of_day + 7.5.hours) + hour.hours %>
             <div class="half_hour" data-datetime="<%= hour_datetime %>" data-duration="1">
               <% TimeEntry.where(entry_datetime: hour_datetime).each do |time_entry| %>
@@ -47,9 +48,11 @@
                 <%= render time_entry %>
               <% end %>
             </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
+  <div class="border-bottom"></div>
 </div>
