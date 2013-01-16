@@ -16,6 +16,7 @@ window.time_entries = ( ($) ->
   add_event_handlers: () ->
     $('.half_hour').on("mousedown", $.proxy(@append_time_entry, @))
     $('.day').on("mouseup", $.proxy(@save_time_entry, @))
+    $('.form-popout').on("mouseup", $.proxy(@save_time_entry, @))
 
 
   add_chosen_classes: () ->
@@ -122,6 +123,26 @@ window.time_entries = ( ($) ->
       url: "/time_entries/#{data.id}"
       data: { duration: data.duration, entry_datetime: data.datetime }
 
+
+  entry_created: ($form) ->
+    day_left_pos = Math.round(@$entry.parents('.day').position().left)
+    entry_offset = @$entry.offset()
+    width = @$entry.outerWidth()
+    left = Math.round(entry_offset.left)
+    top = entry_offset.top
+
+
+    if day_left_pos > 800
+      $form.addClass('left').css
+        top: top - 10
+        left: (left - width) - 20
+    else
+      $form.addClass('right').css
+        top: top - 10
+        left: (left + width) - 20
+
+    $('body').append($form.show())
+    $form.find('select.chosen').chosen()
 
 )(jQuery)
 

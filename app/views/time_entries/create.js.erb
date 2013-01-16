@@ -1,9 +1,11 @@
 (function() {
   var $entry = time_entries.$entry,
-      $remove = $('<%= link_to "x", time_entry_path(@time_entry), remote: true, method: :delete, class: "remove" %>');
+      $remove = $('<%= link_to "x", time_entry_path(@time_entry), remote: true, method: :delete, class: "remove" %>'),
+      $form = $('<%=j render "form" %>').hide();
 
   $entry.data("id", <%= @time_entry.id %>).attr('id', "time_entry_<%= @time_entry.id %>");
   $entry.find('.inner').append( $remove );
 
+  time_entries.entry_created($form)
 
 })();

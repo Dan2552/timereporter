@@ -1,0 +1,22 @@
+<div class="form-popout">
+  <div class="arrow"></div>
+  <%= simple_form_for @time_entry, :html => { :class => ""} do |f| %>
+    <%= f.input :project_id,
+                label: false,
+                collection: ClientName.order(:value),
+                label_method: :value,
+                as: :grouped_select,
+                group_method: :project_names,
+                group_label_method: :value,
+                prompt: "Choose a project...",
+                wrapper: false,
+                input_html: {
+                  class: "chosen"
+                } %>
+    <%= f.input :comment, as: :text, label: false, placeholder: "Comments", wrapper: false %>
+
+    <a class="close pull-left" href="#" style="">close</a>
+    <a class="save pull-right" href="#" style="">save</a>
+
+  <% end %>
+</div>
