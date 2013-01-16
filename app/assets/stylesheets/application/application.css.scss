@@ -10,6 +10,7 @@
 
 // Core variables and mixins
 @import "jquery-ui-1.9.2.custom.min";
+@import "chosen";
 
 @import "variables"; // Modify this for custom colors, font-sizes, etc
 @import "bootstrap/mixins";
@@ -24,7 +25,7 @@
 // Base CSS
 @import "type";
 // @import "bootstrap/code";
-// @import "bootstrap/forms";
+@import "forms";
 // @import "bootstrap/tables";
 
 // Components: common
@@ -32,7 +33,7 @@
 // @import "bootstrap/dropdowns";
 // @import "bootstrap/wells";
 // @import "bootstrap/component-animations";
-@import "bootstrap/close";
+// @import "bootstrap/close";
 
 // Components: Buttons & Alerts
 @import "buttons";
@@ -67,3 +68,4 @@
 @import "main";
 @import "timetable";
 @import "projects";
+@import "form-popout";

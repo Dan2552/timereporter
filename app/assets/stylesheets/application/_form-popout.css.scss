@@ -1,0 +1,84 @@
+.form-popout {
+  border: 1px solid #999;
+  padding: 10px 10px 6px;
+  position: absolute;
+  top: 0;
+  width: 250px;
+  z-index: 4000;
+  @include border-radius(4px);
+  @include gradient-vertical(#fff, #eee);
+  form {
+    margin: 0;
+    select {
+      width: 100%;
+    }
+    textarea {
+      height: 150px;
+      margin: 0;
+      width: 236px;
+    }
+    a {
+      margin: 2px 0 0;
+    }
+    .close,
+    .save {
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 20px;
+      text-shadow: 0 1px 0 white;
+    }
+    .close { color: #999999; }
+    .save { color: #951305; }
+  }
+}
+
+.form-popout .arrow,
+.form-popout .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.form-popout .arrow {
+  border-width: $popoverArrowOuterWidth;
+}
+.form-popout .arrow:after {
+  border-width: $popoverArrowWidth;
+  content: "";
+}
+
+.form-popout.right {
+  @include box-shadow(4px 4px 2px 0 rgba(0,0,0,0.2));
+  .arrow {
+    top: 20%;
+    left: -$popoverArrowOuterWidth;
+    margin-top: -$popoverArrowOuterWidth;
+    border-left-width: 0;
+    border-right-color: #999;
+    &:after {
+      left: 1px;
+      bottom: -$popoverArrowWidth;
+      border-left-width: 0;
+      border-right-color: #FCFCFC;
+    }
+  }
+}
+
+.form-popout.left {
+  @include box-shadow(-4px 4px 2px 0 rgba(0, 0, 0, 0.2));
+  .arrow {
+    top: 20%;
+    right: -$popoverArrowOuterWidth;
+    margin-top: -$popoverArrowOuterWidth;
+    border-right-width: 0;
+    border-left-color: #999; // IE8 fallback
+    &:after {
+      right: 1px;
+      bottom: -$popoverArrowWidth;
+      border-right-width: 0;
+      border-left-color: #FCFCFC;
+    }
+  }
+}
