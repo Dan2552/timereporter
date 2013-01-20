@@ -6,11 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :api_token
+  attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :time_entries
 
-  def generate_api_token
-    update_attributes(api_token: SecureRandom.urlsafe_base64)
-  end
 end
