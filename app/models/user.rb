@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :time_entries
 
+  def role? check
+    role == check.to_s
+  end
+
 end
