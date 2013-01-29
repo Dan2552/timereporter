@@ -3,11 +3,11 @@
   <%= simple_form_for @time_entry, :html => { :class => ""} do |f| %>
     <%= f.input :project_id,
                 label: false,
-                collection: ClientName.order(:value),
-                label_method: :value,
+                collection: Client.order(:name),
+                label_method: :name,
                 as: :grouped_select,
-                group_method: :project_names,
-                group_label_method: :value,
+                group_method: :projects,
+                group_label_method: :name,
                 prompt: "Choose a project...",
                 wrapper: false,
                 input_html: {

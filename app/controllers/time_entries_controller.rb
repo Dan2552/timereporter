@@ -1,5 +1,4 @@
 class TimeEntriesController < ApplicationController
-  before_filter :authenticate_user!
 
   def index
     @time_entries = TimeEntry.accessible_by(current_user)
@@ -50,7 +49,6 @@ class TimeEntriesController < ApplicationController
   def destroy
     @time_entry = TimeEntry.find(params[:id])
     @time_entry.destroy
-
   end
 
 

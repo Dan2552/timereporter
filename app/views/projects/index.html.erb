@@ -25,7 +25,7 @@
           <li class="letter"><%= letter %></li>
           <% @projects[letter].each do |project| %>
             <%= content_tag_for :li, project do %>
-              <%= project.value %>
+              <%= project.name %>
             <% end %>
           <% end %>
         </ul>
