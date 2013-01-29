@@ -3,26 +3,23 @@
 }
 
 .timetable-container {
-  position: fixed;
-  right: 50px;
-  left: 50px;
+  margin-bottom: 300px;
 }
 
 .times {
   border-right: 1px solid #ccc;
-  float: left;
+  position: absolute;
+  left: 0;
   width: 45px;
-  p {
+  z-index: 2;
+  .time {
     color: $grayLight;
-    margin: 0;
-    line-height: 21px;
   }
 }
 
 .headers {
-  border-bottom: 1px solid #ccc;
   margin-left: 45px;
-
+  border-bottom: 1px solid #ccc;
   @include clearfix();
   .title {
     float: left;
@@ -38,23 +35,17 @@
 
 }
 
-.border-bottom {
-  margin-left: 45px;
-  margin-top: -1px;
-  height: 1px;
-  border-top: 1px solid #ccc;
-}
-
-.timetable-holder {
-  border-right: 1px solid #ccc;
-  overflow: hidden;
-}
-
 .timetable {
-  margin-right: -15px;
-  height: 380px;
+  border-right: 1px solid #ccc;
+  padding-left: 45px;
+  height: 400px;
   overflow: auto;
   position: relative;
+}
+
+.bottom-border {
+  border-top: 1px solid #ccc;
+  margin-left: 45px;
 }
 
 .entry {
@@ -96,7 +87,7 @@
 
 .day {
   float: left;
-  width: 19.2%;
+  width: 20%;
   position: relative;
 
   .half_hour:last-child {
@@ -112,7 +103,7 @@
 
 .half_hour {
   border-right: 1px solid #ccc;
-  border-bottom: 1px dotted #ccc;
+  border-bottom: 1px solid #eee;
   height: 20px!important;
   position: relative;
   -moz-box-sizing: border-box;
