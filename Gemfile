@@ -34,6 +34,8 @@ end
 gem 'jquery-rails'
 gem 'debugger'
 gem "cancan"
+gem "devise_json_csrf", '0.1.0', git: 'https://github.com/Dan2552/devise_json_csrf.git'
+#gem "devise_json_csrf", '0.1.0', path: "../gem/devise_json_csrf/"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
