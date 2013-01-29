@@ -24,7 +24,7 @@ window.time_entries = ( ($) ->
 
   append_time_entry: (evt) ->
     evt.preventDefault()
-    unless $(evt.target).hasClass('remove')
+    unless $(evt.target).hasClass('remove') || evt.which != 1
       self = this
       @$time_slot = $(evt.currentTarget)
       mousedownY = evt.pageY
