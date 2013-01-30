@@ -1,11 +1,11 @@
 class TimeEntriesController < ApplicationController
 
-  before_filter :load_resources
+  before_filter :load_resources, except: :index
 
   def index
     @date = params[:date] || Date.today
-    @start_of_week = @date.beginning_of_week
-    @end_of_week = @date.end_of_week - 2
+    @time_entries = TimeEntry.for_user(current_user).for_date(@date)
+
     respond_with { @time_entries }
   end
 
