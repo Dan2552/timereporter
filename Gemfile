@@ -16,6 +16,12 @@ gem 'omniauth-podio'
 group :development do
   gem 'quiet_assets'
   gem 'awesome_print'
+
+  #  better errors
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  # /better errors
 end
 
 # Gems used only for assets and not required
