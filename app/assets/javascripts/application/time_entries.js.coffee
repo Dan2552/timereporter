@@ -112,7 +112,7 @@ window.time_entries = ( ($) ->
     $.ajax
       type: "POST"
       url: "/time_entries"
-      data: { duration: data.duration, entry_datetime: data.datetime }
+      data: { time_entry: { duration: data.duration, entry_datetime: data.datetime } }
       complete: () ->
         self.set_resizeable(self.$entry)
         self.$entry = false
@@ -121,7 +121,7 @@ window.time_entries = ( ($) ->
     $.ajax
       type: "PUT"
       url: "/time_entries/#{data.id}"
-      data: { duration: data.duration, entry_datetime: data.datetime }
+      data: { time_entry: { duration: data.duration, entry_datetime: data.datetime } }
 
 
   entry_created: ($form) ->
