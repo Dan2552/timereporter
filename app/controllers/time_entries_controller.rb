@@ -15,7 +15,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def update
-    @time_entry.update_attributes(params)
+    @time_entry.update_attributes(params[:time_entry])
   end
 
   def destroy
