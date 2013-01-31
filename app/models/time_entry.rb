@@ -18,4 +18,13 @@ class TimeEntry < ActiveRecord::Base
   	where(user_id: user.id)
   end
 
+  def self.report_for_collection(entries)
+  	(project_times = {}).tap do
+	  	entries.each do |entry|
+	  		project_name = entry.project.try(:name) || "Unspecified project"
+	  		project_times[project_name] = (project_times[project_name] || 0.0) + (entry.duration / 2.0)
+	  	end
+  	end
+  end
+
 end
