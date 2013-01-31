@@ -5,8 +5,8 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :user
 
   def self.for_date(date)
-  	start_date = date.beginning_of_week
-  	end_date = date.end_of_week - 2
+  	start_date = date.beginning_of_week.beginning_of_day
+  	end_date = (date.end_of_week - 2).end_of_day
   	where(entry_datetime: start_date..end_date)
   end
 
