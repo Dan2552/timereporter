@@ -1,0 +1,10 @@
+<header class="page-header-with-link">
+<h1><%= @user.name %></h1>
+	<%= link_to date_range_text, "#" %>
+</header>
+<% total_time = 0 %>
+<% @project_times.each do |project, time| %>
+	<li><%= project %> </br><%= time %> hours <% total_time += time %></li>
+<% end %>
+
+<br/><br/><%= total_time %> hours total

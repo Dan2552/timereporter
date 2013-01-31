@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     role == check.to_s
   end
 
+  def name
+  	email.split("@").first.gsub(".", " ").titleize
+  end
+
 end

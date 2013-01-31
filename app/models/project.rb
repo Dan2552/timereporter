@@ -5,6 +5,8 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true
 
+  scope :ordered_by_name, order: 'name ASC'
+
   def self.fetch_remote_projects(args = {})
     PodioProjectFetcher.new(args).fetch
   end

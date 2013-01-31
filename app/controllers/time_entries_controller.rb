@@ -1,56 +1,37 @@
 class TimeEntriesController < ApplicationController
 
+  before_filter :load_resources, except: :index
+
   def index
-    @time_entries = TimeEntry.accessible_by(current_user)
-
-    @date = Date.today
-    @start_of_week = @date.beginning_of_week
-    @end_of_week = @date.end_of_week - 2
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @time_entries }
-    end
-  end
-
-  def show
-    @time_entry = TimeEntry.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
+    collection_resource
+    respond_with { @time_entries }
   end
 
   def create
-    @time_entry = TimeEntry.new(params)
     @time_entry.user = current_user
-
-    respond_to do |format|
-      if @time_entry.save
-        format.js
-      else
-        format.html
-      end
-    end
+    @time_entry.save
   end
-
 
   def update
-    @time_entry = TimeEntry.find(params[:id])
-    respond_to do |format|
-      if @time_entry.update_attributes(params)
-        format.js
-      else
-        format.html
-      end
-    end
+    @time_entry.update_attributes(params[:time_entry])
   end
 
-
   def destroy
-    @time_entry = TimeEntry.find(params[:id])
     @time_entry.destroy
   end
 
+  def user_report
+  	collection_resource
+  	@project_times = TimeEntry.report_for_collection(@time_entries)
+  end
 
+  private
+
+  def collection_resource
+    @date = Date.parse(params[:date]) if params[:date].present?
+    @date ||= Date.today
+    @user ||= current_user
+    @time_entries = TimeEntry.for_user(@user).for_date(@date)
+  end
 end
 

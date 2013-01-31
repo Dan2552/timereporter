@@ -1,10 +1,10 @@
 <header class="timetable-header">
-  <h1><%= @start_of_week.day %>-<%= @end_of_week.day %> <%= @date.strftime("%B %Y")%></h1>
+  <h1><%= date_range_text %></h1>
 </header>
 
 <div class="container timetable-container">
   <div class="headers">
-    <% @start_of_week.upto(@end_of_week) do |day| %>
+    <% week_range do |day| %>
       <div class="title">
         <h4><%= day.strftime("%e %A") %></h4>
       </div>
@@ -14,22 +14,21 @@
   <div class="timetable">
     <div class="times">
       <% (1..24).each do |hour| %>
-        <div class="time"><%= (@date.beginning_of_day + hour.hours).strftime("%H:%M") %></div>
-        <div class="time"><%= (@date.beginning_of_day + hour.hours + 0.5.hours).strftime("%H:%M") %></div>
+        <div class="time"><%= hour_text(hour) %></div>
+        <div class="time"><%= hour_text(hour + 0.5) %></div>
       <% end %>
     </div>
 
-    <% @start_of_week.upto(@end_of_week) do |day| %>
+    <% week_range.each do |day| %>
       <div class="day">
         <% (1..24).each do |hour| %>
-          <% hour_datetime = day.beginning_of_day + hour.hours %>
-          <div class="half_hour" data-datetime="<%= hour_datetime %>" data-duration="1">
-            <% TimeEntry.where(entry_datetime: hour_datetime).each do |time_entry| %>
+          <div class="half_hour" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
+            <% entries(day, hour).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
-          <div class="half_hour" data-datetime="<%= hour_datetime + 0.5.hours %>" data-duration="1">
-            <% TimeEntry.where(entry_datetime: (hour_datetime + 0.5.hours)).each do |time_entry| %>
+          <div class="half_hour" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
+            <% entries(day, hour + 0.5).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
