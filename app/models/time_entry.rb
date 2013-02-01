@@ -14,17 +14,20 @@ class TimeEntry < ActiveRecord::Base
   	where(entry_datetime: date_time)
   end
 
-  def self.for_user(user)
-  	where(user_id: user.id)
+  def self.for(object)
+    class_name = object.class.name.downcase
+  	where(:"#{class_name}_id" => object.id)
   end
 
-  def self.report_for_collection(entries)
-  	(project_times = {}).tap do
-	  	entries.each do |entry|
-	  		project_name = entry.project.try(:name) || "Unspecified project"
-	  		project_times[project_name] = (project_times[project_name] || 0.0) + (entry.duration / 2.0)
-	  	end
-  	end
+  #debugging only, don't call on production
+  def self.randomize
+    10.times do
+      TimeEntry.all.each do |e| 
+        e.project = Project.where(id: 0..5).sample
+        e.user = User.all.sample
+        e.save
+      end
+    end
   end
 
 end
