@@ -5,8 +5,8 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :user
 
   def self.for_date(date)
-  	start_date = date.beginning_of_week
-  	end_date = date.end_of_week - 2
+  	start_date = date.beginning_of_week.beginning_of_day
+  	end_date = (date.end_of_week - 2).end_of_day
   	where(entry_datetime: start_date..end_date)
   end
 
@@ -14,17 +14,20 @@ class TimeEntry < ActiveRecord::Base
   	where(entry_datetime: date_time)
   end
 
-  def self.for_user(user)
-  	where(user_id: user.id)
+  def self.for(object)
+    class_name = object.class.name.downcase
+  	where(:"#{class_name}_id" => object.id)
   end
 
-  def self.report_for_collection(entries)
-  	(project_times = {}).tap do
-	  	entries.each do |entry|
-	  		project_name = entry.project.try(:name) || "Unspecified project"
-	  		project_times[project_name] = (project_times[project_name] || 0.0) + (entry.duration / 2.0)
-	  	end
-  	end
+  #debugging only, don't call on production
+  def self.randomize
+    10.times do
+      TimeEntry.all.each do |e| 
+        e.project = Project.where(id: 0..5).sample
+        e.user = User.all.sample
+        e.save
+      end
+    end
   end
 
 end

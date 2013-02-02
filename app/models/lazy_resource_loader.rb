@@ -1,5 +1,5 @@
 module LazyResourceLoader
-  
+
   def load_resources
   	param_resource_keys.each{ |key| load_resource(key) }
   	load_main_resource
@@ -8,6 +8,8 @@ module LazyResourceLoader
   private
 
   def load_main_resource
+    param_key_to_class(controller_model_key) rescue return
+
   	if params[:action] == "create" || params[:action] == "new"
 			new_main_resource
   	else
@@ -33,8 +35,10 @@ module LazyResourceLoader
   def load_resource cls, parameter = nil
   	cls = param_key_to_class(cls) if cls.is_a? String
   	parameter ||= params[:"#{cls.to_s.underscore}_id"]
-  	resource = cls.find(parameter)
-  	instance_variable_set(variable_name_for(resource), resource)
+    if cls.respond_to? :find
+    	resource = cls.find(parameter)
+    	instance_variable_set(variable_name_for(resource), resource)
+    end
   end
 
   def controller_model

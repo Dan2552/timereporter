@@ -1,0 +1,7 @@
+
+<h1><%= date_range_text %></h1>
+<%= retro "could we get these lists in a nice table side by side?" %>
+<h2>Users</h2>
+<%= render partial: "report_item", collection: @user_reports %>
+<h2>Projects</h2>
+<%= render partial: "report_item", collection: @project_reports %>

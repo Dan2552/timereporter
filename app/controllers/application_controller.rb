@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
     user_signed_in? ? "application" : "devise"
   end
 
+  protected
+
+  def date_param
+    @date = Date.parse(params[:date]) if params[:date].present?
+    @date ||= Date.today
+  end
+
 end
