@@ -1,10 +1,15 @@
 <header class="timetable-header">
   <h1><%= date_range_text %></h1>
+  <div class="btn-group pull-right">
+    <%= link_to "current week", "#", class: "btn disabled" %>
+    <%= link_to "<", "#", class: "btn" %>
+    <%= link_to ">", "#", class: "btn" %>
+  </div>
 </header>
 
 <div class="container timetable-container">
   <div class="headers">
-    <% week_range do |day| %>
+    <% week_range.each do |day| %>
       <div class="title">
         <h4><%= day.strftime("%e %A") %></h4>
       </div>
