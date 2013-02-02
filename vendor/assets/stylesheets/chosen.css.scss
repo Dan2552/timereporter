@@ -30,9 +30,6 @@
   background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
   background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
   background-image: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  -webkit-border-radius: 5px;
-  -moz-border-radius   : 5px;
-  border-radius        : 5px;
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
@@ -45,7 +42,7 @@
   white-space: nowrap;
   position: relative;
   height: 23px;
-  line-height: 24px;
+  line-height: 22px;
   padding: 0 0 0 8px;
   color: #444444;
   text-decoration: none;
@@ -55,6 +52,8 @@
 }
 .chzn-container-single .chzn-single span {
   margin-right: 26px;
+  font-size: 14px;
+  font-weight: 200;
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -114,9 +113,6 @@
   font-size: 1em;
 }
 .chzn-container-single .chzn-drop {
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius   : 0 0 4px 4px;
-  border-radius        : 0 0 4px 4px;
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
