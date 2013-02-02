@@ -65,8 +65,11 @@ window.time_entries = ( ($) ->
           return this.offsetTop == parent_pos + entry_pos
 
     else
+      entry_top = Math.ceil((self.$entry.position().top - 1) / 10) * 10
+      time_slot_top = self.$time_slot.position().top
+
       $new_parent = @$time_slot.siblings().filter ->
-        return this.offsetTop == self.$entry.position().top + self.$time_slot.position().top
+        return this.offsetTop == entry_top + time_slot_top
 
     $new_parent.html(@$entry.css 'top', 0).addClass('chosen')
     @$entry.data().datetime = $new_parent.data("datetime")
