@@ -69,9 +69,9 @@ h1, h2, h3, h4, h5, h6 {
 
 h1,
 h2,
-h3 { line-height: $baseLineHeight * 2; }
+h3 { line-height: 33px; }
 
-h1 { font-size: $baseFontSize * 2.75; } // ~38px
+h1 { font-size: 28px; } // ~38px
 h2 { font-size: $baseFontSize * 2.25; } // ~32px
 h3 { font-size: $baseFontSize * 1.75; } // ~24px
 h4 { font-size: $baseFontSize * 1.25; } // ~18px
