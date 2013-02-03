@@ -21,5 +21,8 @@ class TimeEntriesController < ApplicationController
     @time_entry.destroy
   end
 
+  def edit
+  end
+
 end
 

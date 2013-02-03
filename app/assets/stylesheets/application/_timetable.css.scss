@@ -133,16 +133,21 @@
     top: 2px;
     z-index: 2000;
   }
+  .edit-link {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    z-index: 1090;
+  }
+
   .ui-resizable-s {
     bottom: 0!important;
   }
   .ui-resizable-n {
     top: 0!important;
   }
-}
-
-.entry:hover {
-  cursor: pointer;
 }
 
 .day {

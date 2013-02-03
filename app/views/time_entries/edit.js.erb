@@ -1,0 +1,8 @@
+(function() {
+  var $entry = $("#time_entry_<%= @time_entry.id %>"),
+    $form = $('<%=j render "form" %>').addClass("<%= @time_entry.project.present? ? 'edit-form' : '' %>").hide();
+
+  time_entries.$entry = $entry;
+  time_entries.show_form($form);
+
+})();

@@ -20,6 +20,7 @@ window.time_entries = ( ($) ->
     $('body').on('click', '.table-cover', $.proxy(@remove_form, @))
 
   remove_form: () ->
+    @$entry = ""
     @$table_cover.remove()
     $('.form-popout').remove()
 
@@ -132,9 +133,8 @@ window.time_entries = ( ($) ->
       data: { time_entry: { duration: data.duration, entry_datetime: data.datetime } }
 
 
-  entry_created: ($form) ->
+  show_form: ($form) ->
     $('.timetable').append( @$table_cover )
-    # $('.form-popout').remove()
     day_left_pos = Math.round(@$entry.parents('.day').position().left)
     entry_offset = @$entry.offset()
     width = @$entry.outerWidth()
@@ -153,7 +153,8 @@ window.time_entries = ( ($) ->
 
     $('body').append($form.show())
     $form.find('select.chosen').chosen()
-    $('.chzn-container').trigger('mousedown')
+    unless $form.hasClass('edit-form')
+      $('.chzn-container').trigger('mousedown')
 
 
 )(jQuery)

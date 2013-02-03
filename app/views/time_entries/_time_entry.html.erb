@@ -1,6 +1,7 @@
 <%= content_tag_for :div, time_entry, data: { id: time_entry.id, datetime: "#{time_entry.entry_datetime}", duration: time_entry.duration }, class: "entry #{'with-project' if time_entry.project}", style: "height: #{time_entry.duration * 20}px;" do %>
   <%= link_to "x", time_entry_path(time_entry), remote: true, method: :delete, class: "remove" %>
   <div class="inner">
+    <%= link_to "", edit_time_entry_path(time_entry), remote:true, class: "edit-link" %>
     <%= project_name_for_time_entry time_entry %>
     <%= comments_for_time_entry time_entry %>
   </div>
