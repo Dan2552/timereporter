@@ -1,6 +1,6 @@
 <div class="form-popout">
   <div class="arrow"></div>
-  <%= simple_form_for @time_entry, :html => { :class => ""} do |f| %>
+  <%= simple_form_for @time_entry, remote:true, :html => { :class => ""} do |f| %>
     <%= f.input :project_id,
                 label: false,
                 collection: Client.order(:name),
@@ -15,8 +15,7 @@
                 } %>
     <%= f.input :comment, as: :text, label: false, placeholder: "Comments", wrapper: false %>
 
-    <a class="close pull-left" href="#" style="">close</a>
-    <a class="save pull-right" href="#" style="">save</a>
-
+    <%= link_to "delete", time_entry_path(@time_entry), remote: true, method: :delete, class: "close pull-left" %>
+    <%= f.button :submit, "done", class: 'save pull-right' %>
   <% end %>
 </div>

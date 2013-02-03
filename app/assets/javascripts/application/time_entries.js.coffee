@@ -8,6 +8,7 @@ window.time_entries = ( ($) ->
     @$reset_parent = false
     @original_height
     @$resize_via_ui
+    @$table_cover = $("<div>", {'class': 'table-cover' })
     @add_chosen_classes()
     @set_resizeable(@$entries)
     @add_event_handlers()
@@ -16,8 +17,11 @@ window.time_entries = ( ($) ->
   add_event_handlers: () ->
     $('.half_hour').on("mousedown", $.proxy(@append_time_entry, @))
     $('.day').on("mouseup", $.proxy(@save_time_entry, @))
-    $('.form-popout').on("mouseup", $.proxy(@save_time_entry, @))
+    $('body').on('click', '.table-cover', $.proxy(@remove_form, @))
 
+  remove_form: () ->
+    @$table_cover.remove()
+    $('.form-popout').remove()
 
   add_chosen_classes: () ->
     $('.entry').parent().addClass('chosen')
@@ -109,6 +113,7 @@ window.time_entries = ( ($) ->
 
         self.$entry.data().duration = self.$entry.height() / 20
         self.update_entry(self.$entry.data())
+        self.$resize_via_ui = false
 
   submit_entry: (data) ->
     self = this
@@ -128,6 +133,8 @@ window.time_entries = ( ($) ->
 
 
   entry_created: ($form) ->
+    $('.timetable').append( @$table_cover )
+    # $('.form-popout').remove()
     day_left_pos = Math.round(@$entry.parents('.day').position().left)
     entry_offset = @$entry.offset()
     width = @$entry.outerWidth()
@@ -146,6 +153,8 @@ window.time_entries = ( ($) ->
 
     $('body').append($form.show())
     $form.find('select.chosen').chosen()
+    $('.chzn-container').trigger('mousedown')
+
 
 )(jQuery)
 
