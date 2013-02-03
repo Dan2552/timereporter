@@ -1,5 +1,3 @@
-<%= retro "it'd be great if the cells for the main hours of the work day stuck out a little, maybe a soft grey background?" %>
-
 <header class="timetable-header">
   <h1><%= date_range_text %></h1>
   <div class="btn-group pull-right">
@@ -29,12 +27,12 @@
     <% week_range.each do |day| %>
       <div class="day">
         <% (1..24).each do |hour| %>
-          <div class="half_hour" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
+          <div class="half_hour <%= 'main-hour' if hour >= (8 + 0.5) && hour <= 17 %>" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
             <% entries(day, hour).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
-          <div class="half_hour" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
+          <div class="half_hour <%= 'main-hour' if hour >= 8 && hour <= 16 %>" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
             <% entries(day, hour + 0.5).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
