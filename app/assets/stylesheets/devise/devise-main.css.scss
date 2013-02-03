@@ -10,10 +10,11 @@ html {
 h1.heading {
   color: #fff;
   font-size: 80px;
-  letter-spacing: 2px;
+  font-weight: 100;
+  letter-spacing: 6px;
   line-height: 78px;
   margin: 100px 0 0 40px;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .form-box {
@@ -21,21 +22,22 @@ h1.heading {
   margin: 100px 150px 0 0;
   width: 300px;
   a {
-    color: #888;
+    color: #fefefe;
     font-size: 13px;
+    font-weight: 200;
     margin: 10px 0 0;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #fff;
     &:hover {
       opacity: 0.8;
+      text-decoration: none;
     }
   }
   form {
-    background: $white;
+    background: rgba(118, 117, 117, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     padding: 10px;
     overflow: auto;
     @include border-radius(4px);
-    @include gradient-vertical(#fefefe, #eee);
-    @include box-shadow(0 8px 14px rgba(0, 0, 0, 0.8));
+    @include gradient-vertical(rgba(118, 117, 117, 0), rgba(118, 117, 117, 0.2));
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 10px -6px #000);
   }
 }

@@ -11,18 +11,10 @@
 @import "bootstrap/layouts";
 
 // Base CSS
-@import "bootstrap/type";
 @import "forms";
-
-// Components: common
-@import "bootstrap/component-animations";
 
 // Components: Buttons & Alerts
 @import "buttons";
-@import "bootstrap/button-groups";
-
-// Components: Misc
-@import "bootstrap/media";
 
 // Utility classes
 @import "bootstrap/utilities"; // Has to be last to override when necessary
