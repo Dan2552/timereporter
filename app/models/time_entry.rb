@@ -1,5 +1,5 @@
 class TimeEntry < ActiveRecord::Base
-  attr_accessible :entry_datetime, :duration, :user_id
+  attr_accessible :entry_datetime, :duration, :user_id, :project_id, :comment
 
   belongs_to :project
   belongs_to :user
@@ -22,7 +22,7 @@ class TimeEntry < ActiveRecord::Base
   #debugging only, don't call on production
   def self.randomize
     10.times do
-      TimeEntry.all.each do |e| 
+      TimeEntry.all.each do |e|
         e.project = Project.where(id: 0..5).sample
         e.user = User.all.sample
         e.save
