@@ -38,4 +38,22 @@ module TimeEntriesHelper
 	def ordinalize_date date
 		"#{date.day.ordinalize} #{date.strftime '%B %Y'}"
 	end
+
+	def project_name_for_time_entry time_entry
+		if time_entry.project.present?
+			if time_entry.duration > 1
+				"<p><span>Project:</span><br>#{time_entry.project.try(:name)}</p>".html_safe
+			else
+				"<p class=\"less-text\">#{time_entry.project.try(:name)}</p>".html_safe
+			end
+		end
+	end
+
+	def comments_for_time_entry time_entry
+		if time_entry.comment.present?
+			if time_entry.duration >= 2
+				"<p><span>Comments:</span><br>#{time_entry.try(:comment)}</p>".html_safe
+			end
+		end
+	end
 end
