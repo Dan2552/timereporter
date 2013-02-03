@@ -1,9 +1,14 @@
 (function(){
   var $entry = $('#time_entry_<%= @time_entry.id %>'),
+      $cover = $('.table-cover'),
       $form_popout = $('.form-popout');
 
   if ($form_popout.length){
     $form_popout.remove();
+  }
+
+  if ($cover.length){
+    $cover.remove();
   }
 
   $entry.parent().removeClass('chosen');
