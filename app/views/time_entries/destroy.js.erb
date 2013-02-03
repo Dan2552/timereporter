@@ -1,5 +1,10 @@
 (function(){
-  var $entry = $('#time_entry_<%= @time_entry.id %>');
+  var $entry = $('#time_entry_<%= @time_entry.id %>'),
+      $form_popout = $('.form-popout');
+
+  if ($form_popout.length){
+    $form_popout.remove();
+  }
 
   $entry.parent().removeClass('chosen');
   $entry.remove();

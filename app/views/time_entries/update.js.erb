@@ -1,0 +1,14 @@
+(function() {
+  var $entry = $("#time_entry_<%= @time_entry.id %>"),
+      $new_entry = $("<%=j render(@time_entry) %>"),
+      $form = $('.form-popout');
+
+  if ($form.length){
+    $form.remove();
+  }
+
+  $entry.replaceWith($new_entry);
+
+  time_entries.set_resizeable($new_entry);
+
+})();
