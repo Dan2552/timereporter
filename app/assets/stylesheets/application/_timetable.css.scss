@@ -1,5 +1,5 @@
 .timetable-header {
-  margin: 40px 0 0 45px;
+  margin: 20px 0 0 45px;
   overflow: auto;
   h1 {
     float: left;
@@ -45,14 +45,45 @@
 .timetable {
   border-right: 1px solid #AEADAD;
   padding-left: 45px;
-  height: 395px;
+  height: 500px;
   overflow: auto;
   position: relative;
+}
+
+.table-cover {
+  position: fixed;
+  top: 30px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2000;
 }
 
 .bottom-border {
   border-top: 1px solid #AEADAD;
   margin-left: 45px;
+}
+
+.entry.with-project {
+  .inner {
+    background: rgba(42, 84, 48, 0.2);
+    border: 1px solid #2A5430;
+    p.less-text {
+      margin: -4px 0 0 -4px;
+    }
+    p {
+      color: #2A5430;
+      line-height: 14px;
+      text-shadow: 0 1px 0 #DEF4E1;
+      span {
+        color: #778E7A;
+        font-weight: bold;
+      }
+    }
+  }
+  .remove {
+    color: #2A5430;
+  }
 }
 
 .entry {
@@ -65,27 +96,40 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   z-index: 20;
-  @include border-radius(4px);
+  @include transition(all .1s ease);
   .inner {
-    background: rgba(173, 39, 30, 0.6);
+    background: rgba(173, 39, 30, 0.4);
     border: 1px solid rgb(173, 39, 30);
+    padding: 6px 8px;
     position: absolute;
+    overflow: hidden;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    @include border-radius(4px);
+    p.less-text {
+      margin: -4px 0 0 -4px;
+    }
+    p {
+      color: #AD271E;
+      line-height: 14px;
+      text-shadow: 0 1px 0 #F1D5D3;
+      span {
+        color: #B5443C;
+        font-weight: bold;
+      }
+    }
   }
   .remove {
     color: rgb(173, 39, 30);
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: 100;
     line-height: 14px;
     margin: 0;
     padding: 0;
     position: absolute;
     right: 4px;
     text-decoration: none;
-    text-shadow: 0 1px 0 #DCA78C;
     top: 2px;
     z-index: 2000;
   }
@@ -97,6 +141,9 @@
   }
 }
 
+.entry:hover {
+  cursor: pointer;
+}
 
 .day {
   float: left;
@@ -126,4 +173,7 @@
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  &.main-hour {
+    background: rgba(238, 238, 238, 0.33);
+  }
 }

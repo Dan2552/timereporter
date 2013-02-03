@@ -17,9 +17,9 @@ input[type="text"] {
   padding: 4px 6px;
   margin-bottom: $baseLineHeight / 2;;
   font-size: $baseFontSize;
+  font-weight: 200;
   line-height: $baseLineHeight;
   color: $gray;
-  @include border-radius($inputBorderRadius);
   vertical-align: middle;
 }
 
@@ -32,7 +32,6 @@ textarea,
 input[type="text"] {
   background-color: $inputBackground;
   border: 1px solid $inputBorder;
-  @include box-shadow(0 0px 2px rgba(0, 0, 0, 0.2) inset);
   @include transition(border linear .2s, box-shadow linear .2s);
 
   // Focus state
