@@ -1,10 +1,21 @@
-<header class="page-header-with-link">
-<h1><%= @report.object.name %></h1>
-	<%= link_to date_range_text, "#" %>
+<header class="date-header">
+  <h1><%= @report.object.name %></h1>
+  <div class="btn-group pull-right">
+    <h4 class=""><%= date_range_text %></h4>
+    <!-- Want to put these into a helper but gave up -->
+    <%= link_to "current week", report_path(@report.object, Date.today), class: "btn #{'disabled' if @date == Date.today}" %>
+    <%= link_to "<", report_path(@report.object, @date.prev_week()), class: 'btn' %>
+    <%= link_to ">", report_path(@report.object, @date.next_week()), class: 'btn' %>
+  </div>
 </header>
-<% total_time = 0 %>
-<% @report.times.each do |key, time| %>
-	<li><%= key %> </br><%= time %> hours <% total_time += time %></li>
-<% end %>
 
-<br/><br/><%= total_time %> hours total
+<% total_time = 0 %>
+<ul>
+  <% @report.times.each do |key, time| %>
+    <li class="grey-block"><%= key %> <span class="hours pull-right"><%= hours time  %></span><% total_time += time %></li>
+  <% end %>
+</ul>
+
+<div class="grey-block pull-right">
+  <strong>Total:</strong> <%= hours total_time %>
+</div>
