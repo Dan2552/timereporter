@@ -48,7 +48,7 @@
   }
   a {
     color: #6C1900;
-    font-weight: bold;
+    font-weight: 400;
     text-decoration: none;
     text-shadow: 0 1px 0 #F45F4F;
     &:hover {
@@ -59,15 +59,32 @@
 }
 
 .container {
-  margin-top: 20px;
   position: relative;
 }
 
 // Page header
 // -------------------------
 
+.date-header {
+  margin: 20px 0 20px 0;
+  overflow: auto;
+  h1 {
+    float: left;
+    font-weight: 100;
+  }
+  .btn-group {
+    margin: 4px 0 0 10px;
+  }
+}
+
+.timetable-header {
+  @extend .date-header;
+  margin-left: 45px;
+}
+
+
 .page-header {
-  padding-bottom: ($baseLineHeight / 2) - 1;
+  padding: 10px 0;
   border-bottom: 1px solid $grayLighter;
 }
 
@@ -76,11 +93,100 @@
   overflow: auto;
   h1 {
     float: left;
+    font-weight: 100;
   }
   a {
     float: right;
     font-size: 18px;
     font-weight: 200;
-    margin: 18px 0 0;
+    margin: 10px 0 0;
+  }
+}
+
+.tab-header {
+  overflow: auto;
+  position: relative;
+  .tab-link {
+    background: none;
+    display: block;
+    float: left;
+    text-align: center;
+    width: 160px;
+    h4 {
+      background: #F3F3F3;
+      border-top: 1px solid #E6E3E3;
+      border-right: 1px solid #E6E3E3;
+      border-left: 1px solid #E6E3E3;
+      border-bottom: 1px solid #ccc;
+      line-height: 26px;
+      font-size: 20px;
+      font-weight: 100;
+      padding: 5px;
+      @include border-radius(4px 0 0 0);
+      @include box-shadow(-4px -4px 6px -5px rgba(0, 0, 0, 0.2) inset);
+    }
+    &.active {
+      h4 {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-bottom: 1px solid #fff;
+        @include box-shadow(none!important);
+      }
+    }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .tab-link.last {
+    h4 {
+      @include border-radius(0 4px 0 0);
+      @include box-shadow(4px -4px 6px -5px rgba(0, 0, 0, 0.2) inset);
+    }
+  }
+  .top-line {
+    border-bottom: 1px solid #ccc;
+    bottom: 1px;
+    left: 320px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.tab-body {
+  border: 1px solid #ccc;
+  border-top: none;
+  background: #fff;
+  margin-top: -1px;
+  position: relative;
+  .inner {
+    padding: 20px;
+  }
+}
+
+.no-results {
+  text-align: center;
+}
+
+.grey-block {
+  background: #eee;
+  margin-bottom: 4px;
+  font-weight: 200;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 10px;
+  @include transition(all .1s ease);
+  a {
+    display: block;
+  }
+}
+
+li.grey-block {
+  &:hover {
+    background: #CB3C2B;
+    color: #fff;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }
