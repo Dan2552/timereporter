@@ -5,6 +5,15 @@ class ReportsController < ApplicationController
   def index
     @user_reports = Report.build_list(User, @date)
     @project_reports = Report.build_list(Project, @date)
+
+    if params[:collection] == "users"
+      @collection = @user_reports
+    elsif params[:collection] == "projects"
+      @collection = @project_reports
+    end
+
+    @collection ||= @user_reports
+
   end
 
   def user
