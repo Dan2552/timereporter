@@ -1,0 +1,21 @@
+<header class="page-header-with-link">
+  <h1>Detailed Report</h2>
+  <%= link_to "Download CSV", action: params[:action], format: :csv %>
+</header>
+<%= retro "Need the date picking stuff here. Maybe first put it in a partial?" %>
+<div>
+<table border=1>
+  <tr>
+    <% @report.headings.each do |heading| %>
+      <th><%= heading %></th>
+    <% end %>
+  </tr>
+<% @report.rows.each do |row| %>
+  <tr>
+    <% row.each do |row_column| %>
+      <td><%= row_column %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+</div>

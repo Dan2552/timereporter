@@ -28,4 +28,13 @@ class ReportsController < ApplicationController
     render :report
   end
 
+  def detail
+    time_entries = TimeEntry.for_date(@date)
+    @report = DetailedReport.new(time_entries)
+    respond_to do |format|
+      format.html {}
+      format.csv { send_data @report.csv, filename: 'timereport.csv' }
+    end
+  end
+
 end

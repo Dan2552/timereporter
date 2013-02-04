@@ -30,4 +30,16 @@ class TimeEntry < ActiveRecord::Base
     end
   end
 
+  def duration_in_hours
+    duration / 2
+  end
+
+  def start_time
+    entry_datetime
+  end
+
+  def end_time
+    start_time + duration_in_hours.hours 
+  end
+
 end

@@ -12,7 +12,7 @@ class Report
     times = {}
     entries.each do |entry|
       key = entry.send(child_type).try(:name) || "? Unknown #{child_type}"
-      times[key] = (times[key] || 0.0) + (entry.duration / 2.0)
+      times[key] = (times[key] || 0.0) + (entry.duration_in_hours)
     end
 
     report = Report.new(object, times)
