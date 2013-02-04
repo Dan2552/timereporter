@@ -1,6 +1,6 @@
 <% report = report_item %>
 <li class="grey-block">
-  <%= link_to report_path(report.object) do %>
+  <%= link_to report_path(report.object, "") do %>
     <%= report.object.name %>
     <span class="hours pull-right"><%= hours report.total  %></span>
   <% end %>
