@@ -6,7 +6,11 @@ module ReportsHelper
   end
 
   def hours value
-    pluralize( number_with_precision(value, :strip_insignificant_zeros => true), 'hour')
+    pluralize(number_with_precision(value, strip_insignificant_zeros: true), 'hour')
+  end
+
+  def days value
+    pluralize(number_with_precision(value, strip_insignificant_zeros: true), 'day')
   end
 
 end

@@ -10,20 +10,26 @@ class Report
     child_type = (object.is_a? User) ? :project : :user
 
     times = {}
+    days = []
     entries.each do |entry|
       key = entry.send(child_type).try(:name) || "? Unknown #{child_type}"
       times[key] = (times[key] || 0.0) + (entry.duration_in_hours)
+      days << entry.date unless days.include? entry.date
     end
 
-    report = Report.new(object, times)
+    report = Report.new(object, times, days)
     report = nil if report.total == 0
     report
   end
 
-  def initialize(object, times)
+  def initialize(object, times, days)
     @object = object
     @times = times
+    @days = days
+  end
 
+  def days
+    @days.count
   end
 
   def total

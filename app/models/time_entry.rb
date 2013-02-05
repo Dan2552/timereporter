@@ -35,6 +35,10 @@ class TimeEntry < ActiveRecord::Base
     duration / 2
   end
 
+  def date
+    Date.parse(entry_datetime.to_s)
+  end
+
   def start_time
     entry_datetime
   end
