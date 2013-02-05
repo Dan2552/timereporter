@@ -5,18 +5,23 @@ class DetailedReport
   attr_accessor :headings, :rows
 
   def initialize(time_entries)
-    @headings = ["Project Code", "Client", "Person", "Date start", "Date end", "Time spent"]
-    @rows = []
-    time_entries.each do |time_entry|
-      row_column = []
-      row_column << time_entry.project.name
-      row_column << time_entry.project.client.try(:name)
-      row_column << time_entry.user.name
-      row_column << time_entry.start_time.localtime
-      row_column << time_entry.end_time.localtime
-      row_column << time_entry.duration_in_hours
-      @rows << row_column
-    end
+    @headings = build_headings
+    @rows = time_entries.map { |entry| build_column(entry) }
+  end
+
+  def build_headings
+    ["Project Code", "Client", "Person", "Date start", "Date end", "Time spent"]
+  end
+
+  def build_column(entry)
+    row_column = [
+      entry.project.name,
+      entry.project.client_name,
+      entry.user.name,
+      entry.start_time.localtime,
+      entry.end_time.localtime,
+      entry.duration_in_hours
+    ]
   end
 
   def csv

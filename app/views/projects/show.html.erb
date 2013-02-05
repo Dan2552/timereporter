@@ -1,0 +1,12 @@
+<header class="page-header-with-link">
+  <h1><%= @project.title %></h1>
+</header>
+<ul class="grey-list">
+  <% @project.attributes.each do |attr, value| %>
+    <% next if attr == "id" || attr == "title" %>
+    <li class="grey-block">
+      <%= attr.titleize %>
+      <span class="hours pull-right"><%= value %></span>
+    </li>
+  <% end %>
+</ul>

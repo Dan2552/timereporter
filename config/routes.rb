@@ -10,5 +10,5 @@ Timereporter::Application.routes.draw do
   end
   resources :time_entries, only: [:index, :create, :update, :destroy, :edit]
   resources :podio_sessions, only: [:index, :new]
-  resources :projects, only: :index
+  resources :projects, only: [:index, :show]
 end

@@ -1,7 +1,11 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.ordered_by_name.group_by{|u| u.name[0]}
+    @projects = Project.ordered_by_title.group_by{|u| u.title[0]}
+  end
+
+  def show
+    @project = Project.find(params[:id])
   end
 
 end
