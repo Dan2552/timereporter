@@ -21,9 +21,10 @@ class TimeEntry < ActiveRecord::Base
 
   #debugging only, don't call on production
   def self.randomize
+    projects = 5.times.map{ |n| Project.all[n] }
     10.times do
       TimeEntry.all.each do |e|
-        e.project = Project.where(id: 0..5).sample
+        e.project = projects.sample
         e.user = User.all.sample
         e.save
       end
