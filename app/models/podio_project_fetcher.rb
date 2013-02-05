@@ -46,12 +46,7 @@ class Podio::Item
 
   def field_value(key)
     value = fields.map{ |f| f["external_id"] == key ? f : nil }.compact.first["values"][0]["value"]
-    return value["value"] if value["value"].present?
-    return value["text"] if value["text"].present?
-    return value["name"] if value["name"].present?
-    return value["title"] if value["title"].present?
-    return value if value.is_a? String
-    nil
+    value["value"] || value["text"] || value["name"] || value["title"] || (value if value.is_a?(String))
   end
 
 end
