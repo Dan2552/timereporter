@@ -4,12 +4,14 @@
 </header>
 <%= retro "Need the date picking stuff here. Maybe first put it in a partial?" %>
 <div>
-<table border=1>
-  <tr>
-    <% @report.headings.each do |heading| %>
-      <th><%= heading %></th>
-    <% end %>
-  </tr>
+<table id="detailTable" class="tablesorter">
+  <thead>
+    <tr>
+      <% @report.headings.each do |heading| %>
+        <th><%= heading %></th>
+      <% end %>
+    </tr>
+  </thead>
 <% @report.rows.each do |row| %>
   <tr>
     <% row.each do |row_column| %>
