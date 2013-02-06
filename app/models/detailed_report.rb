@@ -10,18 +10,20 @@ class DetailedReport
   end
 
   def build_headings
-    ["Project Code", "Client", "Person", "Date start", "Date end", "Time spent"]
+    ["Project Code", "Client", "Person", "Date start", "Date end", "Time spent", "Utilised", "Billable"]
   end
 
   def build_column(entry)
     row_column = [
-      entry.project.name,
-      entry.project.client_name,
+      entry.project.try(:name) || "? Unknown project",
+      entry.project.try(:client_name) || "",
       entry.user.name,
       entry.start_time.localtime,
       entry.end_time.localtime,
-      entry.duration_in_hours
-    ]
+      entry.duration_in_hours,
+      entry.project.try(:utilised),
+      entry.project.try(:billable)
+    ].flatten
   end
 
   def csv
