@@ -8,19 +8,12 @@ class Project < ActiveRecord::Base
   scope :ordered_by_title, order: 'title ASC'
 
 
-  def self.billable(boolean)
+  def self.filter(key, boolean)
+    title = key.to_s.titleize
     if boolean
-      where(billable: "Billable")
+      where(key => title)
     else
-      where("`billable` != 'Billable' OR `billable` IS NULL")
-    end
-  end
-
-  def self.utilised(boolean)
-    if boolean
-      where(utilised: "Utilised")
-    else
-      where("`utilised` != 'Utilised' OR `utilised` IS NULL")
+      where("`#{key}` != '#{title}' OR `#{key}` IS NULL")
     end
   end
 
