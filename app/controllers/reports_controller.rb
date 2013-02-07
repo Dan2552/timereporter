@@ -3,8 +3,8 @@ class ReportsController < ApplicationController
   before_filter :date_param
 
   def index
-    @user_reports = Report.build_list(User, @date)
-    @project_reports = Report.build_list(Project, @date)
+    @user_reports = Report.build_list(User.all, @date)
+    @project_reports = Report.build_list(filtered_projects, @date)
 
     if params[:collection] == "users"
       @collection = @user_reports
@@ -35,6 +35,18 @@ class ReportsController < ApplicationController
       format.html {}
       format.csv { send_data @report.csv, filename: 'timereport.csv' }
     end
+  end
+
+  private
+
+  def filtered_projects
+    projects = Project.scoped
+    Project::FILTERABLE.each do |filter|
+      if params[:filter] && params[:filter].include?(filter.to_s)
+        projects = projects.filter(filter.to_sym, true) 
+      end
+    end
+    projects
   end
 
 end
