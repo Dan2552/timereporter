@@ -1,6 +1,6 @@
 .form-popout {
   background: #fff;
-  border: 1px solid #bbb;
+  border: 1px solid #777;
   padding: 10px 10px 6px;
   position: absolute;
   top: 0;
@@ -64,7 +64,7 @@
     left: -$popoverArrowOuterWidth;
     margin-top: -$popoverArrowOuterWidth;
     border-left-width: 0;
-    border-right-color: #bbb;
+    border-right-color: #777;
     &:after {
       left: 1px;
       bottom: -$popoverArrowWidth;
@@ -80,7 +80,7 @@
     right: -$popoverArrowOuterWidth;
     margin-top: -$popoverArrowOuterWidth;
     border-right-width: 0;
-    border-left-color: #bbb; // IE8 fallback
+    border-left-color: #777; // IE8 fallback
     &:after {
       right: 1px;
       bottom: -$popoverArrowWidth;

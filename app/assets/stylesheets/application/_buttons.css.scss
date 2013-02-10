@@ -8,7 +8,6 @@
 
 // Core
 .btn {
-  background-color: #F8F8F8;
   color: #555;
   display: inline-block;
   @include ie7-inline-block();
@@ -21,6 +20,7 @@
   cursor: pointer;
   text-shadow: 0 1px 0 #FCFCFC;
   font-weight: 200;
+  @include gradient-vertical(#fff, #F1F1F1);
   // @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
   border: 1px solid #A2A2A2;
   // *border: 0; // Remove the border to prevent IE7's black border on input:focus
@@ -31,15 +31,11 @@
 
   // Hover state
   &:hover {
+    @include gradient-vertical(#F1F1F1, #fff);
     color: $grayDark;
     text-decoration: none;
-    background-color: darken($white, 10%);
-    *background-color: darken($white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
-    background-position: 0 -15px;
-
-    // transition is only when going to hover, otherwise the background
-    // behind the gradient (there for IE<=9 fallback) gets mismatched
-    @include transition(background-position .1s linear);
+    // background-color: darken($white, 10%);
+    // *background-color: darken($white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
   }
 
   // Focus state for keyboard and accessibility

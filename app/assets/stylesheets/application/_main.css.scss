@@ -26,14 +26,13 @@
 }
 
 .nav-bar {
-  background: #212121;
   padding: 0 50px;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
   height: 30px;
-  @include gradient-vertical(#DD4B39, #C53727);
+  @include gradient-vertical(#D24509, #A63302);
   @include box-shadow(0 0px 4px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, .4) inset);
   z-index: $zindexFixedNavbar;
   ul {
@@ -50,7 +49,8 @@
     color: #6C1900;
     font-weight: 400;
     text-decoration: none;
-    text-shadow: 0 1px 0 #F45F4F;
+    text-shadow: 0 1px 0 #C8520E;
+    &.active,
     &:hover {
       color: #fff;
       text-shadow: 0 -1px 0 #481506;
@@ -66,7 +66,7 @@
 // -------------------------
 
 .date-header {
-  margin: 20px 0 20px 0;
+  margin: 10px 0;
   overflow: auto;
   h1 {
     float: left;
@@ -87,7 +87,6 @@
   @extend .date-header;
   margin-left: 45px;
 }
-
 
 .page-header {
   padding: 10px 0;
@@ -188,7 +187,7 @@
 
 li.grey-block {
   &:hover {
-    background: #CB3C2B;
+    // background: #CB3C2B;
     color: #fff;
     a {
       color: #fff;

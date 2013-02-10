@@ -22,22 +22,22 @@ h1.heading {
   margin: 100px 150px 0 0;
   width: 300px;
   a {
-    color: #fefefe;
+    color: #444;
     font-size: 13px;
     font-weight: 200;
     margin: 10px 0 0;
+    text-shadow: 0 1px 0 #fff;
     &:hover {
       opacity: 0.8;
       text-decoration: none;
     }
   }
   form {
-    background: rgba(118, 117, 117, 0.2);
-    border: 1px solid rgba(0, 0, 0, 0.4);
+    background: #F8F8F8;
+    border: 1px solid #2C2B2B;
     padding: 10px;
     overflow: auto;
     @include border-radius(4px);
-    @include gradient-vertical(rgba(118, 117, 117, 0), rgba(118, 117, 117, 0.2));
-    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 4px 10px -6px #000);
+    @include box-shadow(0 4px 10px -6px #000);
   }
 }

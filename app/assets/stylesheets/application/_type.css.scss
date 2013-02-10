@@ -56,7 +56,7 @@ a.text-success:hover { color: darken($successText, 10%); }
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-family: $headingsFontFamily;
-  font-weight: 200;
+  font-weight: 100;
   line-height: $baseLineHeight;
   color: $headingsColor;
   text-rendering: optimizelegibility; // Fix the character spacing for headings
@@ -74,7 +74,7 @@ h3 { line-height: 40px; }
 h1 { font-size: 28px; } // ~38px
 h2 { font-size: $baseFontSize * 2.25; } // ~32px
 h3 { font-size: $baseFontSize * 1.75; } // ~24px
-h4 { font-size: $baseFontSize * 1.25; } // ~18px
+h4 { font-size: 20px } // ~18px
 h5 { font-size: $baseFontSize; }
 h6 { font-size: $baseFontSize * 0.85; } // ~12px
 
