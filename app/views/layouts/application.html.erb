@@ -21,15 +21,16 @@
     <nav class="nav-bar">
       <ul>
         <% if user_signed_in? %>
-          <li class="pull-left"><%= link_to "timesheet", root_path %></li>
-          <li class="pull-left"><%= link_to "projects", projects_path %></li>
-          <li class="pull-left"><%= link_to "reports", reports_path %></li>
+          <li class="pull-left"><%= link_to "timesheet", root_path, class: get_class("time_entries") %></li>
+          <li class="pull-left"><%= link_to "projects", projects_path, class: get_class("projects") %></li>
+          <li class="pull-left"><%= link_to "reports", reports_path, class: get_class("reports") %></li>
           <li class="pull-right"><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
         <% end %>
       </ul>
     </nav>
-
-    <%= yield %>
+    <div class="content">
+      <%= yield %>
+    </div>
 
     <%= javascript_include_tag "application/application" %>
     <%= yield(:javascript) %>
