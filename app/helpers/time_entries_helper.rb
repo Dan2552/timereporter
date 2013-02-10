@@ -42,9 +42,9 @@ module TimeEntriesHelper
 	def project_name_for_time_entry time_entry
 		if time_entry.project.present?
 			if time_entry.duration > 1
-				"<p><span>Project:</span><br>#{time_entry.project.try(:name)}</p>".html_safe
+				"<p class=\"project-text\"><span>Project:</span><br>#{time_entry.project.try(:name)}</p>".html_safe
 			else
-				"<p class=\"less-text\">#{time_entry.project.try(:name)}</p>".html_safe
+				"<p class=\"project-text\">#{time_entry.project.try(:name)}</p>".html_safe
 			end
 		end
 	end
@@ -52,8 +52,14 @@ module TimeEntriesHelper
 	def comments_for_time_entry time_entry
 		if time_entry.comment.present?
 			if time_entry.duration >= 2
-				"<p><span>Comments:</span><br>#{time_entry.try(:comment)}</p>".html_safe
+				"<p class=\"comment-text\"><span>Comments:</span><br>#{time_entry.try(:comment)}</p>".html_safe
 			end
+		end
+	end
+
+	def main_hour_class hour
+		if hour > 8.25 && hour < 17.5
+			"main-hour"
 		end
 	end
 end
