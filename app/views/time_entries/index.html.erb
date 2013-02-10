@@ -8,40 +8,56 @@
   </div>
 </header>
 
+<div class="headers sticky-item">
+  <% week_range.each do |day| %>
+    <div class="title">
+      <h4><%= day.strftime("%e %A") %></h4>
+    </div>
+  <% end %>
+</div>
+
 <div class="container timetable-container">
-  <div class="headers">
-    <% week_range.each do |day| %>
-      <div class="title">
-        <h4><%= day.strftime("%e %A") %></h4>
-      </div>
+
+  <div class="times">
+    <% (1..24).each do |hour| %>
+      <div class="time"><%= hour_text(hour) %></div>
+      <div class="time"><%= hour_text(hour + 0.5) %></div>
     <% end %>
+    <div class="time">01:00</div>
   </div>
 
   <div class="timetable">
-    <div class="times">
-      <% (1..24).each do |hour| %>
-        <div class="time"><%= hour_text(hour) %></div>
-        <div class="time"><%= hour_text(hour + 0.5) %></div>
-      <% end %>
-    </div>
-
     <% week_range.each do |day| %>
       <div class="day">
         <% (1..24).each do |hour| %>
-          <div class="half_hour <%= 'main-hour' if hour >= (8 + 0.5) && hour <= 17 %>" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
+
+          <div class="quarter-hour no-border <%= main_hour_class(hour) %>" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
             <% entries(day, hour).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
-          <div class="half_hour <%= 'main-hour' if hour >= 8 && hour <= 16 %>" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
+
+          <div class="quarter-hour <%= main_hour_class(hour + 0.25) %>" data-datetime="<%= hour_time(day, hour + 0.25) %>" data-duration="1">
+            <% entries(day, hour + 0.25).each do |time_entry| %>
+              <%= render time_entry %>
+            <% end %>
+          </div>
+
+          <div class="quarter-hour no-border <%= main_hour_class(hour + 0.5) %>" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
             <% entries(day, hour + 0.5).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
+
+          <div class="quarter-hour <%= main_hour_class(hour + 0.75) %>" data-datetime="<%= hour_time(day, hour + 0.75) %>" data-duration="1">
+            <% entries(day, hour + 0.75).each do |time_entry| %>
+              <%= render time_entry %>
+            <% end %>
+          </div>
+
         <% end %>
       </div>
     <% end %>
   </div>
-  <div class="bottom-border"></div>
 
 </div>
