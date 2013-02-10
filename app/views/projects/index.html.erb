@@ -8,7 +8,7 @@
 <div class="container">
   <% if @projects.any? %>
 
-    <div id="letter-list">
+    <div id="letter-list" class="sticky-item">
       <ul>
         <% @projects.keys.sort.each do |letter| %>
           <li>
