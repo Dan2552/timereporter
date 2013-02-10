@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130205193448) do
     t.string   "status"
     t.string   "utilised"
     t.string   "billable"
+    t.string   "related_role"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
