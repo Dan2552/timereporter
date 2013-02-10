@@ -1,8 +1,8 @@
 <div class="form-box">
   <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "email" %>
-    <%= f.input :password, required: true, label: false, placeholder: "password" %>
-    <%= f.input :password_confirmation, required: true, label: false, placeholder: "comfirm password" %>
+    <%= f.input :email, required: true, autofocus: true, label: false, placeholder: "email", input_html: { autocomplete: "off" } %>
+    <%= f.input :password, required: true, label: false, placeholder: "password", input_html: { autocomplete: "off" } %>
+    <%= f.input :password_confirmation, required: true, label: false, placeholder: "comfirm password", input_html: { autocomplete: "off" } %>
 
     <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
     <%= link_to "Sign in", new_session_path(resource_name), class: "pull-left" %>
