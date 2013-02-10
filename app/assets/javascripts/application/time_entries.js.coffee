@@ -15,7 +15,7 @@ window.time_entries = ( ($) ->
 
 
   add_event_handlers: () ->
-    $('.half_hour').on("mousedown", $.proxy(@append_time_entry, @))
+    $('.quarter-hour').on("mousedown", $.proxy(@append_time_entry, @))
     $('.day').on("mouseup", $.proxy(@save_time_entry, @))
     $('body').on('click', '.table-cover', $.proxy(@remove_form, @))
 
@@ -27,32 +27,37 @@ window.time_entries = ( ($) ->
   add_chosen_classes: () ->
     $('.entry').parent().addClass('chosen')
 
+  set_date: (date) ->
+    @date = new Date("#{date}".replace(/-/g,"/"))
+
   append_time_entry: (evt) ->
     evt.preventDefault()
     unless $(evt.target).hasClass('remove') || evt.which != 1
       self = this
       @$time_slot = $(evt.currentTarget)
+      @set_date(@$time_slot.data('datetime'))
+
       mousedownY = evt.pageY
       unless @$time_slot.hasClass('chosen')
-        @$entry = @$time_slot.clone().toggleClass('half_hour entry').append( $('<div/>', {class: 'inner'}))
+        @$entry = @$time_slot.clone().toggleClass('quarter-hour entry').append( $('<div/>', {class: 'inner'}))
 
         @$time_slot
           .addClass('chosen')
           .html(@$entry)
           .parents('.day').mousemove (e) ->
             if e.pageY < mousedownY
-              $('body').css "cursor", "n-resize"
+              $('body').css "cursor", "ns-resize"
               self.$entry.css
                 top: "auto"
                 bottom: -1
-              self.$entry.height(Math.ceil((mousedownY - e.pageY) / 20) * 20)
+              self.$entry.height(Math.ceil((mousedownY - e.pageY) / 10) * 10)
               self.$reset_parent = true
             else
-              $('body').css "cursor", "s-resize"
+              $('body').css "cursor", "ns-resize"
               self.$entry.css
                 top: 0
                 bottom: "auto"
-              self.$entry.height(Math.ceil((e.pageY - mousedownY) / 20) * 20)
+              self.$entry.height(Math.ceil((e.pageY - mousedownY) / 10) * 10)
               self.$reset_parent = false
 
   set_new_parent: () ->
@@ -91,13 +96,13 @@ window.time_entries = ( ($) ->
         if @$reset_parent
           @set_new_parent()
 
-        @$entry.data().duration = @$entry.height() / 20
+        @$entry.data().duration = @$entry.height() / 10
         @submit_entry(@$entry.data())
 
   set_resizeable: ($elem) ->
     self = this
     $elem.resizable
-      grid: 20
+      grid: 10
       handles: "s, n"
       start: (evt, ui) ->
         self.$entry = $(@)
@@ -112,7 +117,7 @@ window.time_entries = ( ($) ->
         if self.$resizing_top
           self.set_new_parent()
 
-        self.$entry.data().duration = self.$entry.height() / 20
+        self.$entry.data().duration = self.$entry.height() / 10
         self.update_entry(self.$entry.data())
         self.$resize_via_ui = false
 
