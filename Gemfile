@@ -31,7 +31,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'turbolinks'
 gem 'jquery-rails'
+gem 'thin'
 gem 'debugger'
 gem "cancan"
 gem "devise_json_csrf", '0.1.0', git: 'https://github.com/Dan2552/devise_json_csrf.git'
