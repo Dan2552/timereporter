@@ -1,8 +1,8 @@
 class Report
   attr_accessor :object, :times
 
-  def self.build_list(cls, date)
-    cls.all.map { |instance| build(instance, date) }.compact
+  def self.build_list(object_list, date)
+    object_list.map { |instance| build(instance, date) }.compact
   end
 
   def self.build(object, date)

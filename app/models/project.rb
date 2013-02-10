@@ -1,10 +1,21 @@
 class Project < ActiveRecord::Base
+  FILTERABLE = [:billable, :utilised]
 
   has_many :time_entries
 
   validates :title, presence: true
 
   scope :ordered_by_title, order: 'title ASC'
+
+
+  def self.filter(key, boolean)
+    title = key.to_s.titleize
+    if boolean
+      where(key => title)
+    else
+      where("`#{key}` != '#{title}' OR `#{key}` IS NULL")
+    end
+  end
 
   def self.fetch_remote_projects(args = {})
     PodioProjectFetcher.new(args).fetch
