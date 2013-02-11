@@ -2,7 +2,8 @@ class Report
   attr_accessor :object, :times
 
   def self.build_list(object_list, date)
-    object_list.map { |instance| build(instance, date) }.compact
+    list = object_list.map { |instance| build(instance, date) }
+    list.compact.where(empty?: false)
   end
 
   def self.build(object, date)
@@ -18,8 +19,6 @@ class Report
     end
 
     report = Report.new(object, times, days)
-    report = nil if report.total == 0
-    report
   end
 
   def initialize(object, times, days)
@@ -36,6 +35,10 @@ class Report
     total = 0
     times.each { |_,v| total += v }
     total
+  end
+
+  def empty?
+    total == 0
   end
 
 end
