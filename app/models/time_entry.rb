@@ -28,7 +28,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def duration_in_hours
-    duration / 2
+    duration / 4
   end
 
   def date
