@@ -4,7 +4,7 @@ class TimeEntriesController < ApplicationController
 
   def index
     date_param
-    @time_entries = TimeEntry.for(current_user).for_date(@date)
+    @time_entries = TimeEntry.for(current_user).for_date(@date).to_a
     respond_with { @time_entries }
   end
 
