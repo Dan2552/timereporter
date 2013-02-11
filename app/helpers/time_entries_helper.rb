@@ -5,8 +5,7 @@ module TimeEntriesHelper
 	end
 
 	def entries day, hour
-		hour_datetime = hour_time(day, hour)
-		@time_entries.for_date_time(hour_time(day, hour))
+		@time_entries.where(entry_datetime: hour_time(day, hour))
 	end
 
 	def hour_text hour
