@@ -10,10 +10,6 @@ class TimeEntry < ActiveRecord::Base
   	where(entry_datetime: start_date..end_date)
   end
 
-  def self.for_date_time(date_time)
-  	where(entry_datetime: date_time)
-  end
-
   def self.for(object)
     class_name = object.class.name.downcase
   	where(:"#{class_name}_id" => object.id)
