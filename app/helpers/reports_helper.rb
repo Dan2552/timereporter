@@ -20,13 +20,25 @@ module ReportsHelper
   end
 
   def url_with_param(key, value)
-    parameters = params.dup.tap do |p| 
-      p.delete("action")
-      p.delete("controller")
-      p.delete(key)
-    end
+    parameters = filtered_params.dup.tap { |p| p.delete(key) }
     parameters[key.to_sym] = value.to_s if value
     url_for(:params => parameters)
+  end
+
+  def filtered_params
+    params.dup.tap do |p| 
+      p.delete("action")
+      p.delete("controller")
+    end
+  end
+
+  def action? action
+    params[:action] == action
+  end
+
+  def using_filter?
+    Project::FILTERABLE.each { |f| return true if params[f].true? }
+    false
   end
 
 end

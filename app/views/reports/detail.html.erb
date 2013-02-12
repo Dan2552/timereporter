@@ -1,23 +1,28 @@
-<header class="page-header-with-link">
-  <h1>Detailed Report</h2>
-  <%= link_to "Download CSV", action: params[:action], format: :csv %>
-</header>
-<%= retro "Need the date picking stuff here. Maybe first put it in a partial?" %>
-<div>
-<table id="detailTable" class="tablesorter">
-  <thead>
-    <tr>
-      <% @report.headings.each do |heading| %>
-        <th><%= heading %></th>
-      <% end %>
-    </tr>
-  </thead>
-<% @report.rows.each do |row| %>
-  <tr>
-    <% row.each do |row_column| %>
-      <td><%= row_column %></td>
+<%= render 'layouts/date_header' %>
+<%= render 'tab_header' %>
+<div class="tab-body">
+  <div class="inner">
+    <div class="page-header-with-link">
+      <h1><%= link_to "Download #{'filtered' if using_filter?} CSV", action: params[:action], params: filtered_params, format: :csv %></h1>
+      <%= render 'filter_header' %>
+    </div>
+
+    <table id="detailTable" class="tablesorter">
+      <thead>
+        <tr>
+          <% @report.headings.each do |heading| %>
+            <th><%= heading %></th>
+          <% end %>
+        </tr>
+      </thead>
+    <% @report.rows.each do |row| %>
+      <tr>
+        <% row.each do |row_column| %>
+          <td><%= row_column %></td>
+        <% end %>
+      </tr>
     <% end %>
-  </tr>
-<% end %>
-</table>
+    </table>
+    
+  </div>
 </div>

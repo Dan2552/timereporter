@@ -1,0 +1,6 @@
+<ul class="grey-list">
+  <%= render partial: "report_item", collection: @collection %>
+  <% if @collection.blank? %>
+    <li class="grey-block no-results">No Hours Recorded</li>
+  <% end %>
+</ul>

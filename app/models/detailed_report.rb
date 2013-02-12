@@ -4,9 +4,10 @@ class DetailedReport
 
   attr_accessor :headings, :rows
 
-  def initialize(time_entries)
+  def initialize(time_entries, filtered_projects=Project.all)
+    @filtered_projects = filtered_projects
     @headings = build_headings
-    @rows = time_entries.map { |entry| build_column(entry) }
+    @rows = time_entries.map { |entry| build_column(entry) }.compact
   end
 
   def build_headings
@@ -14,16 +15,18 @@ class DetailedReport
   end
 
   def build_column(entry)
-    row_column = [
-      entry.project.try(:name) || "? Unknown project",
-      entry.project.try(:client_name) || "",
-      entry.user.name,
-      entry.start_time.localtime,
-      entry.end_time.localtime,
-      entry.duration_in_hours,
-      entry.project.try(:utilised),
-      entry.project.try(:billable)
-    ].flatten
+    if @filtered_projects.include? entry.project
+      row_column = [
+        entry.project.try(:name) || "? Unknown project",
+        entry.project.try(:client_name) || "",
+        entry.user.name,
+        entry.start_time.localtime,
+        entry.end_time.localtime,
+        entry.duration_in_hours,
+        entry.project.try(:utilised),
+        entry.project.try(:billable)
+      ].flatten
+    end
   end
 
   def csv

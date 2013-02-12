@@ -1,12 +1,4 @@
-<header class="date-header timetable-header">
-  <h1><%= date_range_text %></h1>
-  <div class="btn-group pull-right">
-    <!-- Want to put these into a helper but gave up -->
-    <%= link_to "current week", root_path(date: Date.today), class: "btn #{'disabled' if @date == Date.today}" %>
-    <%= link_to "<", root_path(date: @date.prev_week()), class: 'btn' %>
-    <%= link_to ">", root_path(date: @date.next_week()), class: 'btn' %>
-  </div>
-</header>
+<%= render 'layouts/date_header' %>
 
 <div class="headers sticky-item">
   <% week_range.each do |day| %>

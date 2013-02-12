@@ -4,6 +4,8 @@ Timereporter::Application.routes.draw do
   devise_for :users
   resources :reports, only: :index do
     collection do
+      get "users"
+      get "projects"
       get "detail"
       get ":action/:id"
     end
