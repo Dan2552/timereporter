@@ -15,6 +15,14 @@ class Object
     self
   end
 
+  def true?
+    to_b
+  end
+
+  def false?
+    !to_b
+  end
+
   def to_b
     true_values.include? self
   end

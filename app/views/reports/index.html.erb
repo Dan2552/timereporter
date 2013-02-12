@@ -2,9 +2,11 @@
   <h1><%= date_range_text %></h1>
   <div class="btn-group pull-right">
     <!-- Want to put these into a helper but gave up -->
-    <%= link_to "current week", reports_path(date: Date.today, collection: "#{params[:collection] if params[:collection].present?}"), class: "btn #{'disabled' if @date == Date.today}" %>
-    <%= link_to "<", reports_path(date: @date.prev_week(), collection: "#{params[:collection] if params[:collection].present?}"), class: 'btn' %>
-    <%= link_to ">", reports_path(date: @date.next_week(), collection: "#{params[:collection] if params[:collection].present?}"), class: 'btn' %>
+    <%= toggle_link(:utilised) %>
+    <%= toggle_link(:billable) %>
+    <%= link_to "current week", url_with_param(:date, Date.today), class: "btn #{'disabled' if @date == Date.today}" %>
+    <%= link_to "<", url_with_param(:date, @date.prev_week), class: 'btn' %>
+    <%= link_to ">", url_with_param(:date, @date.next_week), class: 'btn' %>
   </div>
 </header>
 
@@ -12,10 +14,10 @@
 
 
 <div class="tab-header">
-  <%= link_to reports_path(collection: "users", date: "#{params[:date] if params[:date].present?}"), class: "tab-link #{'active' unless params[:collection] == "projects"}" do %>
+  <%= link_to reports_path(collection: "users", date: "#{params[:date].if_present}"), class: "tab-link #{'active' unless params[:collection] == "projects"}" do %>
     <h4>Users</h4>
   <% end %>
-  <%= link_to reports_path(collection: "projects", date: "#{params[:date] if params[:date].present?}"), class: "tab-link last #{'active' unless params[:collection] == "users" || params[:collection].blank?}" do %>
+  <%= link_to reports_path(collection: "projects", date: "#{params[:date].if_present}"), class: "tab-link last #{'active' unless params[:collection] == "users" || params[:collection].blank?}" do %>
     <h4>Projects</h4>
   <% end %>
   <div class="top-line"></div>
