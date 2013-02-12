@@ -7,14 +7,8 @@ class Project < ActiveRecord::Base
 
   scope :ordered_by_title, order: 'title ASC'
 
-
-  def self.filter(key, boolean)
-    title = key.to_s.titleize
-    if boolean
-      where(key => title)
-    else
-      where("`#{key}` != '#{title}' OR `#{key}` IS NULL")
-    end
+  def self.filter(key)
+    where(key.to_sym => key.to_s.titleize) if FILTERABLE.include?(key)
   end
 
   def self.fetch_remote_projects(args = {})

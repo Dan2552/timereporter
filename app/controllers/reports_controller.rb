@@ -42,7 +42,7 @@ class ReportsController < ApplicationController
   def filtered_projects
     list = Project.scoped
     Project::FILTERABLE.each do |filter|
-      list = list.filter(filter.to_sym, params[filter].to_b) 
+      list = list.filter(filter) if params[filter].to_b
     end
     list
   end
