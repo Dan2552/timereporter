@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require turbolinks
 
 //= require chosen.jquery.min
 //= require jquery.tablesorter.min

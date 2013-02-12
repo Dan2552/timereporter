@@ -31,7 +31,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'turbolinks'
 gem 'jquery-rails'
 gem 'thin'
 gem 'debugger'
