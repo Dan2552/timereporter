@@ -161,8 +161,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.0.0)
-      coffee-rails
     turn (0.8.3)
       ansi
     tzinfo (0.3.35)
@@ -193,6 +191,5 @@ DEPENDENCIES
   simple_form
   sqlite3
   thin
-  turbolinks
   turn (~> 0.8.3)
   uglifier (>= 1.0.3)
