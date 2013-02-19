@@ -66,7 +66,7 @@
 // -------------------------
 
 .date-header {
-  margin: 10px 0;
+  margin: 20px 0;
   overflow: auto;
   h1 {
     float: left;
@@ -109,63 +109,60 @@
 }
 
 .tab-header {
-  overflow: auto;
-  position: relative;
-  .tab-link {
-    background: none;
-    display: block;
+  height: 40px;
+  position: absolute;
+  top: 91px;
+  z-index: 200;
+  h4 {
+    background: #F3F3F3;
+    border: 1px solid #E6E3E3;
+    border-bottom: none;
     float: left;
+    font-size: 16px;
+    font-weight: 200;
+    height: 36px;
+    line-height: 26px;
+    margin: 0 2px 0 0;
+    position: relative;
     text-align: center;
     width: 160px;
-    h4 {
-      background: #F3F3F3;
-      border-top: 1px solid #E6E3E3;
-      border-right: 1px solid #E6E3E3;
-      border-left: 1px solid #E6E3E3;
-      border-bottom: 1px solid #ccc;
-      line-height: 26px;
-      font-size: 20px;
-      font-weight: 100;
-      padding: 5px;
-      @include border-radius(4px 0 0 0);
-      @include box-shadow(-4px -4px 6px -5px rgba(0, 0, 0, 0.2) inset);
+    @include border-radius(4px 4px 0 0);
+    @include box-shadow(0 -4px 4px -4px #CCCCCC inset);
+    a {
+      color: #777;
+      display: block;
+      padding: 6px 0;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #fff;
     }
     &.active {
-      h4 {
-        background: #fff;
-        border: 1px solid #ccc;
-        border-bottom: 1px solid #fff;
-        @include box-shadow(none!important);
+      background: #fff;
+      border: 1px solid #bbb;
+      border-bottom: none;
+      height: 37px;
+      @include box-shadow(none);
+      a {
+        color: #C53727;
       }
     }
-    &:hover {
-      text-decoration: none;
-    }
   }
-  .tab-link.last {
-    h4 {
-      @include border-radius(0 4px 0 0);
-      @include box-shadow(4px -4px 6px -5px rgba(0, 0, 0, 0.2) inset);
-    }
-  }
-  .top-line {
-    border-bottom: 1px solid #ccc;
-    bottom: 1px;
-    left: 320px;
-    position: absolute;
-    right: 0;
-  }
+
 }
 
 .tab-body {
-  border: 1px solid #ccc;
-  border-top: none;
-  background: #fff;
-  margin-top: -1px;
-  position: relative;
+  border: 1px solid #CCCCCC;
+  overflow: auto;
+  margin-top: 48px;
+  min-height: 400px;
+  width: 100%;
+  @include border-radius(0 4px 4px 4px);
   .inner {
     padding: 20px;
   }
+}
+
+.tab-body-head {
+  margin-bottom: 20px;
 }
 
 .no-results {

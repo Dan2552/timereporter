@@ -10,12 +10,11 @@
 
 // Grid system and page structure
 @import "scaffolding";
-// @import "bootstrap/grid";
 
 // Base CSS
 @import "type";
 @import "forms";
-// @import "bootstrap/tables";
+@import "tables";
 
 // Components: Buttons & Alerts
 @import "buttons";
@@ -32,6 +31,3 @@
 @import "timetable";
 @import "projects";
 @import "form-popout";
-
-// Sortable table
-@import "tablesorter";
