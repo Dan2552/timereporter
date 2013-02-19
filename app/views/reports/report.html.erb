@@ -10,12 +10,26 @@
 </header>
 
 <% total_time = 0 %>
-<ul>
-  <% @report.times.each do |key, time| %>
-    <li class="grey-block"><%= key %> <span class="hours pull-right"><%= hours time  %></span><% total_time += time %></li>
-  <% end %>
-</ul>
 
-<div class="grey-block pull-right">
-  <strong>Total:</strong> <%= hours total_time %>
-</div>
+<table class="table two-col tablesorter">
+  <thead>
+    <tr>
+      <th class="header">Project</th>
+      <th class="header">Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @report.times.each do |key, time| %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= hours time  %></td>
+        <% total_time += time %>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">Total: <%= hours total_time %></td>
+    </tr>
+  </tfoot>
+</table>

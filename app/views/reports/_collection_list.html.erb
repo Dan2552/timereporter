@@ -1,6 +1,14 @@
-<ul class="grey-list">
-  <%= render partial: "report_item", collection: @collection %>
-  <% if @collection.blank? %>
-    <li class="grey-block no-results">No Hours Recorded</li>
-  <% end %>
-</ul>
+<table class="table two-col tablesorter">
+  <thead>
+    <tr>
+      <th><%= params[:action] == "projects" ? "Project" : "Name" %></th>
+      <th>Hours</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "report_item", collection: @collection %>
+    <% if @collection.blank? %>
+      <tr><td class="no-results">No Hours Recorded</td></tr>
+    <% end %>
+  </tbody>
+</table>

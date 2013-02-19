@@ -1,7 +1,11 @@
 <% report = report_item %>
-<li class="grey-block">
-  <%= link_to report_path(report.object, "") do %>
-    <%= report.object.name %>
-    <span class="hours pull-right"><%= hours(report.total) %> (<%= days(report.days) %>)</span>
-  <% end %>
-</li>
+<tr>
+  <td>
+    <%= link_to report_path(report.object, "") do %>
+      <%= report.object.name %>
+    <% end %>
+  </td>
+  <td>
+    <%= hours(report.total) %> (<%= days(report.days) %>)
+  </td>
+</tr>

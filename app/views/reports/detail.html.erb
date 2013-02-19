@@ -2,27 +2,30 @@
 <%= render 'tab_header' %>
 <div class="tab-body">
   <div class="inner">
-    <div class="page-header-with-link">
-      <h1><%= link_to "Download #{'filtered' if using_filter?} CSV", action: params[:action], params: filtered_params, format: :csv %></h1>
+    <div class="tab-body-head clearfix">
+      <h2 class="pull-left">
+        <%= link_to "Download #{'filtered' if using_filter?} CSV", action: params[:action], params: filtered_params, format: :csv %>
+      </h2>
       <%= render 'filter_header' %>
     </div>
 
-    <table id="detailTable" class="tablesorter">
+    <table class="table tablesorter">
       <thead>
         <tr>
           <% @report.headings.each do |heading| %>
-            <th><%= heading %></th>
+            <th class="header"><%= heading %></th>
           <% end %>
         </tr>
       </thead>
-    <% @report.rows.each do |row| %>
-      <tr>
-        <% row.each do |row_column| %>
-          <td><%= row_column %></td>
+      <tbody>
+        <% @report.rows.each do |row| %>
+          <tr>
+            <% row.each do |row_column| %>
+              <td><%= row_column %></td>
+            <% end %>
+          </tr>
         <% end %>
-      </tr>
-    <% end %>
+      </tbody>
     </table>
-    
   </div>
 </div>
