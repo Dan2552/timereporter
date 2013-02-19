@@ -1,12 +1,11 @@
 <div class="tab-header">
-  <%= link_to users_reports_path(params: filtered_params), class: "tab-link #{'active' if action?("users")}" do %>
-    <h4>Users</h4>
-  <% end %>
-  <%= link_to projects_reports_path(params: filtered_params), class: "tab-link middle #{'active' if action?("projects")}" do %>
-    <h4>Projects</h4>
-  <% end %>
-  <%= link_to detail_reports_path(params: filtered_params), class: "tab-link last #{'active' if action?("detail")}" do %>
-    <h4>Detailed report<h4>
-  <% end %>
-  <div class="top-line"></div>
+  <h4 class="<%= 'active' if action?("users") %>">
+    <%= link_to "Users", users_reports_path(params: filtered_params) %>
+  </h4>
+  <h4 class="<%= 'active' if action?("projects") %>">
+    <%= link_to "Projects", projects_reports_path(params: filtered_params) %>
+  </h4>
+  <h4 class="<%= 'active' if action?("detail") %>">
+    <%= link_to "Detailed Report", detail_reports_path(params: filtered_params) %>
+  </h4>
 </div>
