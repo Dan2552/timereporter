@@ -20,8 +20,8 @@ class DetailedReport
         entry.project.try(:name) || "? Unknown project",
         entry.project.try(:client_name) || "",
         entry.user.name,
-        entry.start_time.localtime,
-        entry.end_time.localtime,
+        entry.start_time.localtime.strftime("%e %b %Y"),
+        entry.end_time.localtime.strftime("%e %b %Y"),
         entry.duration_in_hours,
         entry.project.try(:utilised),
         entry.project.try(:billable)
@@ -35,5 +35,5 @@ class DetailedReport
       @rows.each { |row| csv << row }
     end
   end
-  
+
 end
