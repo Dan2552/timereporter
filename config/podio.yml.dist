@@ -1,0 +1,7 @@
+development:
+  key: 'YOUR_KEY_HERE'
+  secret: 'YOUR_SECRET_HERE'
+
+production:
+  key: 'YOUR_KEY_HERE'
+  secret: 'YOUR_SECRET_HERE'
