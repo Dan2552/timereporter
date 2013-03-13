@@ -1,13 +1,4 @@
-<header class="date-header">
-  <h1><%= @report.object.name %></h1>
-  <div class="btn-group pull-right">
-    <h4 class=""><%= date_range_text %></h4>
-    <!-- Want to put these into a helper but gave up -->
-    <%= link_to "current week", report_path(@report.object, Date.today), class: "btn #{'disabled' if @date == Date.today}" %>
-    <%= link_to "<", report_path(@report.object, @date.prev_week()), class: 'btn' %>
-    <%= link_to ">", report_path(@report.object, @date.next_week()), class: 'btn' %>
-  </div>
-</header>
+<%= render 'layouts/date_header', options: { title: @report.object.name } %>  
 
 <% total_time = 0 %>
 
