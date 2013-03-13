@@ -1,7 +1,7 @@
 <% report = report_item %>
 <tr>
   <td>
-    <%= link_to report_path(report.object, "") do %>
+    <%= link_to report_path(report.object, @date) do %>
       <%= report.object.name %>
     <% end %>
   </td>
