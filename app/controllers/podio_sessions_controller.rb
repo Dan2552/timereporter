@@ -1,10 +1,9 @@
 class PodioSessionsController < ApplicationController
 
-  CLIENT_ID = "timereporter2"
-
   def new
     return_url = podio_sessions_url
-    redirect_to "https://podio.com/oauth/authorize?client_id=#{CLIENT_ID}&redirect_uri=#{return_url}"
+    client = PodioProjectFetcher.auth_key
+    redirect_to "https://podio.com/oauth/authorize?client_id=#{client}&redirect_uri=#{return_url}"
   end
 
   def index

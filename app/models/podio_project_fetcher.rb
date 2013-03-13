@@ -1,6 +1,7 @@
 class PodioProjectFetcher
-  KEY = 'timereporter2'
-  SECRET = 'FO5dAQAKqZEEKh04HDEguoIzoLfAuc6bUB6UC0nlTBfSqT3DM4QcTK9CgtALLmIO'
+  class << self
+    attr_accessor :auth_key, :auth_secret 
+  end
 
   def initialize(args = {})
     @auth_code = args[:auth_code]
@@ -21,7 +22,7 @@ class PodioProjectFetcher
   end
 
   def authenticate_api
-    Podio.setup api_key: KEY, api_secret: SECRET
+    Podio.setup api_key: self.class.auth_key, api_secret: self.class.auth_secret
     Podio.client.authenticate_with_auth_code(@auth_code, @path)
   end
 
