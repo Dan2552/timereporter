@@ -4,9 +4,15 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  def self.for_date(date)
-  	start_date = date.beginning_of_week.beginning_of_day
-  	end_date = (date.end_of_week - 2).end_of_day
+  ALLOWED_DURATIONS = [:day, :week, :month, :year]
+
+  def self.for_date(date, duration=:week)
+    duration = :week unless duration.present?
+    duration = :week unless ALLOWED_DURATIONS.include? duration.to_sym
+    
+  	start_date = date.send("beginning_of_#{duration}").beginning_of_day
+  	end_date = (date.send("end_of_#{duration}") - 2).end_of_day
+
   	where(entry_datetime: start_date..end_date)
   end
 

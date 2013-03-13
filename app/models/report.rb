@@ -1,13 +1,13 @@
 class Report
   attr_accessor :object, :times
 
-  def self.build_list(object_list, date)
-    list = object_list.map { |instance| build(instance, date) }
+  def self.build_list(object_list, date, duration=:week)
+    list = object_list.map { |instance| build(instance, date, duration) }
     list.compact.where(empty?: false)
   end
 
-  def self.build(object, date)
-    entries = TimeEntry.for_date(date).for(object)
+  def self.build(object, date, duration=:week)
+    entries = TimeEntry.for_date(date, duration).for(object)
     child_type = (object.is_a? User) ? :project : :user
 
     times = {}
