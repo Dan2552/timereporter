@@ -12,6 +12,13 @@ module TimeEntriesHelper
 		(@date.beginning_of_day + hour.hours).strftime("%H:%M")
 	end
 
+	def duration_param
+		duration = params[:duration]
+		duration = :week unless duration.present?
+		duration = :week unless TimeEntry::ALLOWED_DURATIONS.include? duration.to_sym
+		duration
+	end
+
 	def date_range_text
 		start = start_of_week
 		stop = end_of_week
@@ -23,11 +30,15 @@ module TimeEntriesHelper
 	end
 
 	def start_of_week
-		@date.beginning_of_week
+		@date.send("beginning_of_#{duration_param}")
 	end
 
 	def end_of_week
-		@date.end_of_week - 2
+		if duration_param == :week
+			@date.end_of_week - 2
+		else
+			@date.send("end_of_#{duration_param}")
+		end
 	end
 
 	def week_range

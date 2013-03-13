@@ -4,7 +4,7 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  ALLOWED_DURATIONS = [:week, :month, :year]
+  ALLOWED_DURATIONS = [:day, :week, :month, :year]
 
   def self.for_date(date, duration=:week)
     duration = :week unless duration.present?
