@@ -31,7 +31,7 @@
 
   // Hover state
   &:hover {
-    @include gradient-vertical(#F1F1F1, #fff);
+    @include gradient-vertical(#F1F1F1, #F1F1F1);
     color: $grayDark;
     text-decoration: none;
     // background-color: darken($white, 10%);

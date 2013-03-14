@@ -37,6 +37,8 @@
   z-index: $zindexFixedNavbar;
   ul {
     overflow: auto;
+    margin: 0 auto;
+    max-width: 1200px;
     li {
       line-height: 30px;
       margin-left: 15px;
@@ -90,7 +92,7 @@
 
 .page-header {
   padding: 10px 0;
-  border-bottom: 1px solid $grayLighter;
+  border-bottom: 1px solid #bbb;
 }
 
 .page-header-with-link {
@@ -111,7 +113,7 @@
 .tab-header {
   height: 40px;
   position: absolute;
-  top: 91px;
+  top: 110px;
   z-index: 200;
   h4 {
     background: #F3F3F3;
@@ -152,7 +154,7 @@
 .tab-body {
   border: 1px solid #CCCCCC;
   overflow: auto;
-  margin-top: 48px;
+  margin-top: 57px;
   min-height: 400px;
   width: 100%;
   @include border-radius(0 4px 4px 4px);
@@ -163,6 +165,9 @@
 
 .tab-body-head {
   margin-bottom: 20px;
+  .body-title {
+    font-size: 20px;
+  }
 }
 
 .no-results {
@@ -179,6 +184,18 @@
   @include transition(all .1s ease);
   a {
     display: block;
+  }
+}
+
+.dashed-list {
+  font-weight: 200;
+  a {
+    display: block;
+  }
+  li {
+    line-height: 30px;
+    padding: 5px 10px;
+    border-bottom: 1px dashed #ccc;
   }
 }
 
