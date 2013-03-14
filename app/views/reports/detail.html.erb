@@ -3,7 +3,7 @@
 <div class="tab-body">
   <div class="inner">
     <div class="tab-body-head clearfix">
-      <h2 class="pull-left">
+      <h2 class="body-title pull-left">
         <%= link_to "Download #{'filtered' if using_filter?} CSV", action: params[:action], params: filtered_params, format: :csv %>
       </h2>
       <%= render 'filter_header' %>
@@ -24,6 +24,9 @@
               <td><%= row_column %></td>
             <% end %>
           </tr>
+        <% end %>
+        <% if @report.rows.blank? %>
+          <tr><td class="no-results" colspan="8">No Hours Recorded</td></tr>
         <% end %>
       </tbody>
     </table>
