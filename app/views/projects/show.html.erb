@@ -1,12 +1,18 @@
-<header class="page-header-with-link">
+<header class="page-header">
   <h1><%= @project.title %></h1>
 </header>
-<ul class="grey-list">
+<ul class="dashed-list">
   <% @project.attributes.each do |attr, value| %>
     <% next if attr == "id" || attr == "title" %>
-    <li class="grey-block">
+    <li>
       <%= attr.titleize %>
-      <span class="hours pull-right"><%= value %></span>
+      <span class="pull-right">
+        <% if attr == "created_at" || attr == "updated_at" %>
+          <%= value.strftime("%e %b %Y") %>
+        <% else %>
+          <%= value %>
+        <% end %>
+      </span>
     </li>
   <% end %>
 </ul>
