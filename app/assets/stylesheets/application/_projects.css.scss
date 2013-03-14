@@ -3,8 +3,8 @@
   padding: 15px 0 0;
   li {
     float: left;
-    font-size: 20px;
-    font-weight: 100;
+    font-size: 19px;
+    font-weight: 200;
     width: 34px;
     text-align: center;
     line-height: 24px;
@@ -14,12 +14,16 @@
     float: right;
     margin-right: 0;
   }
-  .active {
-    color: #712626;
-    font-weight: 200;
+  li:first-child {
+    margin-left: -10px;
+  }
+  .active,
+  a:hover {
+    color: #CC0000;
   }
 
   a {
+    color: #999;
     display: block;
     outline: none;
     text-decoration: none;
@@ -30,7 +34,7 @@
   background: rgba(255, 255, 255, 0.9);
   border-bottom: 1px solid #eee;
   left: 0;
-  padding: 10px 40px;
+  padding: 10px 50px;
   position: fixed;
   right: 0;
   top: 30px;
