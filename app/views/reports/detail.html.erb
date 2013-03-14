@@ -25,10 +25,12 @@
             <% end %>
           </tr>
         <% end %>
+      </tbody>
+      <tfoot>
         <% if @report.rows.blank? %>
           <tr><td class="no-results" colspan="8">No Hours Recorded</td></tr>
         <% end %>
-      </tbody>
+      </tfoot>
     </table>
   </div>
 </div>
