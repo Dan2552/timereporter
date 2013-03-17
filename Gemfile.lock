@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Dan2552/devise_json_csrf.git
-  revision: 79a6e5e43aba6d7e80861dc527f12db360cda705
+  revision: b303960e684a185fc91d68f834f504a683153b38
   specs:
     devise_json_csrf (0.1.0)
 
