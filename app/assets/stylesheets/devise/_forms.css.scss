@@ -48,7 +48,6 @@ input[type="email"],
   font-weight: 200;
   line-height: $baseLineHeight;
   color: #666;
-  @include border-radius($inputBorderRadius);
   vertical-align: middle;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;

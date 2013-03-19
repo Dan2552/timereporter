@@ -17,27 +17,35 @@ h1.heading {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow: auto;
+  padding: 0 0 40px;
+}
+
 .form-box {
   float: right;
-  margin: 100px 150px 0 0;
+  margin: 100px 60px;
   width: 300px;
   a {
     color: #444;
     font-size: 13px;
     font-weight: 200;
     margin: 10px 0 0;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 #ccc;
+    text-decoration: none;
     &:hover {
-      opacity: 0.8;
-      text-decoration: none;
+      color: #7A2525;
+      text-shadow: none;
     }
   }
   form {
-    background: #F8F8F8;
-    border: 1px solid #2C2B2B;
+    border: 1px solid rgba(82, 82, 82, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8);
     padding: 10px;
     overflow: auto;
-    @include border-radius(4px);
-    @include box-shadow(0 4px 10px -6px #000);
+    @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255,255,255,0.8) inset);
+    @include gradient-vertical(rgba(255,255,255, 0.2), rgba(255, 255, 255, 0.3));
   }
 }

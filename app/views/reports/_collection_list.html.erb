@@ -7,8 +7,10 @@
   </thead>
   <tbody>
     <%= render partial: "report_item", collection: @collection %>
-    <% if @collection.blank? %>
-      <tr><td class="no-results">No Hours Recorded</td></tr>
-    <% end %>
   </tbody>
+  <tfoot>
+    <% if @collection.blank? %>
+      <tr><td class="no-results" colspan="2">No Hours Recorded</td></tr>
+    <% end %>
+  </tfoot>
 </table>

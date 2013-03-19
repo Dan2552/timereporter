@@ -6,7 +6,7 @@
 
 .table.two-col {
   thead th:first-child {
-    width: 85%;
+    width: 78%;
   }
   th, td {
     padding: 8px 12px;
@@ -18,15 +18,23 @@
   width: 100%;
   background-color: transparent;
   border: 1px solid #bbb;
+  border-bottom: none;
   border-collapse: separate;
   border-spacing: 0;
   max-width: 100%;
   thead {
     background: #EAEBED;
-    // @include box-shadow(0 1px 0 #F7F7F7 inset);
   }
   tbody {
     @include box-shadow(0 1px 2px -1px #eee inset);
+    tr:last-child {
+      td {
+        border-bottom: 1px solid #bbb;
+      }
+    }
+    td {
+      border-bottom: 1px solid #ddd;
+    }
   }
   thead th {
     color: #676767;
@@ -36,7 +44,6 @@
     border-bottom: 1px solid #bbb;
   }
   th, td {
-    border-bottom: 1px solid #ddd;
     line-height: 20px;
     padding: 8px;
     text-align: center;
@@ -59,18 +66,12 @@
     background: #F9F9F9;
     @include box-shadow(0 1px 0 #fff inset);
   }
-
-  tr:last-child {
-    td {
-      border-bottom: none;
-    }
-  }
   tfoot {
     td {
-      border-top: 1px solid #bbb;
+      border-bottom: 1px solid #bbb;
       font-size: 14px;
       letter-spacing: 0.5px;
-      @include box-shadow(0 4px 2px -3px #CCCCCC inset);
+      @include box-shadow(0 4px 8px -4px #CCC inset);
     }
   }
 }

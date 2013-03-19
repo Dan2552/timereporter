@@ -7,27 +7,27 @@ class ReportsController < ApplicationController
   end
 
   def users
-    @collection = Report.build_list(User.all, @date)
+    @collection = Report.build_list(User.all, @date, params[:duration])
   end
 
   def projects
-    @collection = Report.build_list(filtered_projects, @date)
+    @collection = Report.build_list(filtered_projects, @date, params[:duration])
   end
 
   def user
     user = User.find(params[:id])
-    @report = Report.build(user, @date)
+    @report = Report.build(user, @date, params[:duration])
     render :report
   end
 
   def project
     project = Project.find(params[:id])
-    @report = Report.build(project, @date)
+    @report = Report.build(project, @date, params[:duration])
     render :report
   end
 
   def detail
-    time_entries = TimeEntry.for_date(@date)
+    time_entries = TimeEntry.for_date(@date, params[:duration])
     @report = DetailedReport.new(time_entries, filtered_projects)
     respond_to do |format|
       format.html {}

@@ -3,22 +3,28 @@
   padding: 15px 0 0;
   li {
     float: left;
-    font-size: 18px;
-    font-weight: 200;
-    width: 25px;
+    font-size: 19px;
+    font-weight: 100;
+    width: 34px;
     text-align: center;
+    line-height: 24px;
   }
   li.top-link {
     display: none;
     float: right;
     margin-right: 0;
   }
-  .active {
-    color: #712626;
-    font-weight: 400;
+  li:first-child {
+    margin-left: -10px;
+  }
+  .active,
+  a:hover {
+    font-weight: 200;
+    color: #CC0000;
   }
 
   a {
+    color: #999;
     display: block;
     outline: none;
     text-decoration: none;
@@ -49,16 +55,24 @@
 
 ul.projects-list {
   li.letter {
-    border-bottom: 1px dashed #eee;
-    font-size: 20px;
-    font-weight: 200;
-    margin: 0 0 10px;
-    padding: 6px 0;
+    color: #CC0000;
+    font-size: 26px;
+    font-weight: 100;
+    margin: 0 0 15px;
+    line-height: 40px;
   }
 
-  li.project_name {
-    font-size: 17px;
+  li.project {
+    border-bottom: 1px dashed #ccc;
+    font-size: 16px;
     font-weight: 200;
-    line-height: 22px;
+    line-height: 36px;
+    a {
+      color: #999;
+      display: block;
+      &:hover {
+        color: #CC0000;
+      }
+    }
   }
 }
