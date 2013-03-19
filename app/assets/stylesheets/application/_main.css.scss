@@ -25,6 +25,13 @@
   @include box-shadow(0 1px 0 #7FE094 inset, 0 0px 6px rgba(0, 0, 0, 0.4));
 }
 
+.projects-layout,
+.reports-layout {
+  .nav-bar ul {
+    max-width: 1500px;
+  }
+}
+
 .nav-bar {
   padding: 0 50px;
   position: fixed;
@@ -38,7 +45,6 @@
   ul {
     overflow: auto;
     margin: 0 auto;
-    max-width: 1200px;
     li {
       line-height: 30px;
       margin-left: 15px;

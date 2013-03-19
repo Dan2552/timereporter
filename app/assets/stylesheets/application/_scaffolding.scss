@@ -19,8 +19,15 @@ body {
   background-color: $bodyBackground;
 }
 
+
+.projects-layout,
+.reports-layout {
+  .content {
+    max-width: 1500px;
+  }
+}
+
 .content {
-  max-width: 1200px;
   margin: 0 auto;
 }
 
