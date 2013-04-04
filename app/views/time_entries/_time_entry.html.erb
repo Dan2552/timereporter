@@ -8,6 +8,7 @@
       <p class="time-text">
         <span class="from"><%= time_entry.entry_datetime.strftime("%H:%M") %></span> -
         <span class="to"><%= (time_entry.entry_datetime + minutes_added.minutes).strftime("%H:%M") %></span>
+        <span class="duration">(<%= (time_entry.duration * 0.25).to_s.gsub('.0', '') %>h)</span>
       </p>
 
       <%= project_name_for_time_entry time_entry %>
