@@ -126,6 +126,10 @@
       right: 0;
       top: 2px;
       text-align: center;
+      span {
+        display: inline-block;
+        width: 40px;
+      }
     }
     .comment-text {
       position: absolute;
