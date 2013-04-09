@@ -151,7 +151,7 @@ window.time_entries = ( ($) ->
     duration = height * 1.5
     start_time = format_timestamp(Date.parse(start))
     end_time = format_timestamp(Date.parse(start) + (duration * 60000))
-    start_time + ' - ' + end_time + ' (' + height / 40 + 'h)'
+    "<span class='from'>#{start_time}</span> - <span class='to'>#{end_time}</span> <span class='duration'>(#{height / 40}h)</span>"
 
   update_entry: (data) ->
     $.ajax
