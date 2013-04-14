@@ -41,10 +41,17 @@ window.time_entries = ( ($) ->
       unless @$time_slot.hasClass('chosen')
         @$entry = @$time_slot.clone().toggleClass('quarter-hour entry').append( $('<div/>', {class: 'inner'}))
 
+        @$entry.find('.inner').html('<p class="time-text"></p>')
+        this_entry = @$entry
+        time_text = @$entry.find('.time-text')
+
         @$time_slot
           .addClass('chosen')
           .html(@$entry)
           .parents('.day').mousemove (e) ->
+            start = this_entry.data('datetime')
+            height = this_entry.height()
+            time_text.html(self.time_text(start, height))
             if e.pageY < mousedownY
               $('body').css "cursor", "ns-resize"
               self.$entry.css
@@ -112,6 +119,13 @@ window.time_entries = ( ($) ->
           self.$resizing_top = true
         else
           self.$resizing_top = false
+      resize: (evt, ui) ->
+        $el = ui.element
+        start = self.$entry.data('datetime')
+        start_diff = $el.position().top * 1.5 * 60000
+        new_start = new Date(Date.parse(start) + start_diff)
+        height = $el.height()
+        $el.find('.time-text').html(self.time_text(new_start, height))
       stop: (evt, ui) ->
         self.$entry = $(@)
         if self.$resizing_top
@@ -130,6 +144,14 @@ window.time_entries = ( ($) ->
       complete: () ->
         self.set_resizeable(self.$entry)
         self.$entry = false
+
+  time_text: (start, height) ->
+    format_timestamp = (timestamp)->
+      new Date(timestamp).toTimeString().split(':').slice(0, 2).join(':')
+    duration = height * 1.5
+    start_time = format_timestamp(Date.parse(start))
+    end_time = format_timestamp(Date.parse(start) + (duration * 60000))
+    "<span class='from'>#{start_time}</span> - <span class='to'>#{end_time}</span> <span class='duration'>(#{height / 40}h)</span>"
 
   update_entry: (data) ->
     $.ajax
