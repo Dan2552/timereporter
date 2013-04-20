@@ -20,28 +20,28 @@
 
   <div class="timetable">
     <% week_range.each do |day| %>
-      <div class="day">
+      <div class="day" data-date="<%= day %>">
         <% (1..24).each do |hour| %>
 
-          <div class="quarter-hour no-border <%= main_hour_class(hour) %>" data-datetime="<%= hour_time(day, hour) %>" data-duration="1">
+          <div class="quarter-hour no-border <%= main_hour_class(hour) %>" data-datetime="<%= hour_time(day, hour) %>" data-duration="1" data-time="<%= hour_text(hour) %>">
             <% entries(day, hour).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
 
-          <div class="quarter-hour <%= main_hour_class(hour + 0.25) %>" data-datetime="<%= hour_time(day, hour + 0.25) %>" data-duration="1">
+          <div class="quarter-hour <%= main_hour_class(hour + 0.25) %>" data-datetime="<%= hour_time(day, hour + 0.25) %>" data-duration="1" data-time="<%= hour_text(hour + 0.25) %>">
             <% entries(day, hour + 0.25).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
 
-          <div class="quarter-hour no-border <%= main_hour_class(hour + 0.5) %>" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1">
+          <div class="quarter-hour no-border <%= main_hour_class(hour + 0.5) %>" data-datetime="<%= hour_time(day, hour + 0.5) %>" data-duration="1" data-time="<%= hour_text(hour + 0.5) %>">
             <% entries(day, hour + 0.5).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>
           </div>
 
-          <div class="quarter-hour <%= main_hour_class(hour + 0.75) %>" data-datetime="<%= hour_time(day, hour + 0.75) %>" data-duration="1">
+          <div class="quarter-hour <%= main_hour_class(hour + 0.75) %>" data-datetime="<%= hour_time(day, hour + 0.75) %>" data-duration="1" data-time="<%= hour_text(hour + 0.75) %>">
             <% entries(day, hour + 0.75).each do |time_entry| %>
               <%= render time_entry %>
             <% end %>

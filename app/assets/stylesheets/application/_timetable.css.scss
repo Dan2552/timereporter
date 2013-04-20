@@ -196,6 +196,14 @@
   }
 }
 
+.day .new-entry {
+  display: none;
+}
+
+.day.active .new-entry {
+  display: block;
+}
+
 .quarter-hour {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
