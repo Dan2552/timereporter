@@ -3,6 +3,7 @@ window.time_entries = ( ($) ->
   init: () ->
     @$time_slot
     @$entry
+    @$timetable = $('.timetable')
     @$resizing_top
     @$entries = $('.entry')
     @$reset_parent = false
@@ -16,7 +17,7 @@ window.time_entries = ( ($) ->
 
   add_event_handlers: () ->
     $('.quarter-hour').on("mousedown", $.proxy(@append_time_entry, @))
-    $('.day').on("mouseup", $.proxy(@save_time_entry, @))
+    @$timetable.on("mouseup", $.proxy(@save_time_entry, @))
     $('body').on('click', '.table-cover', $.proxy(@remove_form, @))
 
   remove_form: () ->
@@ -36,36 +37,71 @@ window.time_entries = ( ($) ->
       self = this
       @$time_slot = $(evt.currentTarget)
       @set_date(@$time_slot.data('datetime'))
+      @chosenTime = @$time_slot.data('time')
+      $startDay = @$time_slot.parents('.day').addClass('active start-point')
+      leftOffset = $startDay.position().left
 
       mousedownY = evt.pageY
       unless @$time_slot.hasClass('chosen')
-        @$entry = @$time_slot.clone().toggleClass('quarter-hour entry').append( $('<div/>', {class: 'inner'}))
 
-        @$entry.find('.inner').html('<p class="time-text"></p>')
-        this_entry = @$entry
-        time_text = @$entry.find('.time-text')
+        $("[data-time='" + @chosenTime + "']").each () ->
+          $this = $(this)
+          $clone = $this.clone().toggleClass('quarter-hour entry new-entry').append( $('<div/>', {class: 'inner'}))
+          $this
+            .addClass('chosen')
+            .html( $clone )
+            .find('.inner').html('<p class="time-text"></p>')
 
-        @$time_slot
-          .addClass('chosen')
-          .html(@$entry)
-          .parents('.day').mousemove (e) ->
-            start = this_entry.data('datetime')
-            height = this_entry.height()
-            time_text.html(self.time_text(start, height))
-            if e.pageY < mousedownY
-              $('body').css "cursor", "ns-resize"
-              self.$entry.css
-                top: "auto"
-                bottom: -1
-              self.$entry.height(Math.ceil((mousedownY - e.pageY) / 10) * 10)
-              self.$reset_parent = true
-            else
-              $('body').css "cursor", "ns-resize"
-              self.$entry.css
-                top: 0
-                bottom: "auto"
-              self.$entry.height(Math.ceil((e.pageY - mousedownY) / 10) * 10)
-              self.$reset_parent = false
+
+        @$timetable.mousemove (e) ->
+          tableLeft = self.$timetable.offset().left
+          start     = self.$time_slot.data('datetime')
+
+          topPos = Math.ceil((self.$time_slot.find('.new-entry').position().top) / 10) * 10
+
+          start_diff = topPos * 1.5 * 60000
+          new_start = new Date(Date.parse(start) + start_diff)
+          height    = $('.new-entry').height()
+
+          $("[data-time='" + self.chosenTime + "']").each () ->
+            time_text = $(this).find('.time-text')
+            time_text.html(self.time_text(new_start, height))
+
+
+          $(".day:not('.start-point')").each () ->
+            $day = $(this)
+
+            if $day.offset().left < leftOffset
+              if (e.pageX - tableLeft ) < $day.position().left + $day.width()
+                $day.addClass('active') unless $day.hasClass('active')
+              else
+                $day.removeClass('active') if $day.hasClass('active')
+
+            else if ($day.offset().left + $day.width()) > leftOffset
+              unless $day.offset().left < leftOffset
+
+                $day.each () ->
+                  if (e.pageX - tableLeft ) > $(this).position().left
+                    $(this).addClass('active') unless $(this).hasClass('active')
+                  else
+                    $(this).removeClass('active') if $(this).hasClass('active')
+
+
+          if e.pageY < mousedownY
+            $('body').css "cursor", "ns-resize"
+            $('.new-entry').css
+              top: "auto"
+              bottom: 0
+            $('.new-entry').height(Math.ceil((mousedownY - e.pageY) / 10) * 10)
+            self.$reset_parent = true
+          else
+            $('body').css "cursor", "ns-resize"
+            $('.new-entry').css
+              top: 0
+              bottom: "auto"
+            $('.new-entry').height(Math.ceil((e.pageY - mousedownY) / 10) * 10)
+            self.$reset_parent = false
+
 
   set_new_parent: () ->
     self = this
@@ -94,17 +130,26 @@ window.time_entries = ( ($) ->
 
 
   save_time_entry: (evt) ->
+    self = @
     evt.preventDefault()
+    @$timetable.unbind('mousemove')
+    @$entries = $('.day.active .new-entry').removeClass('new-entry')
+    $('.new-entry').remove()
+    $('.day').removeClass('start-point active')
+
     unless $(evt.target).hasClass('remove')
-      $day = $(evt.currentTarget).unbind('mousemove')
       $('body').css "cursor", "default"
+      if @$entries && !@$resize_via_ui
+        # if @$reset_parent
+          # @set_new_parent()
 
-      if @$entry && !@$resize_via_ui
-        if @$reset_parent
-          @set_new_parent()
-
-        @$entry.data().duration = @$entry.height() / 10
-        @submit_entry(@$entry.data())
+        all_entries = []
+        @$entries.each () ->
+          $entry = $(this)
+          self.$entry
+          $entry.data().duration = $entry.height() / 10
+          all_entries.push( { duration: $entry.data().duration, entry_datetime: $entry.data().datetime } )
+        self.submit_entry(all_entries)
 
   set_resizeable: ($elem) ->
     self = this
@@ -140,10 +185,11 @@ window.time_entries = ( ($) ->
     $.ajax
       type: "POST"
       url: "/time_entries"
-      data: { time_entry: { duration: data.duration, entry_datetime: data.datetime } }
-      complete: () ->
-        self.set_resizeable(self.$entry)
-        self.$entry = false
+      data: JSON.stringify({ time_entries: data })
+
+      # complete: () ->
+        # self.$entries.each () ->
+        #   self.set_resizeable($(this))
 
   time_text: (start, height) ->
     format_timestamp = (timestamp)->
