@@ -1,0 +1,8 @@
+<%= simple_form_for @user_preferences do |f| %>
+  <%= retro "Do your magic!" %>
+  <%= f.input :day_start_preference %>
+  <%= f.input :day_end_preference %>
+  <%= retro "We probably want an hours and minutes picker here" %>
+  <%= f.input :contracted_day_minutes %>
+  <%= f.button :submit %>
+<% end %>

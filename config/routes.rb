@@ -2,6 +2,7 @@ Timereporter::Application.routes.draw do
   root to: 'time_entries#index'
 
   devise_for :users
+  resources :user_preferences, only: [:index, :update]
   resources :reports, only: :index do
     collection do
       get "users"

@@ -1,14 +1,11 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :time_entries
+  has_one :user_preference
 
   def role? check
     role == check.to_s
@@ -16,6 +13,10 @@ class User < ActiveRecord::Base
 
   def name
   	email.split("@").first.gsub(".", " ").titleize
+  end
+
+  def user_preference
+    super || UserPreference.create(user: self)
   end
 
 end
