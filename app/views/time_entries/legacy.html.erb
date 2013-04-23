@@ -1,0 +1,33 @@
+<%= render 'layouts/date_header' %>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<% @time_entries.each do |time_entry| %>
+  <li>
+    <strong><%= (time_entry.project.try(:name) || "No project specified") %></strong>
+    <span class="from"><%= time_entry.entry_datetime.strftime("%H:%M") %></span> -
+    <span class="to"><%= (time_entry.entry_datetime + time_entry.duration_in_hours.hours).strftime("%H:%M") %></span>
+    <span class="duration">(<%= (time_entry.duration_in_hours).to_s.gsub('.0', '') %>h)</span>
+  <%= link_to "Delete", time_entry_path(time_entry), method: :delete, class: "remove" %>
+  </li>
+<% end %>
+
+<%= simple_form_for(TimeEntry.new) do |f| %>
+  <%= f.input :entry_datetime, :default => (@date || Date.today) %>
+  <%= f.input :duration_in_hours %>
+  <%= f.input :project_id,
+              label: false,
+              collection: Project.client_group,
+              label_method: :name,
+              as: :grouped_select,
+              group_method: :projects,
+              group_label_method: :name,
+              prompt: "Choose a project...",
+              wrapper: false,
+              input_html: {
+                class: "chosen"
+              } %>
+  <%= f.button :submit %>
+<% end %>

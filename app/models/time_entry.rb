@@ -9,7 +9,7 @@ class TimeEntry < ActiveRecord::Base
   def self.for_date(date, duration=:week)
     duration = :week unless duration.present?
     duration = :week unless ALLOWED_DURATIONS.include? duration.to_sym
-    
+
   	start_date = date.send("beginning_of_#{duration}").beginning_of_day
   	end_date = (date.send("end_of_#{duration}") - 2).end_of_day
 
@@ -34,7 +34,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def duration_in_hours
-    duration / 4.0
+    (duration || 0) / 4.0
   end
 
   def date
@@ -46,7 +46,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def end_time
-    start_time + duration_in_hours.hours 
+    start_time + duration_in_hours.hours
   end
 
 end

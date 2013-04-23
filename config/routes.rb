@@ -10,7 +10,11 @@ Timereporter::Application.routes.draw do
       get ":action/:id"
     end
   end
-  resources :time_entries, only: [:index, :create, :update, :destroy, :edit]
+  resources :time_entries do
+    collection do
+      get "legacy"
+    end
+  end
   resources :podio_sessions, only: [:index, :new]
   resources :projects, only: [:index, :show]
 end

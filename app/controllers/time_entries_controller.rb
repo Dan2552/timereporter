@@ -9,8 +9,16 @@ class TimeEntriesController < ApplicationController
   end
 
   def create
+    #hack purely for legacy route, hopefully we can remove this not too long in the future
+    @time_entry.duration = params[:time_entry][:duration_in_hours].to_f * 4
+
     @time_entry.user = current_user
     @time_entry.save
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {}
+    end
   end
 
   def update
@@ -19,9 +27,18 @@ class TimeEntriesController < ApplicationController
 
   def destroy
     @time_entry.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js {}
+    end
   end
 
   def edit
+  end
+
+  def legacy
+    date_param
+    @time_entries = TimeEntry.for(current_user).for_date(@date, params[:duration]).to_a
   end
 
 end
