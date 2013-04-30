@@ -11,7 +11,7 @@ class TimeEntry < ActiveRecord::Base
     duration = :week unless ALLOWED_DURATIONS.include? duration.to_sym
     
   	start_date = date.send("beginning_of_#{duration}").beginning_of_day
-  	end_date = (date.send("end_of_#{duration}") - 2).end_of_day
+  	end_date = date.send("end_of_#{duration}").end_of_day
 
   	where(entry_datetime: start_date..end_date)
   end
