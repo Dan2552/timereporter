@@ -8,15 +8,19 @@
 
 // Body reset
 // -------------------------
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%
+}
 
 body {
   margin: 0;
-  padding: 30px 50px 0;
   font-family: $baseFontFamily;
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   color: $textColor;
-  background-color: $bodyBackground;
+  // background-color: $bodyBackground;
 }
 
 
@@ -27,8 +31,25 @@ body {
   }
 }
 
+.wrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: $maxScreenWidth;
+}
+
 .content {
-  margin: 0 auto 100px;
+  left: 256px;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 0;
+  height: 100%;
+  width: 80%;
+  position: relative;
+  @include clearfix();
 }
 
 // Links

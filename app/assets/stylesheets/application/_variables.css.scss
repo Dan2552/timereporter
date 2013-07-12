@@ -6,6 +6,7 @@
 // Global values
 // --------------------------------------------------
 
+$maxScreenWidth: 1280px;
 
 // Grays
 // -------------------------
@@ -32,7 +33,7 @@ $purple:                #7a43b6 !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $white !default;
+$bodyBackground:        #f9f9f9 !default;
 $textColor:             $grayDark !default;
 
 
@@ -44,7 +45,7 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        "open_sansregular", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 

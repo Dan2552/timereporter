@@ -1,57 +1,83 @@
+.day-headers {
+  border: 1px solid #AEADAD;
+  margin: 0 0 -34px;
+  overflow: auto;
+  position: relative;
+  z-index: 2;
+  .filler {
+    // border-bottom: 1px solid #AEADAD;
+    border-right: 1px solid #E6E6E6;
+    float: left;
+    height: 32px;
+    width: 5%;
+    @include gradient-vertical(#f6f6f6, #f1f1f1);
+    @include box-sizing(border-box);
+  }
+  .title {
+    // border-bottom: 1px solid #AEADAD;
+    border-right: 1px solid #E6E6E6;
+    float: left;
+    font-family: "open_sanslight";
+    padding: 6px 14px;
+    @include gradient-vertical(#f6f6f6, #f1f1f1);
+    // position: fixed;
+    width: 19%;
+    @include box-sizing(border-box);
+    h4 {
+      color: #777;
+      font-weight: 200;
+      text-shadow: 0px 1px 0 #FFF;
+      font-size: 16px;
+    }
+  }
+  .title:last-child {
+    border-right: none;
+  }
+}
+
+.day-headers.sticky {
+  position: fixed;
+  top: 60px;
+  left: 276px;
+  right: 20px;
+  z-index: 2;
+}
+
 .times {
-  left: 0;
-  position: absolute;
-  top: -10px;
-  width: 45px;
+  float: left;
+  font-family: "open_sanslight";
+  width: 5%;
   .time {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     color: #777777;
+    height: 40px;
     font-size: 13px;
     font-weight: 200;
     letter-spacing: 1px;
+    padding: 0 4px 0 0;
+    text-align: right;
+    @include box-sizing(border-box);
+    &:last-child {
+      border-bottom: 1px solid #AEADAD;
+    }
   }
-}
-
-.headers {
-  left: 0;
-  padding: 0 50px 0 95px;
-  position: absolute;
-  right: 0;
-  .title {
-    float: left;
-    width: 20%;
-  }
-  h4 {
-    color: $gray;
-    padding: 8px 10px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  @include transition(background-color .2s ease);
-  @include transition(border .6s ease);
-}
-
-.headers.sticky {
-  background: rgba(255,255,255,0.8);
-  border-bottom: 1px solid #bbb;
-  position: fixed;
-  margin: 0;
-  right: 0;
-  left: 0;
-  padding: 0 50px 0 95px;
-  top: 30px;
-  z-index: $zindexFixedNavbar;
 }
 
 .timetable-container {
-  margin-top: 58px;
+  margin: 20px;
+  position: relative;
 }
 
 .timetable {
+  background: #fff;
   border: 1px solid #AEADAD;
-  margin-left: 45px;
+  border-bottom: none;
   overflow: auto;
+  padding: 33px 0 0;
   position: relative;
+  width: 100%;
+  @include box-sizing(border-box);
 }
 
 .table-cover {
@@ -62,11 +88,6 @@
   bottom: 0;
   z-index: $zindexDropdown;
 }
-
-// .bottom-border {
-//   border-top: 1px solid #AEADAD;
-//   margin-left: 45px;
-// }
 
 .entry.with-project {
   .inner {
@@ -92,25 +113,22 @@
 }
 
 .entry {
+  background: rgba(173, 39, 30, 0.4);
   position: absolute;
   left: 0;
   right: 0;
-  height: 10px;
+  min-height: 10px!important;
   width: 100%!important;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   z-index: 20;
+  @include box-sizing(border-box);
   .inner {
-    background: rgba(173, 39, 30, 0.4);
     border: 1px solid rgb(173, 39, 30);
     position: absolute;
-    overflow: hidden;
     top: 0;
+    bottom: 0;
     right: 0;
     left: 0;
-    bottom: 0;
-    @include border-radius(2px);
+    overflow: hidden;
     .project-text {
       position: absolute;
       left: 6px;
@@ -169,25 +187,37 @@
     top: 0px;
     z-index: 1090;
   }
+}
 
-  .ui-resizable-s {
-    cursor: ns-resize;
-    bottom: 0!important;
-  }
-  .ui-resizable-n {
-    cursor: ns-resize;
-    // top: 0!important;
-  }
+.ui-resizable-handle {
+  cursor: ns-resize;
+  display: block;
+  font-size: 0.1px;
+  height: 7px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.ui-resizable-n {
+  top: -5px;
+}
+.ui-resizable-s {
+  bottom: 0;
 }
 
 .day {
   float: left;
-  width: 20%;
+  width: 19%;
   position: relative;
 
   .quarter-hour:last-child {
-    border-bottom: none;
+    border-bottom: 1px solid #AEADAD;
   }
+}
+
+.day.current-day .quarter-hour {
+  background: #F2FBFF;
 }
 
 .day:last-child {
@@ -201,26 +231,25 @@
 }
 
 .day.active .new-entry {
+  opacity: 1;
   display: block;
 }
 
 .quarter-hour {
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  height: 10px!important;
+  height: 10px;
   position: relative;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  @include box-sizing(border-box);
   &.main-hour {
     background: rgba(238, 238, 238, 0.3);
   }
 }
 
 .no-border {
-  border-bottom: none!important;
+  border-bottom: 1px dotted rgba(204, 204, 204, 0.3);
 }

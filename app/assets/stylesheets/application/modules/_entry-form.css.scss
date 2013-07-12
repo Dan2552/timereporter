@@ -1,12 +1,10 @@
-.form-popout {
-  background: #fff;
-  border: 1px solid #777;
-  padding: 10px 10px 6px;
-  position: absolute;
-  top: 0;
-  width: 250px;
+.entry-form {
+  background: #F8F8F8;
+  padding: 0 10px;
+  position: fixed;
+  top: 113px;
+  width: 236px;
   z-index: $zindexPopover;
-  @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   form {
     margin: 0;
     select {
@@ -15,7 +13,9 @@
     textarea {
       height: 150px;
       margin: 0;
-      width: 236px;
+      // width: 222px;
+      width: 100%;
+      @include box-sizing(border-box);
       resize: none;
     }
     .close,

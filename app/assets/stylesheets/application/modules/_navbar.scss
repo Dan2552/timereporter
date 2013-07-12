@@ -1,0 +1,49 @@
+.nav-bar {
+  background: #ef624e;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 40px;
+  z-index: $zindexFixedNavbar;
+  ul {
+    overflow: auto;
+    margin: 0;
+    max-width: $maxScreenWidth;
+    .logout-li {
+      float: right;
+      margin-right: 20px;
+    }
+    li {
+      float: left;
+      line-height: 40px;
+      margin-left: 15px;
+    }
+  }
+  a {
+    color: #A81313;
+    display: block;
+    text-decoration: none;
+    @include transition(all .1s);
+    &.active,
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.nav-bar ul li.title {
+  background: rgba(197, 40, 18, 0.5);
+  margin-left: 0;
+  width: 256px;
+  h1 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    font-family: "open_sanslight";
+    letter-spacing: 1px;
+    margin-right: 10px;
+    padding: 0 20px;
+  }
+}
+

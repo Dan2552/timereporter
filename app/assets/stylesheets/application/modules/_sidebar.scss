@@ -1,0 +1,48 @@
+.sidebar {
+  background: #F8F8F8;
+  width: 256px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  .sidebar-inner {
+    padding: 20px;
+  }
+  .title {
+    color: #777;
+    font-size: 24px;
+    font-family: "open_sanslight";
+    margin: 0 0 20px;
+    line-height: 33px;
+  }
+
+  .user-details {
+    border-top: 1px solid #bbb;
+    padding: 10px 0 0;
+    h2 {
+      color: #555;
+      font-family: "open_sanslight";
+      line-height: 50px;
+      min-height: 45px;
+      padding: 0 0 0 60px;
+    }
+  }
+
+  .time-details {
+    clear: both;
+    p {
+      color: #555;
+      margin: 0 0 2px;
+    }
+  }
+
+  .avatar {
+    float: left;
+    width: 50px;
+  }
+  .avatar,
+  .avatar img {
+    @include border-radius(30px);
+  }
+}

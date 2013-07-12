@@ -25,53 +25,27 @@
   @include box-shadow(0 1px 0 #7FE094 inset, 0 0px 6px rgba(0, 0, 0, 0.4));
 }
 
-.projects-layout,
-.reports-layout {
-  .nav-bar ul {
-    max-width: 1500px;
-  }
-}
-
-.nav-bar {
-  padding: 0 50px;
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  height: 30px;
-  @include gradient-vertical(#D24509, #A63302);
-  @include box-shadow(0 0px 4px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, .4) inset);
-  z-index: $zindexFixedNavbar;
-  ul {
-    overflow: auto;
-    margin: 0 auto;
-    li {
-      line-height: 30px;
-      margin-left: 15px;
-    }
-    li:first-child {
-      margin: 0;
-    }
-  }
-  a {
-    color: #6C1900;
-    font-weight: 400;
-    text-decoration: none;
-    text-shadow: 0 1px 0 #C8520E;
-    &.active,
-    &:hover {
-      color: #fff;
-      text-shadow: 0 -1px 0 #481506;
-    }
-  }
-}
-
 .container {
   position: relative;
 }
 
+
+h1.main-title {
+  float: left;
+  margin: 0;
+  line-height: 33px;
+  color: #777;
+  font-size: 24px;
+  font-family: "open_sanslight";
+  width: 230px;
+}
+
 // Page header
 // -------------------------
+
+.time-controls {
+  margin: 0 0 20px;
+}
 
 .date-header {
   margin: 20px 0;
