@@ -1,7 +1,7 @@
 module TimeEntriesHelper
 
 	def hour_time day, hour
-		date_time = day.beginning_of_day + hour.hours
+		day.beginning_of_day + hour.hours
 	end
 
 	def entries day, hour
@@ -68,5 +68,16 @@ module TimeEntriesHelper
 		if hour > 8.25 && hour < 17.5
 			"main-hour"
 		end
+	end
+
+	def day_title day
+		content_tag :div, content_tag(:h4, day.strftime("%A, %b %-d")), class:'title'
+	end
+
+	def quarter_hour_slot day, hour, options = {}
+		div_classes = [options.delete(:class), 'quarter-hour'].join(' ')
+		data = {:'datetime' => hour_time(day, hour).strftime("%Y/%m/%d %H:%M:%S"), :'start' => hour_text(hour), :"end" => hour_text(hour + 0.25)}
+
+		content_tag :div, render(entries(day, hour)), class: div_classes, data: data
 	end
 end
