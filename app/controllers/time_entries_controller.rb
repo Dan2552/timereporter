@@ -1,6 +1,6 @@
 class TimeEntriesController < ApplicationController
 
-  before_filter :load_resources, except: :index
+  before_filter :load_resources, except: [:index, :create]
 
   def index
     date_param
@@ -9,8 +9,11 @@ class TimeEntriesController < ApplicationController
   end
 
   def create
-    @time_entry.user = current_user
-    @time_entry.save
+    if params[:time_entries].present?
+      @time_entries = current_user.time_entries.create(params[:time_entries].values)
+    elsif params[:time_entry].present?
+      @time_entry = current_user.time_entries.create(params[:time_entry])
+    end
   end
 
   def update
