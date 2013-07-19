@@ -1,0 +1,22 @@
+<% options = options || {} %>
+<% title = options[:title] || date_range_text %>
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    <h1 class="title"><%= title %></h1>
+
+    <div class="user-details">
+      <%#= avatar %>
+      <!--h2><%#= current_user.name %></h2-->
+
+      <div class="time-details">
+        <p>Contracted Hours: <span>40</span></p>
+        <p>Total this week: <span class="total-hours">0</span> hours</p>
+      </div>
+    </div>
+
+
+    <div class="datepicker"></div>
+  </div>
+  <%#= link_to "&times;".html_safe, '#', class:'sidebar-toggle' %>
+</div>
