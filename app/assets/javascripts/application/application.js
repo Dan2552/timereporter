@@ -5,8 +5,10 @@
 //= require chosen.jquery.min
 //= require jquery.tablesorter.min
 
-//= require application/flash_message
-//= require application/time_entries
-//= require application/sticky
+//= require application/flash-message
+//= require application/time-entries
+//= require application/time-entries-datepicker
+
 //= require application/dropdown
+//= require application/sticky
 //= require application/site

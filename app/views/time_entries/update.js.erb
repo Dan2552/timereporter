@@ -1,19 +1,17 @@
 (function() {
-  var $entry = $("#time_entry_<%= @time_entry.id %>"),
-      $new_entry = $("<%=j render(@time_entry) %>"),
+  var $entryInner = $("#time_entry_<%= @time_entry.id %>").find('.inner'),
+      $newEntryInner = $("<%=j render(@time_entry) %>").find('.inner'),
       $cover = $('.table-cover'),
       $form = $('.form-popout');
 
-  if ($form.length){
+  if ($form.length) {
     $form.remove();
   }
 
-  if ($cover.length){
+  if ($cover.length) {
     $cover.remove();
   }
 
-  $entry.replaceWith($new_entry);
-  time_entries.set_resizeable($new_entry);
-  time_entries.$entry = "";
+  $entryInner.replaceWith($newEntryInner);
 
 })();

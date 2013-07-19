@@ -1,4 +1,4 @@
-window.timeEntries = ( ($) ->
+@timeEntries =
 
   init: () ->
     @$window = $(window)
@@ -7,11 +7,15 @@ window.timeEntries = ( ($) ->
     @$timetable = $('.timetable')
     @tableLeft  = @$timetable.offset().left
     @longEnough = false
+    @konami = ""
+    @totalHours = 0
+
     $quarterHourHeight = $('.quarter-hour').outerHeight()
 
     @dragHeight = Math.round( $quarterHourHeight / $quarterHourHeight ) * $quarterHourHeight
     @$table_cover = $("<div>", {'class': 'table-cover' })
 
+    @setTotalHours()
     @addChosenClass($('.entry').parent())
     @setResizeableUI($('.entry'))
     @addEventHandlers()
@@ -32,9 +36,42 @@ window.timeEntries = ( ($) ->
 
     @$window
       .on('keydown', $.proxy(@keyDown, @))
+      .on('keyup', $.proxy(@keyUp, @))
+
+
+  setTotalHours: () ->
+    self = @
+    $entries = @$timetable.find('.entry')
+    $entries.each () ->
+      self.totalHours += $(this).height() / 40
+
+    $('.total-hours').text( self.totalHours )
+
 
 
   # -------------------------------------------------------------------------------------- #
+
+  keyUp: (e) ->
+    @konami += e.which
+    if @konami.match("38384040373937396665$")
+      alert "konami!"
+
+      konamiEntries = []
+      hours = 0
+      @$days.each (i,e) ->
+        unless i == 0
+          hours += 4
+
+        date = new Date( $(this).data('date') )
+        date = new Date( date.setHours(date.getHours() + hours) )
+
+        konamiEntries.push( { duration: 16 , entry_datetime: date } )
+
+      $.when(
+        @submitEntry({ time_entries: konamiEntries })
+      ).then( location.reload() )
+
+
   keyDown: (e) ->
     if e.keyCode == 27 and @mousemove
       $(@mousemove.target).parents('.day').find('.new-entry').remove()
@@ -296,7 +333,6 @@ window.timeEntries = ( ($) ->
 
 
   showForm: ($form) ->
-    console.log "hello"
     $('.timetable').append( @$table_cover )
     # day_left_pos = Math.round(@$entry.parents('.day').position().left)
     # entry_offset = @$entry.offset()
@@ -314,14 +350,11 @@ window.timeEntries = ( ($) ->
     #     top: top - 10
     #     left: (left + width) - 20
 
-    $form.addClass('left')
+    # $form.addClass('left')
     $('body').append($form.show())
     $form.find('select.chosen').chosen()
     unless $form.hasClass('edit-form')
       $('.chzn-container').trigger('mousedown')
 
 
-)(jQuery)
-
-if $('.timetable').length
-  timeEntries.init()
+timeEntries.init()
