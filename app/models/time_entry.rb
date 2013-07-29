@@ -21,18 +21,6 @@ class TimeEntry < ActiveRecord::Base
   	where(:"#{class_name}_id" => object.id)
   end
 
-  #debugging only, don't call on production
-  def self.randomize
-    projects = 5.times.map{ |n| Project.all[n] }
-    10.times do
-      TimeEntry.all.each do |e|
-        e.project = projects.sample
-        e.user = User.all.sample
-        e.save
-      end
-    end
-  end
-
   def duration_in_hours
     duration / 4.0
   end
