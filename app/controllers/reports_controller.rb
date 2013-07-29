@@ -27,8 +27,11 @@ class ReportsController < ApplicationController
   end
 
   def detail
-    time_entries = TimeEntry.for_date(@date, params[:duration])
-    @report = DetailedReport.new(time_entries, filtered_projects)
+    duration = Duration.new(params[:duration], @date)
+    time_entries = TimeEntry.for_date(@date, duration)
+
+    @report = DetailedReport.new(time_entries, duration, filtered_projects)
+
     respond_to do |format|
       format.html {}
       format.csv { send_data @report.csv, filename: "timereport.csv" }

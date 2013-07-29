@@ -4,16 +4,8 @@ class TimeEntry < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  ALLOWED_DURATIONS = [:day, :week, :month, :year]
-
   def self.for_date(date, duration=:week)
-    duration = :week unless duration.present?
-    duration = :week unless ALLOWED_DURATIONS.include? duration.to_sym
-    
-  	start_date = date.send("beginning_of_#{duration}").beginning_of_day
-  	end_date = date.send("end_of_#{duration}").end_of_day
-
-  	where(entry_datetime: start_date..end_date)
+  	where(entry_datetime: Duration.new(duration).get_range(date))
   end
 
   def self.for(object)
@@ -34,7 +26,7 @@ class TimeEntry < ActiveRecord::Base
   end
 
   def end_time
-    start_time + duration_in_hours.hours 
+    start_time + duration_in_hours.hours
   end
 
 end

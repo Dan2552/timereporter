@@ -13,10 +13,7 @@ module TimeEntriesHelper
 	end
 
 	def duration_param
-		duration = params[:duration]
-		duration = :week unless duration.present?
-		duration = :week unless TimeEntry::ALLOWED_DURATIONS.include? duration.to_sym
-		duration
+		Duration.new(params[:duration]).value
 	end
 
 	def date_range_text
