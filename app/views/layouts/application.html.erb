@@ -13,16 +13,25 @@
     <%= javascript_include_tag "head/application" %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="<%= "#{controller.controller_name}-layout" %> sidebar-open">
+  <body class="<%= "#{controller.controller_name}-layout" %> <%= content_for?(:sidebar) ? 'with-sidebar' : '' %>">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
     <%= render 'flash_notice', flash: flash %>
     <%= render 'navbar' %>
     <div class="wrapper">
-      <%= render 'sidebar' %>
+      <% if content_for? :sidebar  %>
+        <div class="sidebar">
+          <div class="sidebar-inner">
+            <%= yield(:sidebar) %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="content">
-        <%= yield %>
+        <div class="content-inner">
+          <%= yield %>
+        </div>
       </div>
     </div>
 

@@ -4,12 +4,10 @@
 <h1 class="main-title"><%= title %></h1>
 
 <div class="btn-group time-controls">
-  <%#= link_to "current #{duration_param}", url_with_param(:date, nil), class: "btn #{'disabled' if @date == Date.today}" %>
   <%= link_to "<", url_with_param(:date, @date.send("prev_#{duration_param}")), class: 'btn' %>
-  <%= link_to "current week", url_with_param(:date, nil), class: "btn #{'active' if @date == Date.today}" %>
-  <%= link_to "Day", url_with_param(:duration, :day), class:'btn' %>
+  <%= link_to "Current #{duration_param.to_s.titleize}", url_with_param(:date, nil), class: "btn #{'active' if @date == Date.today}" %>
+  <%#= link_to "Day", url_with_param(:duration, :day), class:'btn' %>
   <%= link_to "Week", url_with_param(:duration, :week), class:'btn' %>
-  <%#= link_to "Week", url_with_param(:duration, :week), class:'btn' %>
 
   <% if params[:controller] == "reports" %>
     <%= link_to "Month", url_with_param(:duration, :month), class:'btn' %>
@@ -18,3 +16,16 @@
 
   <%= link_to ">", url_with_param(:date, @date.send("next_#{duration_param}")), class: 'btn' %>
 </div>
+
+
+<% if @showFiltering %>
+  <div class="btn-group project-filter">
+    <% if params[:action] == 'detail' %>
+      <%= link_to "Download #{'filtered' if using_filter?} CSV",
+          url_for(action: params[:action], params: filtered_params, format: :csv),
+          class:'btn csv-btn' %>
+    <% end %>
+    <%= toggle_link(:utilised) %>
+    <%= toggle_link(:billable) %>
+  </div>
+<% end %>
