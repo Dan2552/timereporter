@@ -1,0 +1,25 @@
+<% content_for(:sidebar) do %>
+  <%= render 'sidebar' %>
+<% end %>
+
+<div class="sticky-header">
+  <%= render 'layouts/date_header' %>
+</div>
+
+<% if @report_collection.present? %>
+  <div class="report-list">
+    <ul>
+      <% @report_collection.each do |report_item| %>
+        <li>
+          <%= link_to report_path(report_item.object, @date, duration_param), class:'report-link' do %>
+            <span clas="title"><%= report_item.object.name %></span>
+            <span class="hours"><%= hours(report_item.total) %> (<%= days(report_item.days) %>)</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <%= render "report_template" %>
+<% else %>
+<% end %>

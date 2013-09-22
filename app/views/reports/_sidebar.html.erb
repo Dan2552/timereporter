@@ -1,0 +1,26 @@
+<% options = options || {} %>
+<% title = options[:title] || date_range_text %>
+
+<h1 class="title"><%= title %></h1>
+
+<ul class="side-nav">
+  <li>
+    <%= link_to "Users", users_reports_path(params: filtered_params),
+      class:"#{'active' if params[:action] == 'users'}" %>
+  </li>
+  <li>
+    <%= link_to "Projects", projects_reports_path(params: filtered_params),
+      class:"#{'active' if params[:action] == 'projects'}" %>
+  </li>
+  <li>
+    <%= link_to "Detailed Report", detail_reports_path(params: filtered_params),
+      class:"#{'active' if params[:action] == 'detail'}" %>
+  </li>
+</ul>
+
+
+<div class="datepicker"></div>
+
+
+<%#= toggle_link(:utilised) %>
+<%#= toggle_link(:billable) %>
