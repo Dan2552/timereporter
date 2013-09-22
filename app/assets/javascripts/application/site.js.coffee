@@ -2,4 +2,7 @@ jQuery ->
   $('body').on 'click', '.disabled', (evt) ->
     evt.preventDefault()
 
-  $('table.tablesorter').tablesorter()
+  $notice = $("#flash-notice")
+  $notice.delay(3000).fadeOut () ->
+    $notice.remove()
+
