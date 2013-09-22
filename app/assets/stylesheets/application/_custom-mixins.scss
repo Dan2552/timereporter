@@ -1,0 +1,12 @@
+@mixin time-entry($entryColor: #e74c3c) {
+  background-color: rgba($entryColor, 0.6);
+  .inner {
+    border-color: darken($entryColor, 25%);
+    p {
+      color: darken($entryColor, 30%);
+    }
+  }
+  .remove {
+    background-color: darken($entryColor, 15%);
+  }
+}

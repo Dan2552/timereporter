@@ -1,48 +1,55 @@
 .sidebar {
-  background: #F8F8F8;
-  width: 256px;
-  position: absolute;
-  top: 0;
+  background: #fafafa;
+  width: $sidebarWidth;
+  position: fixed;
+  top: 40px;
   bottom: 0;
   left: 0;
   z-index: 1;
-  .sidebar-inner {
-    padding: 20px;
-  }
   .title {
-    color: #777;
     font-size: 24px;
-    font-family: "open_sanslight";
-    margin: 0 0 20px;
+    margin: 20px;
     line-height: 33px;
   }
+  p {
+    font-size: 16px;
+    margin: 0 0 2px;
+  }
+}
 
-  .user-details {
-    border-top: 1px solid #bbb;
-    padding: 10px 0 0;
-    h2 {
-      color: #555;
-      font-family: "open_sanslight";
-      line-height: 50px;
-      min-height: 45px;
-      padding: 0 0 0 60px;
+.sidebar .side-nav {
+  li {
+    line-height: 40px;
+  }
+  a {
+    border-left: 4px solid transparent;
+    color: #666;
+    display: block;
+    font-size: 16px;
+    padding: 0 20px;
+    &:hover,
+    &.active {
+      background: #f3f3f3;
+      border-left: 4px solid $linkColor;
+      color: #333;
     }
   }
+}
 
+.sidebar .user-details {
+  padding: 10px 20px;
   .time-details {
     clear: both;
-    p {
-      color: #555;
-      margin: 0 0 2px;
-    }
+    line-height: 22px;
   }
+}
 
-  .avatar {
-    float: left;
-    width: 50px;
-  }
-  .avatar,
-  .avatar img {
-    @include border-radius(30px);
+.sidebar .projects-details {
+  border-bottom: 1px solid #bbb;
+  height: 53px;
+  line-height: 22px;
+  margin: 20px;
+  .page-header-link {
+    font-size: 16px;
   }
 }

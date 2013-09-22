@@ -1,0 +1,46 @@
+@media (min-width: 1279px) {
+  $sidebarWidth: 300px;
+
+  .with-sidebar .wrapper {
+    padding-left: $sidebarWidth;
+  }
+
+  .sidebar {
+    width: $sidebarWidth;
+  }
+
+  .nav-bar ul li.title {
+    width: $sidebarWidth;
+  }
+
+  .entry-form {
+    width: $sidebarWidth - 20;
+  }
+
+  .day-headers.sticky {
+    left: $sidebarWidth + 20;
+  }
+
+  .content,
+  .sticky-header {
+    left: $sidebarWidth;
+  }
+
+  .table-header {
+    left: $sidebarWidth + 21px;
+  }
+
+
+  .projects-nav li a {
+    line-height: 40px;
+    @include size(40px, 46px);
+  }
+
+  .project-info {
+    width: 400px;
+    h1 {
+      font-size: 26px;
+      margin: 0 0 15px;
+    }
+  }
+}

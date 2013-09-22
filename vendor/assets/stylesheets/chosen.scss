@@ -24,25 +24,16 @@
 /* @group Single Chosen */
 .chzn-container-single .chzn-single {
   background-color: #ffffff;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0 );
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
-  background-image: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: -moz-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: -o-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
-  background-image: linear-gradient(#ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
   -moz-background-clip   : padding;
   -webkit-background-clip: padding-box;
   background-clip        : padding-box;
-  border: 1px solid #aaaaaa;
-  -webkit-box-shadow: 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
-  -moz-box-shadow   : 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
-  box-shadow        : 0 0 3px #ffffff inset, 0 1px 1px rgba(0,0,0,0.1);
+  border: 1px solid #aeadad;
   display: block;
   overflow: hidden;
   white-space: nowrap;
   position: relative;
-  height: 23px;
-  line-height: 22px;
+  height: 30px;
+  line-height: 30px;
   padding: 0 0 0 8px;
   color: #444444;
   text-decoration: none;
@@ -65,7 +56,7 @@
   display: block;
   position: absolute;
   right: 26px;
-  top: 6px;
+  top: 10px;
   width: 12px;
   height: 12px;
   font-size: 1px;
@@ -80,7 +71,7 @@
 .chzn-container-single .chzn-single div {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 4px;
   display: block;
   height: 100%;
   width: 18px;
@@ -105,6 +96,7 @@
   background: image_url('chosen-sprite.png') no-repeat 100% -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background: image_url('chosen-sprite.png') no-repeat 100% -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
   background: image_url('chosen-sprite.png') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  color: #555;
   margin: 1px 0;
   padding: 4px 20px 4px 5px;
   outline: 0;
@@ -313,17 +305,7 @@
   border: 1px solid #aaa;
 }
 .chzn-container-active .chzn-single-with-drop {
-  border: 1px solid #aaa;
-  -webkit-box-shadow: 0 1px 0 #fff inset;
-  -moz-box-shadow   : 0 1px 0 #fff inset;
-  box-shadow        : 0 1px 0 #fff inset;
-  background-color: #eee;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff', GradientType=0 );
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(20%, #eeeeee), color-stop(80%, #ffffff));
-  background-image: -webkit-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: -moz-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: -o-linear-gradient(top, #eeeeee 20%, #ffffff 80%);
-  background-image: linear-gradient(#eeeeee 20%, #ffffff 80%);
+  border: 1px solid #aeadad;
   -webkit-border-bottom-left-radius : 0;
   -webkit-border-bottom-right-radius: 0;
   -moz-border-radius-bottomleft : 0;

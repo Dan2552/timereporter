@@ -1,0 +1,107 @@
+.ui-resizable-handle {
+  cursor: ns-resize;
+  display: block;
+  font-size: 0.1px;
+  height: 7px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.ui-resizable-n {
+  top: -5px;
+}
+.ui-resizable-s {
+  bottom: 0;
+}
+
+
+.entry {
+  position: absolute;
+  left: 0;
+  right: 0;
+  min-height: 10px!important;
+  width: 100%!important;
+  z-index: 20;
+  @include box-sizing(border-box);
+  @include time-entry();
+  .inner {
+    border-width: 1px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    .project-text,
+    .comment-text {
+      font-weight: bold;
+    }
+    .project-text {
+      position: absolute;
+      left: 6px;
+      top: 40px;
+      font-weight: bold;
+      letter-spacing: -1px;
+    }
+    .time-text {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 2px;
+      text-align: center;
+      span {
+        display: inline-block;
+        width: 40px;
+      }
+    }
+    .comment-text {
+      position: absolute;
+      left: 6px;
+      top: 65px;
+    }
+    p {
+      margin: 0;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .remove {
+    color: #fefefe;
+    font-size: 16px;
+    font-weight: 100;
+    height: 25px;
+    line-height: 15px;
+    width: 25px;
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    text-indent: 6px;
+    text-align: center;
+    top: 0;
+    z-index: 2000;
+    @include transition(all .1s);
+    @include border-radius(0 0 0 25px);
+    @include opacity(60);
+    &:hover {
+      @include opacity(100);
+    }
+  }
+  .edit-link {
+    position: absolute;
+    right: 0;
+    bottom: 7px;
+    left: 0;
+    top: 0px;
+    z-index: 1090;
+  }
+}
+
+
+.entry.yellow-entry { @include time-entry(#f1c40f); }
+.entry.purple-entry { @include time-entry(#8e44ad); }
+.entry.green-entry  { @include time-entry(#4BB178); }
+.entry.blue-entry   { @include time-entry(#3498db); }
+.entry.red-entry    { @include time-entry(#e74c3c); }

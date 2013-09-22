@@ -20,37 +20,46 @@ body {
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
   color: $textColor;
-  // background-color: $bodyBackground;
 }
 
 
-.projects-layout,
-.reports-layout {
-  .content {
-    max-width: 1500px;
-  }
+.with-sidebar .wrapper {
+  padding-left: $sidebarWidth;
 }
 
 .wrapper {
   position: absolute;
+  overflow: hidden;
   top: 40px;
   left: 0;
   right: 0;
   bottom: 0;
-  max-width: $maxScreenWidth;
 }
 
 .content {
-  left: 256px;
+  left: $sidebarWidth;
   right: 0;
   bottom: 0;
   overflow: auto;
-  padding: 0;
-  height: 100%;
-  width: 80%;
-  position: relative;
-  @include clearfix();
+  position: absolute;
+  top: 0;
+  .content-inner {
+    padding: 20px;
+  }
 }
+
+.sticky-header {
+  background: #fff;
+  padding: 20px 20px 0;
+  position: fixed;
+  top: 40px;
+  right: 0;
+  left: $sidebarWidth;
+  z-index: 2000;
+  @include transition(right .2s);
+}
+
+
 
 // Links
 // -------------------------
@@ -62,4 +71,208 @@ a {
 a:hover {
   color: $linkColorHover;
   text-decoration: none;
+}
+
+// Flashes
+// -------------------------
+
+.flash-alert {
+  bottom: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 200;
+  left: 0;
+  letter-spacing: 1px;
+  padding: 20px;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  z-index: 2000;
+  @include opacity(90);
+}
+
+.alert-error {
+  border-top: 1px solid darken(#c0392b, 10%);
+  background: #c0392b;
+}
+
+.alert-success {
+  border-top: 1px solid darken(#27ae60, 10%);
+  background: #27ae60;
+}
+
+
+// General
+// -------------------------
+
+.container {
+  position: relative;
+}
+
+
+h1.main-title {
+  display: none;
+  float: left;
+  margin: 0;
+  line-height: 33px;
+  color: #777;
+  font-size: 24px;
+  font-family: "open_sanslight";
+  width: 230px;
+}
+
+
+// Page header
+// -------------------------
+
+.page-title {
+  line-height: 33px;
+  margin-bottom: 20px;
+}
+
+.time-controls {
+  margin: 0 0 20px;
+}
+
+.date-header {
+  margin: 20px 0;
+  height: 40px;
+  h1 {
+    float: left;
+    font-weight: 100;
+  }
+  .btn-group {
+    margin: 4px 0 0 10px;
+    h4 {
+      float: left;
+      font-size: 20px;
+      font-weight: 100;
+      margin: 8px 10px 0 0;
+    }
+  }
+}
+
+.timetable-header {
+  @extend .date-header;
+  margin-left: 45px;
+}
+
+.page-header {
+  padding: 10px 0;
+  border-bottom: 1px solid #bbb;
+}
+
+.page-header-with-link {
+  @extend .page-header;
+  overflow: auto;
+  h1 {
+    float: left;
+    font-weight: 100;
+  }
+  a {
+    float: right;
+    font-size: 18px;
+    font-weight: 200;
+    margin: 10px 0 0;
+  }
+}
+
+.tab-header {
+  height: 40px;
+  position: absolute;
+  top: 110px;
+  z-index: 200;
+  h4 {
+    background: #F3F3F3;
+    border: 1px solid #E6E3E3;
+    border-bottom: none;
+    float: left;
+    font-size: 16px;
+    font-weight: 200;
+    height: 36px;
+    line-height: 26px;
+    margin: 0 2px 0 0;
+    position: relative;
+    text-align: center;
+    width: 160px;
+    @include border-radius(4px 4px 0 0);
+    @include box-shadow(0 -4px 4px -4px #CCCCCC inset);
+    a {
+      color: #777;
+      display: block;
+      padding: 6px 0;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #fff;
+    }
+    &.active {
+      background: #fff;
+      border: 1px solid #bbb;
+      border-bottom: none;
+      height: 37px;
+      @include box-shadow(none);
+      a {
+        color: #C53727;
+      }
+    }
+  }
+
+}
+
+.tab-body {
+  border: 1px solid #CCCCCC;
+  overflow: auto;
+  margin-top: 57px;
+  min-height: 400px;
+  width: 100%;
+  @include border-radius(0 4px 4px 4px);
+  .inner {
+    padding: 20px;
+  }
+}
+
+.tab-body-head {
+  margin-bottom: 20px;
+  .body-title {
+    font-size: 20px;
+  }
+}
+
+.no-results {
+  text-align: center;
+}
+
+.grey-block {
+  background: #eee;
+  margin-bottom: 4px;
+  font-weight: 200;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 10px;
+  @include transition(all .1s ease);
+  a {
+    display: block;
+  }
+}
+
+.dashed-list {
+  font-weight: 200;
+  a {
+    display: block;
+  }
+  li {
+    line-height: 30px;
+    padding: 5px 10px;
+    border-bottom: 1px dashed #ccc;
+  }
+}
+
+li.grey-block {
+  &:hover {
+    // background: #CB3C2B;
+    color: #fff;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 }
