@@ -20,8 +20,21 @@ class TimeEntriesController < ApplicationController
     @time_entry.update_attributes(params[:time_entry])
   end
 
+  def update_many
+    if params[:time_entry][:project_id].blank?
+      params[:time_entry][:project_id] = nil
+    end
+    TimeEntry.where(id: params[:time_entries]).update_all(project_id: params[:time_entry][:project_id], comment: params[:time_entry][:comment])
+    @time_entries = TimeEntry.find(params[:time_entries])
+  end
+
   def destroy
     @time_entry.destroy
+  end
+
+  def destroy_many
+    @time_entries = TimeEntry.find(params[:time_entries])
+    TimeEntry.where(id: params[:time_entries]).delete_all
   end
 
   def edit

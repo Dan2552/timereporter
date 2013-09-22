@@ -1,0 +1,20 @@
+(function(){
+  var $entries = $("<%=j render(@time_entries) %>"),
+      $newEntries = timeEntries.$newEntries;
+
+
+  $newEntries.each(function() {
+    var $this = $(this);
+    $entry = $entries.first()
+
+    $this.attr('class', $entry.attr('class'));
+    $this.find('.inner').replaceWith( $entry.find('.inner') );
+
+    $entries = $entries.slice(1);
+  });
+
+  if ($('.entry-form').length) {
+    timeEntries.removeForm();
+  }
+
+})();

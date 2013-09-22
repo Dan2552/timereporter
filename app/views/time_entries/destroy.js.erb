@@ -1,17 +1,16 @@
 (function(){
   var $entry = $('#time_entry_<%= @time_entry.id %>'),
-      $cover = $('.table-cover'),
-      $form_popout = $('.form-popout');
-
-  if ($form_popout.length){
-    $form_popout.remove();
-  }
-
-  if ($cover.length){
-    $cover.remove();
-  }
+      height = $entry.height() / 40,
+      totalHours = parseFloat( $('.total-hours').text() );
 
   $entry.parent().removeClass('chosen');
   $entry.remove();
+
+  timeEntries.totalHours = totalHours - height
+  $('.total-hours').text( timeEntries.totalHours )
+
+  if ($('.entry-form').length) {
+    timeEntries.removeForm();
+  }
 
 })();

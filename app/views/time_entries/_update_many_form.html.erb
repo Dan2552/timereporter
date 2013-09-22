@@ -1,5 +1,9 @@
-<div class="entry-form hidden">
-  <%= simple_form_for @time_entry, remote:true do |f| %>
+<div class="entry-form hidden for-many">
+  <%= simple_form_for @time_entries, remote:true, url: update_many_time_entries_path, html: { method: :put } do |f| %>
+    <% @time_entries.each do |entry| %>
+      <%= hidden_field_tag 'time_entries[]', entry.id %>
+    <% end %>
+
     <%= f.input :project_id,
                 label: false,
                 collection: Project.client_group,
@@ -14,8 +18,14 @@
                   class: "chosen"
                 } %>
     <%= f.input :comment, as: :text, label: false, placeholder: "Comments", wrapper: false %>
-
-    <%= link_to "delete", time_entry_path(@time_entry), remote: true, method: :delete, class: "close pull-left" %>
     <%= f.button :submit, "save", class: 'save pull-right' %>
+  <% end %>
+
+  <%= simple_form_for @time_entries, remote:true, url: destroy_many_time_entries_path, html: { method: :put } do |f| %>
+    <% @time_entries.each do |entry| %>
+      <%= hidden_field_tag 'time_entries[]', entry.id %>
+    <% end %>
+
+    <%= f.button :submit, "delete", class: "delete-many pull-left" %>
   <% end %>
 </div>

@@ -22,7 +22,7 @@ module TimeEntriesHelper
 		if (start.year == stop.year) and (start.month == stop.month)
       "#{start.day}-#{ordinalize_date(stop)}"
     else
-      "#{ordinalize_date(start)} - #{ordinalize_date(stop)}"
+      "#{ordinalize_date(start)} - #{stop.day.ordinalize} #{stop.strftime('%b')}"
     end
 	end
 
@@ -43,23 +43,19 @@ module TimeEntriesHelper
 	end
 
 	def ordinalize_date date
-		"#{date.day.ordinalize} #{date.strftime '%B %Y'}"
+		"#{date.day.ordinalize} #{date.strftime '%b %Y'}"
 	end
 
 	def project_name_for_time_entry time_entry
 		if time_entry.project.present?
-			if time_entry.duration > 1
-				"<p class=\"project-text\"><span>Project:</span><br>#{time_entry.project.try(:name)}</p>".html_safe
-			else
-				"<p class=\"project-text\">#{time_entry.project.try(:name)}</p>".html_safe
-			end
+			"<p class=\"project-text\">#{time_entry.project.try(:name)}</p>".html_safe
 		end
 	end
 
 	def comments_for_time_entry time_entry
 		if time_entry.comment.present?
 			if time_entry.duration >= 2
-				"<p class=\"comment-text\"><span>Comments:</span><br>#{time_entry.try(:comment)}</p>".html_safe
+				"<p class=\"comment-text\">#{time_entry.try(:comment)}</p>".html_safe
 			end
 		end
 	end
@@ -71,7 +67,9 @@ module TimeEntriesHelper
 	end
 
 	def day_title day
-		content_tag :div, content_tag(:h4, day.strftime("%A, %b %-d")), class:'title'
+		content_tag :div, class:'title' do
+			[content_tag(:h4, day.strftime("%A, %b %-d"), class:'large'), content_tag(:h4, day.strftime("%a, %b %-d"), class:'small')].join().html_safe
+		end
 	end
 
 	def quarter_hour_slot day, hour, options = {}

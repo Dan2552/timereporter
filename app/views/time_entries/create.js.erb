@@ -3,19 +3,19 @@
   <% if @time_entry.present? %>
     var $entry = timeEntries.$newEntries,
         $newEntry = $("<%=j render(@time_entry) %>"),
-        $form = $("<%=j render 'form' %>").hide();
+        $form = $("<%=j render 'form' %>");
 
     $entry.data($newEntry.data());
     $entry.attr('id', $newEntry.attr('id'));
     $entry.find('.inner').replaceWith($newEntry.find('.inner'));
 
     timeEntries.setResizeableUI( $entry );
-    timeEntries.showForm($form);
 
   <% elsif @time_entries.present? %>
 
     var $entries = $("<%=j render(@time_entries) %>"),
-        $newEntries = timeEntries.$newEntries;
+        $newEntries = timeEntries.$newEntries,
+        $form = $("<%=j render 'update_many_form' %>");
 
     $newEntries.each(function() {
       var $this = $(this);
@@ -29,6 +29,9 @@
 
   <% end %>
 
-  $('body').css('cursor', 'default')
+  $('body')
+    .css('cursor', 'default')
+
+  timeEntries.showForm($form);
 
 })();

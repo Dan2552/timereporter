@@ -1,35 +1,35 @@
-<div class="timetable-container">
+<% content_for(:sidebar) do %>
+  <%= render 'sidebar' %>
+<% end %>
 
+<div class="sticky-header">
   <%= render 'layouts/date_header' %>
 
-  <div class="day-headers sticky-item">
+  <div class="day-headers">
     <div class="filler"></div>
     <% week_range.each do |day| %>
       <%= day_title(day) %>
     <% end %>
   </div>
 
-  <div class="timetable">
+</div>
 
-    <div class="times">
-      <div class="top-bar"></div>
-      <% (1..24).each do |hour| %>
-        <div class="time"><%= hour_text(hour) %></div>
-        <!--div class="time"><%#= hour_text(hour + 0.5) %></div-->
-      <% end %>
-    </div>
-
-    <% week_range.each do |day| %>
-      <div class="day <%= 'current-day' if day == Date.today %>" data-date="<%= day %>">
-        <%#= day_title(day) %>
-        <% (1..24).each do |hour| %>
-          <%= quarter_hour_slot(day, hour, class:'no-border') %>
-          <%= quarter_hour_slot(day, hour + 0.25) %>
-          <%= quarter_hour_slot(day, hour + 0.5, class:'no-border') %>
-          <%= quarter_hour_slot(day, hour + 0.75) %>
-        <% end %>
-      </div>
+<div class="timetable">
+  <div class="times">
+    <div class="top-bar"></div>
+    <% (1..24).each do |hour| %>
+      <div class="time"><%= hour_text(hour) %></div>
     <% end %>
   </div>
 
+  <% week_range.each do |day| %>
+    <div class="day <%= 'current-day' if day == Date.today %>" data-date="<%= day %>">
+      <% (1..24).each do |hour| %>
+        <%= quarter_hour_slot(day, hour, class:'no-border') %>
+        <%= quarter_hour_slot(day, hour + 0.25) %>
+        <%= quarter_hour_slot(day, hour + 0.5, class:'no-border') %>
+        <%= quarter_hour_slot(day, hour + 0.75) %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

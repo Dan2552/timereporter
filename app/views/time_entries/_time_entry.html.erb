@@ -1,4 +1,4 @@
-<%= content_tag_for :div, time_entry, data: { id: time_entry.id, datetime: "#{time_entry.entry_datetime.strftime("%Y/%m/%d %H:%M:%S") }", duration: time_entry.duration }, class: "entry #{'with-project' if time_entry.project}", style: "height: #{time_entry.duration * 10}px;" do %>
+<%= content_tag_for :div, time_entry, data: { id: time_entry.id, datetime: "#{time_entry.entry_datetime.strftime("%Y/%m/%d %H:%M:%S") }", duration: time_entry.duration }, class: "entry #{'green-entry' if time_entry.project }", style: "height: #{time_entry.duration * 10}px;" do %>
   <div class="inner">
     <%= link_to "", edit_time_entry_path(time_entry), remote:true, class: "edit-link" %>
 

@@ -1,17 +1,13 @@
 (function() {
-  var $entryInner = $("#time_entry_<%= @time_entry.id %>").find('.inner'),
-      $newEntryInner = $("<%=j render(@time_entry) %>").find('.inner'),
-      $cover = $('.table-cover'),
-      $form = $('.form-popout');
+  var $entry = $("#time_entry_<%= @time_entry.id %>"),
+      $newEntry = $("<%=j render(@time_entry) %>");
 
-  if ($form.length) {
-    $form.remove();
+  $entry.attr('class', $newEntry.attr('class'));
+
+  if ($('.entry-form').length) {
+    timeEntries.removeForm();
   }
 
-  if ($cover.length) {
-    $cover.remove();
-  }
-
-  $entryInner.replaceWith($newEntryInner);
+  $entry.find('.inner').replaceWith($newEntry.find('.inner'));
 
 })();
