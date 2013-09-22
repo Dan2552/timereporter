@@ -1,0 +1,7 @@
+<% formatted_created_at = @project.created_at.strftime("#{@project.created_at.day.ordinalize} %B %Y")
+   formatted_updated_at = @project.updated_at.strftime("#{@project.updated_at.day.ordinalize} %B %Y")
+   hash = @project.attributes
+   hash["created_at"] = formatted_created_at
+   hash["updated_at"] = formatted_updated_at %>
+
+<%= raw hash.to_json %>
