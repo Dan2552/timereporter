@@ -6,21 +6,25 @@
   <%= render 'layouts/date_header' %>
 </div>
 
-<div class="table-view">
-  <div class="table-header">
-    <% @report.headings.each do |heading| %>
-      <%= content_tag :div, heading, class:"heading #{heading.tr(' ', '-').downcase}-col" %>
-    <% end %>
-  </div>
+<% if @report.rows.any? %>
+  <div class="table-view">
+    <div class="table-header">
+      <% @report.headings.each do |heading| %>
+        <%= content_tag :div, heading, class:"heading #{heading.tr(' ', '-').downcase}-col" %>
+      <% end %>
+    </div>
 
 
-  <div class="table-body">
-    <% @report.rows.each do |row| %>
-      <div class="table-row">
-        <% row.each do |row_column| %>
-          <%= content_tag :div, row_column, class:"table-cell" %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="table-body">
+      <% @report.rows.each do |row| %>
+        <div class="table-row">
+          <% row.each do |row_column| %>
+            <%= content_tag :div, row_column, class:"table-cell" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <p class="no-results">No hours have been recorded Yet!</p>
+<% end %>
