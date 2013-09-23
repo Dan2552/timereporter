@@ -1,0 +1,18 @@
+(function(){
+  var totalHours = parseFloat( $('.total-hours').text() );
+
+  <% @time_entries.each do |entry| %>
+    var $entry = $('#time_entry_<%= entry.id %>');
+
+    $entry.parent().removeClass('chosen');
+    $entry.remove();
+  <% end %>
+
+  if ($('.entry-form').length) {
+    timeEntries.removeForm();
+  }
+
+  timeEntries.totalHours = totalHours - ( $("<%=j render(@time_entries) %>").height() / 40 ) * <%= @time_entries.size %>
+  $('.total-hours').text( timeEntries.totalHours )
+
+})();

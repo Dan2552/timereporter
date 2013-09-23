@@ -1,0 +1,55 @@
+.sidebar {
+  background: #fafafa;
+  width: $sidebarWidth;
+  position: fixed;
+  top: 40px;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  .title {
+    font-size: 24px;
+    margin: 20px;
+    line-height: 33px;
+  }
+  p {
+    font-size: 16px;
+    margin: 0 0 2px;
+  }
+}
+
+.sidebar .side-nav {
+  li {
+    line-height: 40px;
+  }
+  a {
+    border-left: 4px solid transparent;
+    color: #666;
+    display: block;
+    font-size: 16px;
+    padding: 0 20px;
+    &:hover,
+    &.active {
+      background: #f3f3f3;
+      border-left: 4px solid $linkColor;
+      color: #333;
+    }
+  }
+}
+
+.sidebar .user-details {
+  padding: 10px 20px;
+  .time-details {
+    clear: both;
+    line-height: 22px;
+  }
+}
+
+.sidebar .projects-details {
+  border-bottom: 1px solid #bbb;
+  height: 53px;
+  line-height: 22px;
+  margin: 20px;
+  .page-header-link {
+    font-size: 16px;
+  }
+}

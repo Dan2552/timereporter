@@ -1,0 +1,132 @@
+.time_entries-layout {
+  .content {
+    top: 106px;
+    .content-inner {
+      padding-top: 0;
+    }
+  }
+}
+
+.day-headers {
+  border: 1px solid $grayDarker;
+  margin: 0 0 -34px;
+  overflow: auto;
+  position: relative;
+  .filler {
+    border-right: 1px solid $grayDark;
+    float: left;
+    height: 32px;
+    width: 5%;
+    @include gradient-vertical(#f6f6f6, #f1f1f1);
+    @include box-sizing(border-box);
+  }
+  .title {
+    border-right: 1px solid $grayDark;
+    float: left;
+    padding: 6px 14px;
+    @include gradient-vertical(#f6f6f6, #f1f1f1);
+    width: 19%;
+    @include box-sizing(border-box);
+    h4 {
+      color: #666;
+    }
+    h4.small {
+      display: none;
+    }
+  }
+  .title:last-child {
+    border-right: none;
+  }
+}
+
+.times {
+  float: left;
+  overflow: hidden;
+  width: 5%;
+  .time {
+    border-right: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    color: $grayDarker;
+    height: 40px;
+    letter-spacing: 1px;
+    padding: 0 2px 0 0;
+    text-align: right;
+    @include box-sizing(border-box);
+    &:last-child {
+      border-bottom: 1px solid $grayDarker;
+    }
+  }
+}
+
+.timetable-container {
+  margin: 20px;
+  position: relative;
+}
+
+.timetable {
+  background: #fff;
+  border: 1px solid $grayDarker;
+  border-bottom: none;
+  border-top: none;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+  @include box-sizing(border-box);
+}
+
+.table-cover {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: $zindexDropdown;
+}
+
+.day {
+  float: left;
+  width: 19%;
+  position: relative;
+
+  .quarter-hour:last-child {
+    border-bottom: 1px solid $grayDarker;
+  }
+}
+
+.day.current-day .quarter-hour {
+  background: #F2FBFF;
+}
+
+.day:last-child {
+  .quarter-hour {
+    border-right: none;
+  }
+}
+
+.day .new-entry {
+  display: none;
+}
+
+.day.active .new-entry {
+  opacity: 1;
+  display: block;
+}
+
+.quarter-hour {
+  border-right: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  height: 10px;
+  position: relative;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  @include box-sizing(border-box);
+  &.main-hour {
+    background: rgba(238, 238, 238, 0.3);
+  }
+}
+
+.no-border {
+  border-bottom: 1px dotted rgba(204, 204, 204, 0.3);
+}

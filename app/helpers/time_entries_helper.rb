@@ -1,7 +1,7 @@
 module TimeEntriesHelper
 
 	def hour_time day, hour
-		date_time = day.beginning_of_day + hour.hours
+		day.beginning_of_day + hour.hours
 	end
 
 	def entries day, hour
@@ -22,7 +22,7 @@ module TimeEntriesHelper
 		if (start.year == stop.year) and (start.month == stop.month)
       "#{start.day}-#{ordinalize_date(stop)}"
     else
-      "#{ordinalize_date(start)} - #{ordinalize_date(stop)}"
+      "#{ordinalize_date(start)} - #{stop.day.ordinalize} #{stop.strftime('%b')}"
     end
 	end
 
@@ -43,23 +43,19 @@ module TimeEntriesHelper
 	end
 
 	def ordinalize_date date
-		"#{date.day.ordinalize} #{date.strftime '%B %Y'}"
+		"#{date.day.ordinalize} #{date.strftime '%b %Y'}"
 	end
 
 	def project_name_for_time_entry time_entry
 		if time_entry.project.present?
-			if time_entry.duration > 1
-				"<p class=\"project-text\"><span>Project:</span><br>#{time_entry.project.try(:name)}</p>".html_safe
-			else
-				"<p class=\"project-text\">#{time_entry.project.try(:name)}</p>".html_safe
-			end
+			"<p class=\"project-text\">#{time_entry.project.try(:name)}</p>".html_safe
 		end
 	end
 
 	def comments_for_time_entry time_entry
 		if time_entry.comment.present?
 			if time_entry.duration >= 2
-				"<p class=\"comment-text\"><span>Comments:</span><br>#{time_entry.try(:comment)}</p>".html_safe
+				"<p class=\"comment-text\">#{time_entry.try(:comment)}</p>".html_safe
 			end
 		end
 	end
@@ -68,5 +64,18 @@ module TimeEntriesHelper
 		if hour > 8.25 && hour < 17.5
 			"main-hour"
 		end
+	end
+
+	def day_title day
+		content_tag :div, class:'title' do
+			[content_tag(:h4, day.strftime("%A, %b %-d"), class:'large'), content_tag(:h4, day.strftime("%a, %b %-d"), class:'small')].join().html_safe
+		end
+	end
+
+	def quarter_hour_slot day, hour, options = {}
+		div_classes = [options.delete(:class), 'quarter-hour'].join(' ')
+		data = {:'datetime' => hour_time(day, hour).strftime("%Y/%m/%d %H:%M:%S"), :'start' => hour_text(hour), :"end" => hour_text(hour + 0.25)}
+
+		content_tag :div, render(entries(day, hour)), class: div_classes, data: data
 	end
 end

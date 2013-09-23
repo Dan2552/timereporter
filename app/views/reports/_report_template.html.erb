@@ -1,0 +1,37 @@
+<script id="report-template" type="text/x-handlebars-template">
+  <div class="info-column">
+    <div class="inner">
+      {{#if gravatar_url}}
+        <div class="user-title">
+          <%= content_tag :div, class:'avatar' do %>
+            <img alt="{{report_item_name}}" src="{{gravatar_url}}">
+          <% end %>
+          <h1>{{report_item_name}}</h1>
+        </div>
+      {{else}}
+        <h1 class="report-title">{{report_item_name}}</h1>
+      {{/if}}
+
+      <ul class="project-list">
+        {{#each times}}
+          <li>
+            <span class="color-key" style="background:{{color}}"></span>
+            <span class="project">{{project}}</span>
+            <span class="hours">{{hours_text}}</span>
+          </li>
+        {{/each}}
+      </ul>
+      <div class="total-hours">
+        Total
+        <span class="hours">({{days}}) {{total_hours}}</span>
+      </div>
+
+      <div class="chart">
+        <canvas id="reportChart" width="280" height="280"></canvas>
+      </div>
+
+      <a href="#" class="close">close</a>
+
+    </div>
+  </div>
+</script>

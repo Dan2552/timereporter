@@ -4,9 +4,11 @@
 
 //= require chosen.jquery.min
 //= require jquery.tablesorter.min
+//= require handlebars-1.0.rc.1
+//= require chartjs
 
-//= require application/flash_message
-//= require application/time_entries
-//= require application/sticky
-//= require application/dropdown
 //= require application/site
+//= require application/time-entries
+//= require application/datepicker
+//= require application/projects
+//= require application/reports

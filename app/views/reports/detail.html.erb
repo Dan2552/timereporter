@@ -1,36 +1,30 @@
-<%= render 'layouts/date_header' %>
-<%= render 'tab_header' %>
-<div class="tab-body">
-  <div class="inner">
-    <div class="tab-body-head clearfix">
-      <h2 class="body-title pull-left">
-        <%= link_to "Download #{'filtered' if using_filter?} CSV", action: params[:action], params: filtered_params, format: :csv %>
-      </h2>
-      <%= render 'filter_header' %>
+<% content_for(:sidebar) do %>
+  <%= render 'sidebar' %>
+<% end %>
+
+<div class="sticky-header">
+  <%= render 'layouts/date_header' %>
+</div>
+
+<% if @report.rows.any? %>
+  <div class="table-view">
+    <div class="table-header">
+      <% @report.headings.each do |heading| %>
+        <%= content_tag :div, heading, class:"heading #{heading.tr(' ', '-').downcase}-col" %>
+      <% end %>
     </div>
 
-    <table class="table tablesorter">
-      <thead>
-        <tr>
-          <% @report.headings.each do |heading| %>
-            <th class="header"><%= heading %></th>
+
+    <div class="table-body">
+      <% @report.rows.each do |row| %>
+        <div class="table-row">
+          <% row.each do |row_column| %>
+            <%= content_tag :div, row_column, class:"table-cell" %>
           <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @report.rows.each do |row| %>
-          <tr>
-            <% row.each do |row_column| %>
-              <td><%= row_column %></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-      <tfoot>
-        <% if @report.rows.blank? %>
-          <tr><td class="no-results" colspan="8">No Hours Recorded</td></tr>
-        <% end %>
-      </tfoot>
-    </table>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <p class="no-results">No hours have been recorded Yet!</p>
+<% end %>

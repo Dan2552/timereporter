@@ -1,0 +1,54 @@
+.entry-form {
+  background: #ecf0f1;
+  padding: 10px;
+  position: fixed;
+  top: 113px;
+  width: $sidebarWidth - 20;
+  z-index: $zindexPopover + 10;
+  @include transition(all .3s);
+  form {
+    margin: 0;
+    select {
+      width: 100%;
+    }
+    textarea {
+      color: #444;
+      height: 150px;
+      margin: 0;
+      width: 100%;
+      @include box-sizing(border-box);
+      resize: none;
+    }
+    .close,
+    .save {
+      display: inline-block;
+      font-size: 15px;
+      line-height: 20px;
+    }
+    .close {
+      color: #999999;
+      margin: 5px 0 0;
+    }
+    .save {
+      float: right;
+    }
+    .save,
+    .delete-many {
+      background: none;
+      border: none;
+      color: #951305;
+      margin: 5px 0 0;
+      padding: 0;
+      &:hover {
+      }
+    }
+    .delete-many {
+      float: left;
+    }
+  }
+}
+
+
+.entry-form.hidden {
+  @include translate(-300px, 0);
+}

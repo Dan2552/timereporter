@@ -1,8 +1,8 @@
 module ReportsHelper
 
-  def report_path object, date
+  def report_path object, date, duration
     action = object.class.name.downcase.to_sym
-    url_for(controller: :reports, action: action, id: object, date: date)
+    url_for(controller: :reports, action: action, id: object, date: date, duration: duration)
   end
 
   def hours value

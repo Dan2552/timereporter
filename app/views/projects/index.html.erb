@@ -1,43 +1,46 @@
-<header class="page-header-with-link">
-  <h1>Projects</h1>
-  <% if @projects.any? %>
-    <%= link_to "update projects", new_podio_session_path %>
-  <% end %>
-</header>
+<% content_for(:sidebar) do %>
+  <%= render 'sidebar' %>
+<% end %>
 
-<div class="container">
-  <% if @projects.any? %>
+<h1 class="page-title">Projects</h1>
 
-    <div id="letter-list" class="sticky-item">
-      <ul>
-        <% @projects.keys.sort.each do |letter| %>
-          <li>
-            <a href="#letter_<%= letter.downcase %>" class="scroll-letter letter_<%= letter.downcase %>"><%= letter %></a>
-          </li>
+<% if @projects.any? %>
+
+  <% @projects.keys.sort.each_with_index do |letter, i| %>
+    <div id="<%= letter %>" class="projects-container">
+      <ul class="projects-list">
+        <li class="letter"><%= letter %></li>
+        <% @projects[letter].each do |project| %>
+          <%= render project %>
         <% end %>
-        <li class="top-link"><a href="#">top</a></li>
       </ul>
     </div>
-
-    <% @projects.keys.sort.each do |letter| %>
-      <div id="letter_<%= letter.downcase %>" class="projects-container">
-        <ul class="projects-list">
-          <li class="letter"><%= letter %></li>
-          <% @projects[letter].each do |project| %>
-            <%= content_tag_for :li, project do %>
-              <%= link_to project.title, project %>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-
-  <% else %>
-
-    <p class="no-results">
-      You curently have no projects, <%= link_to "click here", new_podio_session_path %> to import them from Podio.
-    </p>
-
   <% end %>
-</div>
+
+<% else %>
+  <p class="no-results">
+    You curently have no projects, <%= link_to "click here", new_podio_session_path %> to import them from Podio.
+  </p>
+<% end %>
+
+
+<script id="project-info-template" type="text/x-handlebars-template">
+  <div class="project-info closed">
+    <div class="inner">
+      <h1>{{title}}</h1>
+      {{#if billable }} <p><span>Billable:</span> {{billable}}</p> {{/if}}
+      {{#if client_company }} <p><span>Client Company:</span> {{client_company}}</p> {{/if}}
+      {{#if contact }} <p><span>Contact:</span> {{contact}}</p> {{/if}}
+      {{#if status }} <p><span>Project Status:</span> {{status}}</p> {{/if}}
+      {{#if project_type }} <p><span>Project Type:</span> {{project_type}}</p> {{/if}}
+      {{#if related_role }} <p><span>Related Role:</span> {{related_role}}</p> {{/if}}
+
+      {{#if utilised }} <p><span>Project Utilised:</span> {{utilised}}</p> {{/if}}
+
+      {{#if created_at }} <p><span>Created:</span> {{created_at}}</p> {{/if}}
+      {{#if updated_at }} <p><span>Last Updated:</span> {{updated_at}}</p> {{/if}}
+
+      <a href="#" class="close">close</a>
+    </div>
+  </div>
+</script>

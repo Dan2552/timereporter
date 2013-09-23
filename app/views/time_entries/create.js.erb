@@ -1,10 +1,37 @@
 (function() {
-  var $entry = time_entries.$entry,
-      $new_entry = $("<%=j render(@time_entry) %>"),
-      $form = $('<%=j render "form" %>').hide();
 
-  $entry.replaceWith($new_entry);
-  time_entries.$entry = $new_entry;
-  time_entries.show_form($form);
+  <% if @time_entry.present? %>
+    var $entry = timeEntries.$newEntries,
+        $newEntry = $("<%=j render(@time_entry) %>"),
+        $form = $("<%=j render 'form' %>");
+
+    $entry.data($newEntry.data());
+    $entry.attr('id', $newEntry.attr('id'));
+    $entry.find('.inner').replaceWith($newEntry.find('.inner'));
+
+    timeEntries.setResizeableUI( $entry );
+
+  <% elsif @time_entries.present? %>
+
+    var $entries = $("<%=j render(@time_entries) %>"),
+        $newEntries = timeEntries.$newEntries,
+        $form = $("<%=j render 'update_many_form' %>");
+
+    $newEntries.each(function() {
+      var $this = $(this);
+      $this.data($entries.first().data());
+      $this.attr('id', $entries.first().attr('id'));
+      $this.html( $entries.first().html() );
+      timeEntries.setResizeableUI( $this );
+
+      $entries = $entries.slice(1);
+    });
+
+  <% end %>
+
+  $('body')
+    .css('cursor', 'default')
+
+  timeEntries.showForm($form);
 
 })();

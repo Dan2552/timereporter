@@ -1,0 +1,13 @@
+<div class="projects-details">
+  <p>Total Projects: <span><%= @project_count %></span></p>
+  <%= link_to "update projects", new_podio_session_path, class:'page-header-link' if @projects.any? %>
+</div>
+
+
+<ul class="projects-nav">
+  <% ('a'..'z').each do |letter| %>
+    <li>
+      <%= link_to letter, "##{letter.upcase}", class:"letter-link #{'disabled' unless @projects.keys.include?(letter.upcase)}" %>
+    </li>
+  <% end %>
+</ul>

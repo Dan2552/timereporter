@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <nav class="nav-bar">
+    <ul>
+      <li class="title"><h1>Time Reporter</h1></li>
+      <li><%= link_to "timesheet", root_path(date: params[:date]), class: get_class("time_entries") %></li>
+      <li><%= link_to "projects", projects_path(date: params[:date]), class: get_class("projects") %></li>
+      <li><%= link_to "reports", reports_path(date: params[:date]), class: get_class("reports") %></li>
+      <li class="logout-li"><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </nav>
+<% end %>

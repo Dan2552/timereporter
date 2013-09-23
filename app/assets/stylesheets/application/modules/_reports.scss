@@ -1,0 +1,234 @@
+$headerHeight: 85px;
+
+.reports-layout {
+  .content {
+    top: $headerHeight;
+    @include transition(right .2s);
+    .content-inner {
+      padding-top: 0;
+    }
+  }
+
+  .content.with-info {
+    right: 402px;
+    .info-column {
+      right: 0;
+    }
+
+    .sticky-header {
+      right: 400px;
+    }
+  }
+
+  .sticky-header {
+    padding: 0;
+    margin: 20px 20px 0;
+    .project-filter {
+      float: right;
+    }
+  }
+}
+
+.report-list {
+  li {
+    border-bottom: 1px dashed $gray;
+    line-height: 40px;
+    a {
+      color: #999;
+      display: block;
+      font-size: 16px;
+      @include transition(all .1s);
+      &:hover,
+      &.active,
+      &.selected {
+        color: #CC0000;
+      }
+    }
+  }
+  .hours {
+    float: right;
+  }
+}
+
+
+.info-column {
+  background: #fff;
+  border-left: 1px solid #E4E4E4;
+  position: fixed;
+  top: 40px;
+  right: -402px;
+  bottom: 0;
+  width: 400px;
+  z-index: 2001;
+  @include transition(right .2s);
+  .inner {
+    padding: 20px;
+  }
+
+  .user-title {
+    margin-bottom: 20px;
+    h1 {
+      line-height: 45px;
+      margin-left: 55px;
+    }
+  }
+
+  .report-title {
+    font-size: 22px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+
+  .avatar {
+    float: left;
+    overflow: hidden;
+    @include square(45px);
+    @include border-radius(25px);
+  }
+
+  .color-key {
+    display: inline-block;
+    @include square(10px);
+  }
+
+  .project {
+    max-width: 250px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  ul.project-list {
+    max-height: 450px;
+    overflow-y: scroll;
+  }
+
+  ul li {
+    line-height: 24px;
+    .hours {
+      float: right;
+    }
+  }
+
+  .total-hours {
+    border-top: 1px solid $gray;
+    margin-top: 5px;
+    padding-top: 5px;
+    .hours {
+      float: right;
+    }
+  }
+
+  .sub-title {
+    font-size: 18px;
+    color: #C53727;
+  }
+
+  .chart {
+    margin-top: 30px;
+    text-align: center;
+    width: 360px;
+    height: 285px;
+  }
+
+  .close {
+    border-top: 1px solid #EEE;
+    display: block;
+    font-size: 16px;
+    padding: 10px 0 0;
+    line-height: 33px;
+    margin-top: 20px;
+  }
+}
+
+
+$projectColWidth: 20%;
+$clientColWidth: 19%;
+$personColWidth: 15%;
+$startDateColWidth: 8%;
+$endDateColWidth: 8%;
+$timeSpentColWidth: 10%;
+$utilisedColWidth: 10%;
+$billableColWidth: 10%;
+
+.project-code-col,
+.table-row .table-cell:nth-child(1) { width: $projectColWidth; }
+
+.client-col,
+.table-row .table-cell:nth-child(2) { width: $clientColWidth; }
+
+.person-col,
+.table-row .table-cell:nth-child(3) { width: $personColWidth; }
+
+.date-start-col,
+.table-row .table-cell:nth-child(4) { width: $startDateColWidth; }
+
+.date-end-col,
+.table-row .table-cell:nth-child(5) { width: $endDateColWidth; }
+
+.time-spent-col,
+.table-row .table-cell:nth-child(6) { width: $timeSpentColWidth; }
+
+.utilised-col,
+.table-row .table-cell:nth-child(7) { width: $utilisedColWidth; }
+
+.billable-col,
+.table-row .table-cell:nth-child(8) { width: $billableColWidth; }
+
+.table-view {
+  border: 1px solid #bbb;
+  border-bottom: none;
+  border-top: none;
+  font-size: 12px;
+  padding-top: 38px;
+}
+
+.table-header {
+  background: #ecf0f1;
+  border-top: 1px solid #bdc3c7;
+  border-bottom: 1px solid #bdc3c7;
+  color: #555;
+  position: fixed;
+  right: 21px;
+  left: $sidebarWidth + 21px;
+  top: 125px;
+  height: 36px;
+  .heading {
+    float: left;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+
+.table-body {
+  overflow: hidden;
+  .table-row {
+    border-bottom: 1px solid darken(#ecf0f1, 10%);
+    overflow: hidden;
+    vertical-align: middle;
+  }
+
+  .table-row:nth-child(even) {
+    background: #f6f6f6;
+  }
+
+  .table-cell {
+    border-left: 1px solid darken(#ecf0f1, 10%);
+    float: left;
+    height: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px 0;
+  }
+
+  .table-cell:nth-child(1) {
+    border: none;
+  }
+}
+
+.csv-btn {
+  margin-right: 10px;
+}
