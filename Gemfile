@@ -33,7 +33,7 @@ gem "podio", "~> 0.8"
 gem "omniauth-podio", "~> 0.0"
 gem 'jquery-rails'
 gem "cancan", "~> 1.6"
-gem "devise_json_csrf", '0.1', git: 'https://github.com/Dan2552/devise_json_csrf.git'
+gem "devise-json-csrf", '0.1.1', git: 'https://github.com/Dan2552/devise-json-csrf.git'
 gem "capistrano", "~> 2.14"
 gem "gravtastic", "~> 3.2.6"
 gem 'better_errors'
